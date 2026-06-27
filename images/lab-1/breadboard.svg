@@ -1,0 +1,195 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 385" font-family="sans-serif">
+  <style>
+    .bb-body { fill: #f5f0e0; stroke: #c0b090; stroke-width: 2; }
+    .pin { fill: #ddd; stroke: #999; stroke-width: 1; }
+    .power-rail { fill: none; stroke-width: 3; }
+    .label { text-anchor: middle; font-size: 10px; fill: #666; }
+  </style>
+
+  <!-- Breadboard body -->
+  <rect class="bb-body" x="10" y="10" width="580" height="365" rx="5"/>
+
+  <!-- Top power rails -->
+  <rect x="20" y="18" width="270" height="25" rx="3" fill="#ffe0e0" stroke="#ff9999" stroke-width="1"/>
+  <rect x="310" y="18" width="270" height="25" rx="3" fill="#ffe0e0" stroke="#ff9999" stroke-width="1"/>
+  <rect x="20" y="48" width="270" height="25" rx="3" fill="#e0e0ff" stroke="#9999ff" stroke-width="1"/>
+  <rect x="310" y="48" width="270" height="25" rx="3" fill="#e0e0ff" stroke="#9999ff" stroke-width="1"/>
+
+  <!-- Bottom power rails -->
+  <rect x="20" y="310" width="270" height="25" rx="3" fill="#e0e0ff" stroke="#9999ff" stroke-width="1"/>
+  <rect x="310" y="310" width="270" height="25" rx="3" fill="#e0e0ff" stroke="#9999ff" stroke-width="1"/>
+  <rect x="20" y="340" width="270" height="25" rx="3" fill="#ffe0e0" stroke="#ff9999" stroke-width="1"/>
+  <rect x="310" y="340" width="270" height="25" rx="3" fill="#ffe0e0" stroke="#ff9999" stroke-width="1"/>
+
+  <!-- Top power labels -->
+  <text x="155" y="34" class="label" font-weight="bold" fill="#cc0000">VCC (+5V)</text>
+  <text x="445" y="34" class="label" font-weight="bold" fill="#cc0000">VCC (+5V)</text>
+  <text x="155" y="64" class="label" font-weight="bold" fill="#3333cc">GND (0V)</text>
+  <text x="445" y="64" class="label" font-weight="bold" fill="#3333cc">GND (0V)</text>
+
+  <!-- Bottom power labels -->
+  <text x="155" y="326" class="label" font-weight="bold" fill="#3333cc">GND (0V)</text>
+  <text x="445" y="326" class="label" font-weight="bold" fill="#3333cc">GND (0V)</text>
+  <text x="155" y="356" class="label" font-weight="bold" fill="#cc0000">VCC (+5V)</text>
+  <text x="445" y="356" class="label" font-weight="bold" fill="#cc0000">VCC (+5V)</text>
+
+  <!-- Component area - 10 rows x 26 cols each side -->
+  <g>
+    <!-- Row labels A-J -->
+    <text x="15" y="102" class="label" font-size="9">A</text>
+    <text x="15" y="122" class="label" font-size="9">B</text>
+    <text x="15" y="142" class="label" font-size="9">C</text>
+    <text x="15" y="162" class="label" font-size="9">D</text>
+    <text x="15" y="182" class="label" font-size="9">E</text>
+    <text x="15" y="222" class="label" font-size="9">F</text>
+    <text x="15" y="242" class="label" font-size="9">G</text>
+    <text x="15" y="262" class="label" font-size="9">H</text>
+    <text x="15" y="282" class="label" font-size="9">I</text>
+    <text x="15" y="302" class="label" font-size="9">J</text>
+
+    <!-- Column numbers -->
+    <text x="45" y="85" class="label" font-size="8">1</text>
+    <text x="65" y="85" class="label" font-size="8">3</text>
+    <text x="85" y="85" class="label" font-size="8">5</text>
+    <text x="105" y="85" class="label" font-size="8">7</text>
+    <text x="125" y="85" class="label" font-size="8">9</text>
+    <text x="145" y="85" class="label" font-size="8">11</text>
+    <text x="165" y="85" class="label" font-size="8">13</text>
+    <text x="185" y="85" class="label" font-size="8">15</text>
+    <text x="205" y="85" class="label" font-size="8">17</text>
+    <text x="225" y="85" class="label" font-size="8">19</text>
+    <text x="245" y="85" class="label" font-size="8">21</text>
+    <text x="265" y="85" class="label" font-size="8">23</text>
+    <text x="285" y="85" class="label" font-size="8">25</text>
+
+    <text x="335" y="85" class="label" font-size="8">26</text>
+    <text x="355" y="85" class="label" font-size="8">28</text>
+    <text x="375" y="85" class="label" font-size="8">30</text>
+    <text x="395" y="85" class="label" font-size="8">32</text>
+    <text x="415" y="85" class="label" font-size="8">34</text>
+    <text x="435" y="85" class="label" font-size="8">36</text>
+    <text x="455" y="85" class="label" font-size="8">38</text>
+    <text x="475" y="85" class="label" font-size="8">40</text>
+    <text x="495" y="85" class="label" font-size="8">42</text>
+    <text x="515" y="85" class="label" font-size="8">44</text>
+    <text x="535" y="85" class="label" font-size="8">46</text>
+    <text x="555" y="85" class="label" font-size="8">48</text>
+    <text x="575" y="85" class="label" font-size="8">50</text>
+
+    <!-- Column separators -->
+    <line x1="295" y1="90" x2="295" y2="305" stroke="#c0b090" stroke-width="1" stroke-dasharray="3,3"/>
+    <line x1="310" y1="90" x2="310" y2="305" stroke="#c0b090" stroke-width="1" stroke-dasharray="3,3"/>
+
+    <!-- Center divider between E and F -->
+    <line x1="25" y1="200" x2="290" y2="200" stroke="#c0b090" stroke-width="2" stroke-dasharray="4,4"/>
+    <line x1="320" y1="200" x2="575" y2="200" stroke="#c0b090" stroke-width="2" stroke-dasharray="4,4"/>
+
+    <!-- Terminal strip holes (left side) -->
+    <g fill="#ddd" stroke="#999" stroke-width="0.8">
+      <!-- Row A -->
+      <circle cx="45" cy="95" r="4"/><circle cx="65" cy="95" r="4"/><circle cx="85" cy="95" r="4"/><circle cx="105" cy="95" r="4"/>
+      <circle cx="125" cy="95" r="4"/><circle cx="145" cy="95" r="4"/><circle cx="165" cy="95" r="4"/><circle cx="185" cy="95" r="4"/>
+      <circle cx="205" cy="95" r="4"/><circle cx="225" cy="95" r="4"/><circle cx="245" cy="95" r="4"/><circle cx="265" cy="95" r="4"/>
+      <circle cx="285" cy="95" r="4"/>
+      <!-- Row B -->
+      <circle cx="45" cy="115" r="4"/><circle cx="65" cy="115" r="4"/><circle cx="85" cy="115" r="4"/><circle cx="105" cy="115" r="4"/>
+      <circle cx="125" cy="115" r="4"/><circle cx="145" cy="115" r="4"/><circle cx="165" cy="115" r="4"/><circle cx="185" cy="115" r="4"/>
+      <circle cx="205" cy="115" r="4"/><circle cx="225" cy="115" r="4"/><circle cx="245" cy="115" r="4"/><circle cx="265" cy="115" r="4"/>
+      <circle cx="285" cy="115" r="4"/>
+      <!-- Row C -->
+      <circle cx="45" cy="135" r="4"/><circle cx="65" cy="135" r="4"/><circle cx="85" cy="135" r="4"/><circle cx="105" cy="135" r="4"/>
+      <circle cx="125" cy="135" r="4"/><circle cx="145" cy="135" r="4"/><circle cx="165" cy="135" r="4"/><circle cx="185" cy="135" r="4"/>
+      <circle cx="205" cy="135" r="4"/><circle cx="225" cy="135" r="4"/><circle cx="245" cy="135" r="4"/><circle cx="265" cy="135" r="4"/>
+      <circle cx="285" cy="135" r="4"/>
+      <!-- Row D -->
+      <circle cx="45" cy="155" r="4"/><circle cx="65" cy="155" r="4"/><circle cx="85" cy="155" r="4"/><circle cx="105" cy="155" r="4"/>
+      <circle cx="125" cy="155" r="4"/><circle cx="145" cy="155" r="4"/><circle cx="165" cy="155" r="4"/><circle cx="185" cy="155" r="4"/>
+      <circle cx="205" cy="155" r="4"/><circle cx="225" cy="155" r="4"/><circle cx="245" cy="155" r="4"/><circle cx="265" cy="155" r="4"/>
+      <circle cx="285" cy="155" r="4"/>
+      <!-- Row E -->
+      <circle cx="45" cy="175" r="4"/><circle cx="65" cy="175" r="4"/><circle cx="85" cy="175" r="4"/><circle cx="105" cy="175" r="4"/>
+      <circle cx="125" cy="175" r="4"/><circle cx="145" cy="175" r="4"/><circle cx="165" cy="175" r="4"/><circle cx="185" cy="175" r="4"/>
+      <circle cx="205" cy="175" r="4"/><circle cx="225" cy="175" r="4"/><circle cx="245" cy="175" r="4"/><circle cx="265" cy="175" r="4"/>
+      <circle cx="285" cy="175" r="4"/>
+      <!-- Row F -->
+      <circle cx="45" cy="215" r="4"/><circle cx="65" cy="215" r="4"/><circle cx="85" cy="215" r="4"/><circle cx="105" cy="215" r="4"/>
+      <circle cx="125" cy="215" r="4"/><circle cx="145" cy="215" r="4"/><circle cx="165" cy="215" r="4"/><circle cx="185" cy="215" r="4"/>
+      <circle cx="205" cy="215" r="4"/><circle cx="225" cy="215" r="4"/><circle cx="245" cy="215" r="4"/><circle cx="265" cy="215" r="4"/>
+      <circle cx="285" cy="215" r="4"/>
+      <!-- Row G -->
+      <circle cx="45" cy="235" r="4"/><circle cx="65" cy="235" r="4"/><circle cx="85" cy="235" r="4"/><circle cx="105" cy="235" r="4"/>
+      <circle cx="125" cy="235" r="4"/><circle cx="145" cy="235" r="4"/><circle cx="165" cy="235" r="4"/><circle cx="185" cy="235" r="4"/>
+      <circle cx="205" cy="235" r="4"/><circle cx="225" cy="235" r="4"/><circle cx="245" cy="235" r="4"/><circle cx="265" cy="235" r="4"/>
+      <circle cx="285" cy="235" r="4"/>
+      <!-- Row H -->
+      <circle cx="45" cy="255" r="4"/><circle cx="65" cy="255" r="4"/><circle cx="85" cy="255" r="4"/><circle cx="105" cy="255" r="4"/>
+      <circle cx="125" cy="255" r="4"/><circle cx="145" cy="255" r="4"/><circle cx="165" cy="255" r="4"/><circle cx="185" cy="255" r="4"/>
+      <circle cx="205" cy="255" r="4"/><circle cx="225" cy="255" r="4"/><circle cx="245" cy="255" r="4"/><circle cx="265" cy="255" r="4"/>
+      <circle cx="285" cy="255" r="4"/>
+      <!-- Row I -->
+      <circle cx="45" cy="275" r="4"/><circle cx="65" cy="275" r="4"/><circle cx="85" cy="275" r="4"/><circle cx="105" cy="275" r="4"/>
+      <circle cx="125" cy="275" r="4"/><circle cx="145" cy="275" r="4"/><circle cx="165" cy="275" r="4"/><circle cx="185" cy="275" r="4"/>
+      <circle cx="205" cy="275" r="4"/><circle cx="225" cy="275" r="4"/><circle cx="245" cy="275" r="4"/><circle cx="265" cy="275" r="4"/>
+      <circle cx="285" cy="275" r="4"/>
+      <!-- Row J -->
+      <circle cx="45" cy="295" r="4"/><circle cx="65" cy="295" r="4"/><circle cx="85" cy="295" r="4"/><circle cx="105" cy="295" r="4"/>
+      <circle cx="125" cy="295" r="4"/><circle cx="145" cy="295" r="4"/><circle cx="165" cy="295" r="4"/><circle cx="185" cy="295" r="4"/>
+      <circle cx="205" cy="295" r="4"/><circle cx="225" cy="295" r="4"/><circle cx="245" cy="295" r="4"/><circle cx="265" cy="295" r="4"/>
+      <circle cx="285" cy="295" r="4"/>
+    </g>
+
+    <!-- Terminal strip holes (right side) -->
+    <g fill="#ddd" stroke="#999" stroke-width="0.8">
+      <!-- Row A -->
+      <circle cx="335" cy="95" r="4"/><circle cx="355" cy="95" r="4"/><circle cx="375" cy="95" r="4"/><circle cx="395" cy="95" r="4"/>
+      <circle cx="415" cy="95" r="4"/><circle cx="435" cy="95" r="4"/><circle cx="455" cy="95" r="4"/><circle cx="475" cy="95" r="4"/>
+      <circle cx="495" cy="95" r="4"/><circle cx="515" cy="95" r="4"/><circle cx="535" cy="95" r="4"/><circle cx="555" cy="95" r="4"/>
+      <circle cx="575" cy="95" r="4"/>
+      <!-- Row B -->
+      <circle cx="335" cy="115" r="4"/><circle cx="355" cy="115" r="4"/><circle cx="375" cy="115" r="4"/><circle cx="395" cy="115" r="4"/>
+      <circle cx="415" cy="115" r="4"/><circle cx="435" cy="115" r="4"/><circle cx="455" cy="115" r="4"/><circle cx="475" cy="115" r="4"/>
+      <circle cx="495" cy="115" r="4"/><circle cx="515" cy="115" r="4"/><circle cx="535" cy="115" r="4"/><circle cx="555" cy="115" r="4"/>
+      <circle cx="575" cy="115" r="4"/>
+      <!-- Row C -->
+      <circle cx="335" cy="135" r="4"/><circle cx="355" cy="135" r="4"/><circle cx="375" cy="135" r="4"/><circle cx="395" cy="135" r="4"/>
+      <circle cx="415" cy="135" r="4"/><circle cx="435" cy="135" r="4"/><circle cx="455" cy="135" r="4"/><circle cx="475" cy="135" r="4"/>
+      <circle cx="495" cy="135" r="4"/><circle cx="515" cy="135" r="4"/><circle cx="535" cy="135" r="4"/><circle cx="555" cy="135" r="4"/>
+      <circle cx="575" cy="135" r="4"/>
+      <!-- Row D -->
+      <circle cx="335" cy="155" r="4"/><circle cx="355" cy="155" r="4"/><circle cx="375" cy="155" r="4"/><circle cx="395" cy="155" r="4"/>
+      <circle cx="415" cy="155" r="4"/><circle cx="435" cy="155" r="4"/><circle cx="455" cy="155" r="4"/><circle cx="475" cy="155" r="4"/>
+      <circle cx="495" cy="155" r="4"/><circle cx="515" cy="155" r="4"/><circle cx="535" cy="155" r="4"/><circle cx="555" cy="155" r="4"/>
+      <circle cx="575" cy="155" r="4"/>
+      <!-- Row E -->
+      <circle cx="335" cy="175" r="4"/><circle cx="355" cy="175" r="4"/><circle cx="375" cy="175" r="4"/><circle cx="395" cy="175" r="4"/>
+      <circle cx="415" cy="175" r="4"/><circle cx="435" cy="175" r="4"/><circle cx="455" cy="175" r="4"/><circle cx="475" cy="175" r="4"/>
+      <circle cx="495" cy="175" r="4"/><circle cx="515" cy="175" r="4"/><circle cx="535" cy="175" r="4"/><circle cx="555" cy="175" r="4"/>
+      <circle cx="575" cy="175" r="4"/>
+      <!-- Row F -->
+      <circle cx="335" cy="215" r="4"/><circle cx="355" cy="215" r="4"/><circle cx="375" cy="215" r="4"/><circle cx="395" cy="215" r="4"/>
+      <circle cx="415" cy="215" r="4"/><circle cx="435" cy="215" r="4"/><circle cx="455" cy="215" r="4"/><circle cx="475" cy="215" r="4"/>
+      <circle cx="495" cy="215" r="4"/><circle cx="515" cy="215" r="4"/><circle cx="535" cy="215" r="4"/><circle cx="555" cy="215" r="4"/>
+      <circle cx="575" cy="215" r="4"/>
+      <!-- Row G -->
+      <circle cx="335" cy="235" r="4"/><circle cx="355" cy="235" r="4"/><circle cx="375" cy="235" r="4"/><circle cx="395" cy="235" r="4"/>
+      <circle cx="415" cy="235" r="4"/><circle cx="435" cy="235" r="4"/><circle cx="455" cy="235" r="4"/><circle cx="475" cy="235" r="4"/>
+      <circle cx="495" cy="235" r="4"/><circle cx="515" cy="235" r="4"/><circle cx="535" cy="235" r="4"/><circle cx="555" cy="235" r="4"/>
+      <circle cx="575" cy="235" r="4"/>
+      <!-- Row H -->
+      <circle cx="335" cy="255" r="4"/><circle cx="355" cy="255" r="4"/><circle cx="375" cy="255" r="4"/><circle cx="395" cy="255" r="4"/>
+      <circle cx="415" cy="255" r="4"/><circle cx="435" cy="255" r="4"/><circle cx="455" cy="255" r="4"/><circle cx="475" cy="255" r="4"/>
+      <circle cx="495" cy="255" r="4"/><circle cx="515" cy="255" r="4"/><circle cx="535" cy="255" r="4"/><circle cx="555" cy="255" r="4"/>
+      <circle cx="575" cy="255" r="4"/>
+      <!-- Row I -->
+      <circle cx="335" cy="275" r="4"/><circle cx="355" cy="275" r="4"/><circle cx="375" cy="275" r="4"/><circle cx="395" cy="275" r="4"/>
+      <circle cx="415" cy="275" r="4"/><circle cx="435" cy="275" r="4"/><circle cx="455" cy="275" r="4"/><circle cx="475" cy="275" r="4"/>
+      <circle cx="495" cy="275" r="4"/><circle cx="515" cy="275" r="4"/><circle cx="535" cy="275" r="4"/><circle cx="555" cy="275" r="4"/>
+      <circle cx="575" cy="275" r="4"/>
+      <!-- Row J -->
+      <circle cx="335" cy="295" r="4"/><circle cx="355" cy="295" r="4"/><circle cx="375" cy="295" r="4"/><circle cx="395" cy="295" r="4"/>
+      <circle cx="415" cy="295" r="4"/><circle cx="435" cy="295" r="4"/><circle cx="455" cy="295" r="4"/><circle cx="475" cy="295" r="4"/>
+      <circle cx="495" cy="295" r="4"/><circle cx="515" cy="295" r="4"/><circle cx="535" cy="295" r="4"/><circle cx="555" cy="295" r="4"/>
+      <circle cx="575" cy="295" r="4"/>
+    </g>
+  </g>
+</svg>

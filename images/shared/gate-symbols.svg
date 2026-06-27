@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 550 180" font-family="sans-serif" font-size="12">
+  <style>
+    .gate-body { fill: white; stroke: #333; stroke-width: 1.8; }
+    .wire { stroke: #333; stroke-width: 1.5; }
+    .label { text-anchor: middle; font-size: 13px; fill: #333; }
+    .title { text-anchor: middle; font-size: 11px; fill: #666; }
+  </style>
+
+  <!-- AND Gate -->
+  <path class="gate-body" d="M 15 30 L 30 30 A 20 20 0 0 1 30 70 L 15 70 Z"/>
+  <line class="wire" x1="0" y1="40" x2="15" y2="40"/>
+  <line class="wire" x1="0" y1="60" x2="15" y2="60"/>
+  <line class="wire" x1="50" y1="50" x2="65" y2="50"/>
+  <text x="80" y="54" class="label">&amp;</text>
+
+  <!-- OR Gate -->
+  <path class="gate-body" d="M 115 28 C 135 28, 160 35, 160 50 C 160 65, 135 72, 115 72 C 122 62, 122 38, 115 28 Z"/>
+  <line class="wire" x1="100" y1="40" x2="119" y2="40"/>
+  <line class="wire" x1="100" y1="60" x2="119" y2="60"/>
+  <line class="wire" x1="160" y1="50" x2="175" y2="50"/>
+  <text x="190" y="54" class="label">≥1</text>
+
+  <!-- NOT Gate -->
+  <polygon class="gate-body" points="220,30 250,50 220,70"/>
+  <circle cx="254" cy="50" r="5" fill="white" stroke="#333" stroke-width="1.8"/>
+  <line class="wire" x1="205" y1="50" x2="220" y2="50"/>
+  <line class="wire" x1="259" y1="50" x2="274" y2="50"/>
+  <text x="290" y="54" class="label">1</text>
+
+  <!-- NAND Gate -->
+  <path class="gate-body" d="M 315 30 L 330 30 A 20 20 0 0 1 330 70 L 315 70 Z"/>
+  <circle cx="354" cy="50" r="5" fill="white" stroke="#333" stroke-width="1.8"/>
+  <line class="wire" x1="300" y1="40" x2="315" y2="40"/>
+  <line class="wire" x1="300" y1="60" x2="315" y2="60"/>
+  <line class="wire" x1="359" y1="50" x2="374" y2="50"/>
+  <text x="390" y="54" class="label">&amp;</text>
+
+  <!-- XOR Gate -->
+  <path class="gate-body" d="M 415 28 C 435 28, 460 35, 460 50 C 460 65, 435 72, 415 72 C 422 62, 422 38, 415 28 Z"/>
+  <line class="wire" x1="400" y1="40" x2="419" y2="40"/>
+  <line class="wire" x1="400" y1="60" x2="419" y2="60"/>
+  <line class="wire" x1="460" y1="50" x2="475" y2="50"/>
+  <text x="490" y="54" class="label">=1</text>
+
+  <!-- Labels -->
+  <text x="25" y="95" class="title">AND</text>
+  <text x="130" y="95" class="title">OR</text>
+  <text x="240" y="95" class="title">NOT</text>
+  <text x="335" y="95" class="title">NAND</text>
+  <text x="435" y="95" class="title">XOR</text>
+
+  <!-- Input annotations -->
+  <text x="5" y="105" class="title" font-size="9">A B  → Y</text>
+  <text x="107" y="105" class="title" font-size="9">A B  → Y</text>
+  <text x="222" y="105" class="title" font-size="9">A  → Y</text>
+  <text x="315" y="105" class="title" font-size="9">A B  → Y</text>
+  <text x="420" y="105" class="title" font-size="9">A B  → Y</text>
+
+  <!-- Truth table rows -->
+  <g font-size="9" fill="#999">
+    <text x="25" y="120" class="title" font-size="9">0·0=0</text>
+    <text x="130" y="120" class="title" font-size="9">0+0=0</text>
+    <text x="240" y="120" class="title" font-size="9">0̅=1</text>
+    <text x="335" y="120" class="title" font-size="9">0⊼0=1</text>
+    <text x="435" y="120" class="title" font-size="9">0⊕0=0</text>
+    <text x="25" y="133" class="title" font-size="9">0·1=0</text>
+    <text x="130" y="133" class="title" font-size="9">0+1=1</text>
+    <text x="240" y="133" class="title" font-size="9">1̅=0</text>
+    <text x="335" y="133" class="title" font-size="9">0⊼1=1</text>
+    <text x="435" y="133" class="title" font-size="9">0⊕1=1</text>
+    <text x="335" y="146" class="title" font-size="9">1⊼0=1</text>
+    <text x="435" y="146" class="title" font-size="9">1⊕0=1</text>
+    <text x="335" y="159" class="title" font-size="9">1⊼1=0</text>
+    <text x="435" y="159" class="title" font-size="9">1⊕1=0</text>
+    <text x="25" y="146" class="title" font-size="9">1·0=0</text>
+    <text x="25" y="159" class="title" font-size="9">1·1=1</text>
+    <text x="130" y="146" class="title" font-size="9">1+0=1</text>
+    <text x="130" y="159" class="title" font-size="9">1+1=1</text>
+  </g>
+</svg>

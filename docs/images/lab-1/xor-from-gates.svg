@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 550 225" font-family="sans-serif">
+  <style>
+    .gate { fill: white; stroke: #333; stroke-width: 2; }
+    .wire { stroke: #333; stroke-width: 1.5; fill: none; }
+    .label { text-anchor: middle; font-size: 14px; fill: #333; }
+    .label-sm { text-anchor: middle; font-size: 11px; fill: #666; }
+  </style>
+
+  <!-- Input lines -->
+  <line class="wire" x1="10" y1="45" x2="85" y2="45"/>
+  <line class="wire" x1="10" y1="70" x2="55" y2="70"/>
+
+  <text x="10" y="40" class="label" font-weight="bold">A</text>
+  <text x="10" y="65" class="label" font-weight="bold">B</text>
+
+  <!-- Top row: A to AND1, B to NOT2 to AND1 -->
+  <line class="wire" x1="85" y1="45" x2="230" y2="45"/>    <!-- A → AND1 top -->
+  <line class="wire" x1="55" y1="70" x2="130" y2="70"/>    <!-- B → NOT2 -->
+
+  <!-- NOT2 (invert B) -->
+  <polygon class="gate" points="130,50 160,70 130,90"/>
+  <circle cx="164" cy="70" r="5" fill="white" stroke="#333" stroke-width="1.8"/>
+  <line class="wire" x1="169" y1="70" x2="230" y2="70"/>   <!-- NOT B → AND1 bottom -->
+
+  <!-- AND1: A · NOT B -->
+  <path class="gate" d="M 230,37.5 L 250,37.5 A 20,20 0 0,1 250,77.5 L 230,77.5 Z"/>
+  <line class="wire" x1="270" y1="57.5" x2="295" y2="57.5"/>   <!-- AND1 out → right -->
+
+  <!-- Vertical drops from top to bottom row -->
+  <line class="wire" x1="85" y1="45" x2="85" y2="145"/>    <!-- A drop → NOT1 -->
+  <line class="wire" x1="55" y1="70" x2="55" y2="170"/>    <!-- B drop → AND2 bottom -->
+
+  <!-- Bottom row: A to NOT1 -->
+  <line class="wire" x1="85" y1="145" x2="130" y2="145"/>  <!-- A → NOT1 -->
+
+  <!-- NOT1 (invert A) -->
+  <polygon class="gate" points="130,125 160,145 130,165"/>
+  <circle cx="164" cy="145" r="5" fill="white" stroke="#333" stroke-width="1.8"/>
+  <line class="wire" x1="169" y1="145" x2="230" y2="145"/> <!-- NOT A → AND2 top -->
+
+  <line class="wire" x1="55" y1="170" x2="230" y2="170"/>  <!-- B → AND2 bottom -->
+
+  <!-- AND2: NOT A · B -->
+  <path class="gate" d="M 230,137.5 L 250,137.5 A 20,20 0 0,1 250,177.5 L 230,177.5 Z"/>
+  <line class="wire" x1="270" y1="157.5" x2="320" y2="157.5"/>  <!-- AND2 out → right -->
+
+  <!-- OR Gate -->
+  <path class="gate" d="M 330,85.5 C 350,85.5 375,92.5 375,107.5 C 375,122.5 350,129.5 330,129.5 C 338,119.5 338,95.5 330,85.5 Z"/>
+
+  <!-- AND1 → OR top -->
+  <line class="wire" x1="295" y1="57.5" x2="295" y2="95"/>
+  <line class="wire" x1="295" y1="95" x2="336" y2="95"/>
+
+  <!-- AND2 → OR bottom -->
+  <line class="wire" x1="320" y1="157.5" x2="320" y2="120"/>
+  <line class="wire" x1="320" y1="120" x2="336" y2="120"/>
+
+  <!-- OR output -->
+  <line class="wire" x1="375" y1="107.5" x2="420" y2="107.5"/>
+  <line class="wire" x1="420" y1="107.5" x2="480" y2="107.5"/>
+
+  <text x="463" y="103" class="label" font-weight="bold">Y = A</text>
+  <circle cx="487" cy="98" r="4.5" fill="none" stroke="#333" stroke-width="1.5"/>
+  <line x1="482.5" y1="98" x2="491.5" y2="98" stroke="#333" stroke-width="1.5"/>
+  <line x1="487" y1="93.5" x2="487" y2="102.5" stroke="#333" stroke-width="1.5"/>
+  <text x="499" y="103" class="label" font-weight="bold">B</text>
+
+  <!-- Gate labels -->
+
+  <!-- Title -->
+  <text x="250" y="205" class="label" font-size="14" font-weight="bold" font-family="TH Sarabun New, sans-serif">XOR Gate สร้างจาก AND, OR, NOT</text>
+  <text x="149" y="18" class="label-sm" font-size="12" xml:space="preserve">XOR = (A </text>
+  <circle cx="183" cy="14" r="1.5" fill="#666"/>
+  <text x="243" y="18" class="label-sm" font-size="12" xml:space="preserve"> NOT B) + (NOT A </text>
+  <circle cx="301" cy="14" r="1.5" fill="#666"/>
+  <text x="318" y="18" class="label-sm" font-size="12" xml:space="preserve"> B)</text>
+</svg>

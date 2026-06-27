@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 510" font-family="monospace" font-size="11">
+  <style>
+    .body { fill: white; stroke: #333; stroke-width: 2; }
+    .pin { stroke: #333; stroke-width: 1.5; }
+    .wire { stroke: #333; stroke-width: 1.2; fill: none; }
+    .gate { fill: white; stroke: #333; stroke-width: 1.5; }
+    .pin-text { text-anchor: middle; font-size: 11px; fill: #333; }
+    .title { text-anchor: middle; font-size: 14px; fill: #333; font-weight: bold; }
+    .sub { text-anchor: middle; font-size: 11px; fill: #666; }
+  </style>
+
+  <g transform="scale(1.5)">
+  <path d="M 60,70 L 500,70 L 500,270 L 60,270 L 60,182 A 12,12 0 0,0 60,158 Z" class="body"/>
+
+  <!-- Top pins: 14(VCC) 13(4B) 12(4A) 11(4Y) 10(3B) 9(3A) 8(3Y) -->
+  <line x1="90" y1="30" x2="90" y2="70" class="pin"/>
+  <text x="90" y="23" class="pin-text">14</text>
+  <text x="90" y="10" class="pin-text" font-size="9">VCC</text>
+
+  <line x1="153" y1="30" x2="153" y2="70" class="pin"/>
+  <text x="153" y="23" class="pin-text">13</text>
+  <text x="153" y="10" class="pin-text" font-size="9">4B</text>
+
+  <line x1="217" y1="30" x2="217" y2="70" class="pin"/>
+  <text x="217" y="23" class="pin-text">12</text>
+  <text x="217" y="10" class="pin-text" font-size="9">4A</text>
+
+  <line x1="280" y1="30" x2="280" y2="70" class="pin"/>
+  <text x="280" y="23" class="pin-text">11</text>
+  <text x="280" y="10" class="pin-text" font-size="9">4Y</text>
+
+  <line x1="343" y1="30" x2="343" y2="70" class="pin"/>
+  <text x="343" y="23" class="pin-text">10</text>
+  <text x="343" y="10" class="pin-text" font-size="9">3B</text>
+
+  <line x1="407" y1="30" x2="407" y2="70" class="pin"/>
+  <text x="407" y="23" class="pin-text">9</text>
+  <text x="407" y="10" class="pin-text" font-size="9">3A</text>
+
+  <line x1="470" y1="30" x2="470" y2="70" class="pin"/>
+  <text x="470" y="23" class="pin-text">8</text>
+  <text x="470" y="10" class="pin-text" font-size="9">3Y</text>
+
+  <!-- Bottom pins: 1(1A) 2(1B) 3(1Y) 4(2A) 5(2B) 6(2Y) 7(GND) -->
+  <line x1="90" y1="270" x2="90" y2="310" class="pin"/>
+  <text x="90" y="322" class="pin-text">1</text>
+  <text x="90" y="336" class="pin-text" font-size="9">1A</text>
+
+  <line x1="153" y1="270" x2="153" y2="310" class="pin"/>
+  <text x="153" y="322" class="pin-text">2</text>
+  <text x="153" y="336" class="pin-text" font-size="9">1B</text>
+
+  <line x1="217" y1="270" x2="217" y2="310" class="pin"/>
+  <text x="217" y="322" class="pin-text">3</text>
+  <text x="217" y="336" class="pin-text" font-size="9">1Y</text>
+
+  <line x1="280" y1="270" x2="280" y2="310" class="pin"/>
+  <text x="280" y="322" class="pin-text">4</text>
+  <text x="280" y="336" class="pin-text" font-size="9">2A</text>
+
+  <line x1="343" y1="270" x2="343" y2="310" class="pin"/>
+  <text x="343" y="322" class="pin-text">5</text>
+  <text x="343" y="336" class="pin-text" font-size="9">2B</text>
+
+  <line x1="407" y1="270" x2="407" y2="310" class="pin"/>
+  <text x="407" y="322" class="pin-text">6</text>
+  <text x="407" y="336" class="pin-text" font-size="9">2Y</text>
+
+  <line x1="470" y1="270" x2="470" y2="310" class="pin"/>
+  <text x="470" y="322" class="pin-text">7</text>
+  <text x="470" y="336" class="pin-text" font-size="9">GND</text>
+
+  <!-- Internal OR gates -->
+  <!-- Row 1 (top, y=113): Gate 4, Gate 3 (pointing RIGHT) -->
+  <!-- Gate 4: 4A(217)+4B(153) → 4Y(280) -->
+  <path class="gate" d="M 230,105 C 246,105 250,108 250,113 C 250,118 246,121 230,121 C 232,118 233,115 233,113 C 233,111 232,108 230,105 Z"/>
+  <line class="wire" x1="153" y1="70" x2="153" y2="117"/>
+  <line class="wire" x1="217" y1="70" x2="217" y2="109"/>
+  <line class="wire" x1="153" y1="117" x2="233" y2="117"/>
+  <line class="wire" x1="217" y1="109" x2="233" y2="109"/>
+  <line class="wire" x1="250" y1="113" x2="280" y2="113"/>
+  <line class="wire" x1="280" y1="113" x2="280" y2="70"/>
+
+  <!-- Gate 3: 3A(407)+3B(343) → 3Y(470) -->
+  <path class="gate" d="M 420,105 C 436,105 440,108 440,113 C 440,118 436,121 420,121 C 422,118 423,115 423,113 C 423,111 422,108 420,105 Z"/>
+  <line class="wire" x1="343" y1="70" x2="343" y2="117"/>
+  <line class="wire" x1="407" y1="70" x2="407" y2="109"/>
+  <line class="wire" x1="343" y1="117" x2="423" y2="117"/>
+  <line class="wire" x1="407" y1="109" x2="423" y2="109"/>
+  <line class="wire" x1="440" y1="113" x2="470" y2="113"/>
+  <line class="wire" x1="470" y1="113" x2="470" y2="70"/>
+
+  <!-- Row 2 (bottom, y=215): Gate 1, Gate 2 (pointing RIGHT) -->
+  <!-- Gate 1: 1A(90)+1B(153) → 1Y(217) -->
+  <path class="gate" d="M 166,207 C 182,207 186,210 186,215 C 186,220 182,223 166,223 C 168,220 169,217 169,215 C 169,213 168,210 166,207 Z"/>
+  <line class="wire" x1="90" y1="270" x2="90" y2="211"/>
+  <line class="wire" x1="153" y1="270" x2="153" y2="219"/>
+  <line class="wire" x1="90" y1="211" x2="169" y2="211"/>
+  <line class="wire" x1="153" y1="219" x2="169" y2="219"/>
+  <line class="wire" x1="186" y1="215" x2="217" y2="215"/>
+  <line class="wire" x1="217" y1="215" x2="217" y2="270"/>
+
+  <!-- Gate 2: 2A(280)+2B(343) → 2Y(407) -->
+  <path class="gate" d="M 356,207 C 372,207 376,210 376,215 C 376,220 372,223 356,223 C 358,220 359,217 359,215 C 359,213 358,210 356,207 Z"/>
+  <line class="wire" x1="280" y1="270" x2="280" y2="211"/>
+  <line class="wire" x1="343" y1="270" x2="343" y2="219"/>
+  <line class="wire" x1="280" y1="211" x2="359" y2="211"/>
+  <line class="wire" x1="343" y1="219" x2="359" y2="219"/>
+  <line class="wire" x1="376" y1="215" x2="407" y2="215"/>
+  <line class="wire" x1="407" y1="215" x2="407" y2="270"/>
+
+  <text x="280" y="160" class="title">74HC32</text>
+  <text x="280" y="80" class="sub">Quad 2-Input OR Gate</text>
+  </g>
+</svg>

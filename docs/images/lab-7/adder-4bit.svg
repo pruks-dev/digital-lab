@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 250" font-family="sans-serif">
+  <style>
+    .gate { fill: white; stroke: #333; stroke-width: 2; }
+    .wire { stroke: #333; stroke-width: 1.5; fill: none; }
+    .wire-thick { stroke: #333; stroke-width: 2.5; fill: none; }
+    .label { text-anchor: middle; font-size: 14px; fill: #333; }
+    .label-sm { text-anchor: middle; font-size: 11px; fill: #666; }
+  </style>
+
+  <rect class="gate" x="120" y="40" width="120" height="160" rx="4"/>
+  <text x="180" y="100" class="label" font-weight="bold" font-size="16">Adder</text>
+  <text x="180" y="125" class="label-sm">4-bit</text>
+
+  <text x="180" y="62" class="label-sm">A[3..0]</text>
+  <text x="180" y="82" class="label-sm">B[3..0]</text>
+  <text x="180" y="182" class="label-sm">S[4..0]</text>
+
+  <line class="wire-thick" x1="10" y1="58" x2="120" y2="58"/>
+  <text x="10" y="53" class="label" font-weight="bold">A[3:0]</text>
+
+  <line class="wire-thick" x1="10" y1="78" x2="120" y2="78"/>
+  <text x="10" y="73" class="label" font-weight="bold">B[3:0]</text>
+
+  <line class="wire-thick" x1="240" y1="178" x2="350" y2="178"/>
+  <text x="360" y="182" class="label" font-weight="bold">S[4:0]</text>
+
+  <!-- Carry in/out labels -->
+  <text x="60" y="220" class="label-sm">Cin = 0 (for addition)</text>
+</svg>

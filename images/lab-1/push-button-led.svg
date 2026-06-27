@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 350">
+  <style>
+    .wire { fill:none; stroke:#000; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+    .comp { fill:none; stroke:#000; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+    .lbl { font-family:sans-serif; font-size:15px; text-anchor:middle; }
+    .sm { font-family:sans-serif; font-size:13px; text-anchor:middle; }
+    .dot { fill:#000; }
+  </style>
+
+  <!-- VCC rail -->
+  <line class="wire" x1="140" y1="40" x2="260" y2="40"/>
+  <line class="wire" x1="200" y1="40" x2="200" y2="70"/>
+  <text class="lbl" x="200" y="28">VCC (+5V)</text>
+
+  <!-- Push Button symbol -->
+  <line class="wire" x1="200" y1="70" x2="200" y2="80"/>
+  <circle class="dot" cx="200" cy="80" r="2.5"/>
+  <line class="wire" x1="200" y1="115" x2="200" y2="125"/>
+  <circle class="dot" cx="200" cy="125" r="2.5"/>
+  <line class="comp" x1="210" y1="78" x2="200" y2="115"/>
+  <circle class="dot" cx="210" cy="78" r="2.5"/>
+  <text class="sm" x="235" y="103">SW</text>
+
+  <!-- Wire from switch to resistor -->
+  <line class="wire" x1="200" y1="125" x2="200" y2="145"/>
+
+  <!-- Resistor zigzag -->
+  <polyline class="comp" points="200,145 215,150 185,158 215,166 185,174 215,182 200,188 200,195"/>
+  <text class="sm" x="235" y="172">330Ω</text>
+
+  <!-- Wire from resistor to LED -->
+  <line class="wire" x1="200" y1="195" x2="200" y2="218"/>
+
+  <!-- LED triangle (pointing down) -->
+  <polygon class="comp" points="180,218 220,218 200,248"/>
+  <!-- Cathode bar -->
+  <line class="wire" x1="182" y1="252" x2="218" y2="252"/>
+  <!-- Light arrows -->
+  <line class="comp" x1="228" y1="225" x2="245" y2="215"/>
+  <line class="comp" x1="228" y1="235" x2="245" y2="230"/>
+  <line class="comp" x1="228" y1="245" x2="245" y2="245"/>
+  <text class="sm" x="260" y="240">LED</text>
+
+  <!-- Wire from LED cathode to GND -->
+  <line class="wire" x1="200" y1="252" x2="200" y2="290"/>
+
+  <!-- GND symbol -->
+  <line class="wire" x1="160" y1="290" x2="240" y2="290"/>
+  <line class="wire" x1="175" y1="300" x2="225" y2="300"/>
+  <line class="wire" x1="190" y1="310" x2="210" y2="310"/>
+  <text class="lbl" x="200" y="332">GND</text>
+</svg>

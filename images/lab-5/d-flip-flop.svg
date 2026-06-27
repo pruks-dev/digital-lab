@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" font-family="sans-serif">
+  <style>
+    .gate { fill: white; stroke: #333; stroke-width: 2; }
+    .wire { stroke: #333; stroke-width: 1.5; fill: none; }
+    .wire-thick { stroke: #333; stroke-width: 2.5; fill: none; }
+    .label { text-anchor: middle; font-size: 14px; fill: #333; }
+    .label-sm { text-anchor: middle; font-size: 11px; fill: #666; }
+  </style>
+  <rect class="gate" x="80" y="40" width="100" height="120" rx="4"/>
+  <text x="130" y="70" class="label" font-weight="bold">D</text>
+  <text x="130" y="95" class="label" font-size="12">FF</text>
+  <text x="130" y="115" class="label" font-size="10">CLK</text>
+  <text x="130" y="140" class="label" font-size="10">RST</text>
+
+  <line class="wire-thick" x1="10" y1="60" x2="80" y2="60"/>
+  <text x="10" y="55" class="label" font-weight="bold">D</text>
+
+  <line class="wire" x1="10" y1="100" x2="50" y2="100"/>
+  <line class="wire" x1="50" y1="100" x2="50" y2="90"/>
+  <line class="wire" x1="50" y1="90" x2="80" y2="90"/>
+  <text x="10" y="95" class="label" font-size="12">CLK</text>
+
+  <line class="wire" x1="10" y1="140" x2="80" y2="140"/>
+  <text x="10" y="135" class="label" font-size="12">RST</text>
+
+  <line class="wire-thick" x1="180" y1="60" x2="250" y2="60"/>
+  <text x="260" y="64" class="label" font-weight="bold">Q</text>
+
+  <line class="wire" x1="180" y1="100" x2="250" y2="100"/>
+  <text x="260" y="104" class="label" font-weight="bold">Q'</text>
+
+  <!-- Clock arrow -->
+  <polyline class="wire" points="45,85 50,90 55,85" fill="none"/>
+</svg>
