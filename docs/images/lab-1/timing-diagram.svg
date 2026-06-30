@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 410">
+  <style>
+    .wire { fill:none; stroke:#000; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+    .ref { fill:none; stroke:#999; stroke-width:1; stroke-dasharray:4,4; }
+    .vref { fill:none; stroke:#888; stroke-width:1; stroke-dasharray:3,3; }
+    .arrow { fill:none; stroke:#c00; stroke-width:1.5; }
+    .lbl { font-family:sans-serif; font-size:13px; }
+    .sm { font-family:sans-serif; font-size:11px; fill:#666; }
+    .hlbl { font-family:sans-serif; font-size:13px; font-weight:bold; }
+    .tlabel { font-family:sans-serif; font-size:12px; fill:#c00; font-weight:bold; }
+  </style>
+
+  <!-- Input trace label -->
+  <text class="hlbl" x="50" y="30">Input</text>
+
+  <!-- Input waveform -->
+  <polyline class="wire" points="60,90 120,90 135,40 250,40 265,90 380,90 395,40 560,40"/>
+
+  <!-- Input 90%, 50%, 10% dashed horizontal lines -->
+  <line class="ref" x1="60" y1="45" x2="560" y2="45"/>
+  <text class="sm" x="562" y="48">90%</text>
+
+  <line class="ref" x1="60" y1="65" x2="560" y2="65"/>
+  <text class="sm" x="562" y="68">50%</text>
+
+  <line class="ref" x1="60" y1="85" x2="560" y2="85"/>
+  <text class="sm" x="562" y="88">10%</text>
+
+  <!-- Output trace label -->
+  <text class="hlbl" x="50" y="170">Output</text>
+
+  <!-- Output 90%, 50%, 10% dashed horizontal lines -->
+  <line class="ref" x1="60" y1="195" x2="560" y2="195"/>
+  <text class="sm" x="562" y="198">90%</text>
+
+  <line class="ref" x1="60" y1="215" x2="560" y2="215"/>
+  <text class="sm" x="562" y="218">50%</text>
+
+  <line class="ref" x1="60" y1="235" x2="560" y2="235"/>
+  <text class="sm" x="562" y="238">10%</text>
+
+  <!-- Output waveform (inverted, delayed, trapezoidal edges) -->
+  <polyline class="wire" points="60,190 155,190 180,240 295,240 320,190 560,190"/>
+
+  <!-- V_OH / V_OL labels -->
+  <text class="sm" x="40" y="193">V<tspan font-size="9" dy="2">OH</tspan></text>
+  <text class="sm" x="40" y="243">V<tspan font-size="9" dy="2">OL</tspan></text>
+
+  <!-- ===== tPHL: vertical dashed lines + arrow ===== -->
+  <circle cx="127.5" cy="65" r="3" fill="#c00"/>
+  <line class="vref" x1="127.5" y1="65" x2="127.5" y2="270"/>
+
+  <circle cx="167.5" cy="215" r="3" fill="#c00"/>
+  <line class="vref" x1="167.5" y1="65" x2="167.5" y2="270"/>
+
+  <line class="arrow" x1="127.5" y1="256" x2="167.5" y2="256"/>
+  <polygon class="arrow" points="167.5,256 160,252 160,260"/>
+  <text class="tlabel" x="138" y="250">t<tspan font-size="10" dy="2">PHL</tspan></text>
+
+  <!-- ===== tPLH: vertical dashed lines + arrow ===== -->
+  <circle cx="257.5" cy="65" r="3" fill="#c00"/>
+  <line class="vref" x1="257.5" y1="65" x2="257.5" y2="280"/>
+
+  <circle cx="307.5" cy="215" r="3" fill="#c00"/>
+  <line class="vref" x1="307.5" y1="65" x2="307.5" y2="280"/>
+
+  <line class="arrow" x1="257.5" y1="268" x2="307.5" y2="268"/>
+  <polygon class="arrow" points="307.5,268 300,264 300,272"/>
+  <text class="tlabel" x="272" y="262">t<tspan font-size="10" dy="2">PLH</tspan></text>
+
+  <!-- ===== tf (Fall Time): horizontal arrow + vertical dashed lines ===== -->
+  <circle cx="157.5" cy="195" r="3" fill="#c00"/>
+  <circle cx="177.5" cy="235" r="3" fill="#c00"/>
+  <line class="vref" x1="157.5" y1="195" x2="157.5" y2="310"/>
+  <line class="vref" x1="177.5" y1="235" x2="177.5" y2="310"/>
+
+  <line class="arrow" x1="157.5" y1="305" x2="177.5" y2="305"/>
+  <polygon class="arrow" points="177.5,305 170,301 170,309"/>
+  <line class="arrow" x1="157.5" y1="300" x2="157.5" y2="310"/>
+  <line class="arrow" x1="177.5" y1="300" x2="177.5" y2="310"/>
+  <text class="tlabel" x="158" y="324">t<tspan font-size="10" dy="2">f</tspan></text>
+
+  <!-- ===== tr (Rise Time): horizontal arrow + vertical dashed lines ===== -->
+  <circle cx="297.5" cy="235" r="3" fill="#c00"/>
+  <circle cx="317.5" cy="195" r="3" fill="#c00"/>
+  <line class="vref" x1="297.5" y1="235" x2="297.5" y2="300"/>
+  <line class="vref" x1="317.5" y1="195" x2="317.5" y2="300"/>
+
+  <line class="arrow" x1="297.5" y1="295" x2="317.5" y2="295"/>
+  <polygon class="arrow" points="317.5,295 310,291 310,299"/>
+  <line class="arrow" x1="297.5" y1="290" x2="297.5" y2="300"/>
+  <line class="arrow" x1="317.5" y1="290" x2="317.5" y2="300"/>
+  <text class="tlabel" x="297" y="314">t<tspan font-size="10" dy="2">r</tspan></text>
+
+  <!-- Time axis with arrow -->
+  <line class="wire" x1="60" y1="340" x2="555" y2="340"/>
+  <polygon class="wire" points="560,340 550,335 550,345"/>
+  <text class="lbl" x="310" y="365">เวลา (Time)</text>
+</svg>

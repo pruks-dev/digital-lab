@@ -27,9 +27,18 @@ pruk.s@eng.kmutnb.ac.th
 - [ใบงานการทดลองที่ 7: วงจรคำนวณทางคณิตศาสตร์บน FPGA](ใบงานการทดลองที่%207.md)
 - [ใบงานการทดลองที่ 8: การบูรณาการระบบเครื่องคิดเลขด้วย VHDL](ใบงานการทดลองที่%208.md)
 
-## อุปกรณ์หลัก
+## อุปกรณ์หลัก (Hardware)
 
 - บอร์ด FPGA DE10-Lite (Intel/Altera MAX 10)
 - IC 74HC Series (04, 08, 32, 86, 00)
 - Breadboard, LEDs, Push Buttons, Oscilloscope, Function Generator
-- โปรแกรม Quartus Prime Lite Edition
+
+## เครื่องมือที่ใช้ในการพัฒนา
+
+- **[Tinkercad Circuits](https://www.tinkercad.com)** — จำลองวงจรลอจิกพื้นฐาน
+  สำหรับการทดลองที่ 1–2 (74HC Series, Breadboard, LED, Push Button)
+  ก่อนลงมือประกอบวงจรจริง
+- **Quartus Prime Lite Edition 20.1** — โปรแกรมหลักสำหรับพัฒนา VHDL
+  Compile, และโปรแกรมบอร์ด FPGA DE10-Lite ในการทดลองที่ 3–8
+- **ModelSim Intel FPGA Starter Edition** — ใช้จำลองสัญญาณ (simulation waveform)
+  เพื่อตรวจสอบการทำงานของวงจร VHDL ก่อนโปรแกรมลง FPGA
