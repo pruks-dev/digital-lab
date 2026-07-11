@@ -3,7 +3,7 @@
 ## Project Overview
 
 MkDocs site for a Thai-language digital logic lab course
-(`ใบงานการทดลองที่ 1.md` through `ใบงานการทดลองที่ 8.md`). The worksheets cover:
+(`lab-1.md` through `lab-8.md`). The worksheets cover:
 
 - Basic logic gates (AND, OR, XOR), Half Adder, Full Adder, Multiplexers
 - FPGA basics with VHDL on the DE10-Lite board (Quartus Prime Lite)
@@ -42,7 +42,7 @@ There is no automated compilation pipeline — students compile manually in Quar
 
 - **Language**: Thai (primary), with technical English terms for IC names, VHDL keywords,
   signal names, and component references
-- **File naming**: Thai descriptive names using `ใบงานการทดลองที่ N.md` pattern (N = 1-8)
+- **File naming**: `lab-N.md` pattern (N = 1-8)
 - **Encoding**: UTF-8
 - **Line endings**: LF (Unix-style)
 
@@ -145,7 +145,7 @@ end architecture;
 
 | Item | Convention | Example |
 |------|-----------|---------|
-| Markdown files | Thai descriptive, lab N | `ใบงานการทดลองที่ 3.md` |
+| Markdown files | `lab-N.md` | `lab-3.md` |
 | VHDL entities | PascalCase | `HalfAdder`, `FullAdder` |
 | VHDL signals | lowercase_snake_case | `input_a`, `carry_out` |
 | VHDL constants | UPPER_SNAKE_CASE | `CLOCK_FREQ` |
@@ -201,7 +201,7 @@ Existing diagrams:
 
 ### How to Add a New Worksheet
 
-1. Create `docs/ใบงานการทดลองที่ N.md` following the H1/H2 structure above
+1. Create `docs/lab-N.md` following the H1/H2 structure above
 2. Include: Objectives (bullet points, `สามารถ` rules), Equipment, one or more sub-experiments
    (each with procedure, truth tables, and questions), Conclusion (identical text), and Review Questions
 3. Reference IC part numbers correctly (e.g., 74HC08, 74HC32, 74HC04, 74HC86, 74HC00)
