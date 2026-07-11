@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 580 210" font-family="sans-serif">
+  <style>
+    .grid   { stroke: #ddd; stroke-width: 0.8; }
+    .axis   { stroke: #333; stroke-width: 1.5; fill: none; }
+    .wave-a { stroke: #4466aa; stroke-width: 2.5; fill: none; }
+    .wave-b { stroke: #cc4444; stroke-width: 2.5; fill: none; }
+    .lbl-sm { font-size: 11px; fill: #666; }
+    .lbl-a  { font-size: 13px; font-weight: bold; fill: #4466aa; }
+    .lbl-b  { font-size: 13px; font-weight: bold; fill: #cc4444; }
+  </style>
+
+  <!-- Time axis -->
+  <line class="axis" x1="60" y1="185" x2="520" y2="185"/>
+  <text x="530" y="185" class="lbl-sm">t (ms)</text>
+
+  <!-- Time grid -->
+  <line class="grid" x1="60"  y1="10" x2="60"  y2="185"/>
+  <line class="grid" x1="175" y1="10" x2="175" y2="185"/>
+  <line class="grid" x1="290" y1="10" x2="290" y2="185"/>
+  <line class="grid" x1="405" y1="10" x2="405" y2="185"/>
+  <line class="grid" x1="520" y1="10" x2="520" y2="185"/>
+
+  <text x="60"  y="197" class="lbl-sm">0</text>
+  <text x="175" y="197" class="lbl-sm">0.5</text>
+  <text x="290" y="197" class="lbl-sm">1.0</text>
+  <text x="405" y="197" class="lbl-sm">1.5</text>
+  <text x="520" y="197" class="lbl-sm">2.0</text>
+
+  <!-- Voltage labels -->
+  <text x="55" y="38"  class="lbl-sm" text-anchor="end">5V</text>
+  <text x="55" y="83"  class="lbl-sm" text-anchor="end">0V</text>
+  <text x="55" y="128" class="lbl-sm" text-anchor="end">5V</text>
+  <text x="55" y="173" class="lbl-sm" text-anchor="end">0V</text>
+
+  <!-- A: 1 kHz -->
+  <polyline class="wave-a" points="60,83 60,33 175,33 175,83 290,83 290,33 405,33 405,83 520,83"/>
+
+  <!-- B: 2 kHz -->
+  <polyline class="wave-b" points="60,173 60,123 120,123 120,173 175,173 175,123 235,123 235,173 290,173 290,123 350,123 350,173 405,173 405,123 465,123 465,173 520,173"/>
+
+  <!-- Labels -->
+  <text x="20" y="62"  class="lbl-a">A</text>
+  <text x="20" y="152" class="lbl-b">B</text>
+
+  <text x="535" y="62"  class="lbl-sm">1 kHz</text>
+  <text x="535" y="152" class="lbl-sm">2 kHz</text>
+</svg>

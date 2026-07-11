@@ -173,17 +173,24 @@ SVG diagrams are stored in `docs/images/` and embedded via standard Markdown:
 
 Existing diagrams:
 - `ic-74hc04.svg`, `ic-74hc08.svg`, `ic-74hc32.svg`, `ic-74hc86.svg`, `ic-74hc00.svg` — IC pinouts
-- `gate-symbols.svg` — Logic gate symbols with truth tables (supports fragment `#not`, `#nand`)
+- `gate-symbols.svg` — Logic gate symbols with truth tables (supports fragment `#not`, `#nand`, `#and`, `#or`, `#xor`)
+- `nand-gate.svg` — NAND gate symbol (used in Lab 2)
 - `breadboard.svg` — Breadboard structure
 - `xor-from-gates.svg` — XOR from AND/OR/NOT
 - `half-adder.svg` — Half Adder block diagram
-- `full-adder.svg` — Full Adder block diagram
+- `full-adder.svg` — Full Adder block diagram (redrawn; HA1/HA2 in same row, Cin routes through gap)
 - `mux-2to1.svg` — 2-to-1 Multiplexer
 - `d-flip-flop.svg` — D Flip-Flop symbol
 - `register-4bit.svg` — 4-bit Register block diagram
 - `clock-timing.svg` — Clock timing diagram
 - `adder-4bit.svg` — 4-bit adder block diagram
 - `calculator-system.svg` — Calculator system integration diagram
+
+### Review Questions (คำถามท้ายใบงาน)
+
+- **Must not overlap** with per-experiment questions (คำถามท้ายการทดลอง).
+- If a concept is already covered in a per-experiment question, remove the corresponding final review question and renumber.
+- Labs already cleaned: 1 (removed 3), 2 (removed 1), 4 (removed 1), 6 (removed 1).
 
 ### Lab-Specific Notes
 
