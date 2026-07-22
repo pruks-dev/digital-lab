@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 225" font-family="sans-serif">
+  <style>
+    .gate { fill: white; stroke: #333; stroke-width: 2; }
+    .wire { stroke: #333; stroke-width: 1.5; fill: none; }
+    .label { text-anchor: middle; font-size: 14px; fill: #333; }
+    .label-sm { text-anchor: middle; font-size: 11px; fill: #666; }
+    .dot { fill: #333; }
+  </style>
+
+  <!-- I0 input → AND1 top -->
+  <line class="wire" x1="10" y1="50" x2="230" y2="50"/>
+  <text x="15" y="45" class="label" font-weight="bold">I₀</text>
+
+  <!-- S input → branch point -->
+  <line class="wire" x1="10" y1="105" x2="85" y2="105"/>
+  <circle cx="85" cy="105" r="3" class="dot"/>
+  <text x="15" y="100" class="label" font-weight="bold">S</text>
+
+  <!-- S → NOT gate -->
+  <line class="wire" x1="85" y1="105" x2="105" y2="105"/>
+  <polygon class="gate" points="105,87 135,105 105,123"/>
+  <circle cx="140" cy="105" r="5" fill="white" stroke="#333" stroke-width="1.8"/>
+  <text x="118" y="85" class="label-sm">NOT</text>
+
+  <!-- NOT output (S̄) → up to AND1 bottom -->
+  <line class="wire" x1="145" y1="105" x2="165" y2="105"/>
+  <line class="wire" x1="165" y1="105" x2="165" y2="75"/>
+  <line class="wire" x1="165" y1="75" x2="230" y2="75"/>
+  <text x="175" y="95" class="label-sm">S̄</text>
+
+  <!-- S drops from branch → AND2 top -->
+  <line class="wire" x1="85" y1="105" x2="85" y2="145"/>
+  <line class="wire" x1="85" y1="145" x2="230" y2="145"/>
+
+  <!-- I1 input → AND2 bottom -->
+  <line class="wire" x1="10" y1="170" x2="230" y2="170"/>
+  <text x="15" y="165" class="label" font-weight="bold">I₁</text>
+
+  <!-- AND1: I0·S̄ — center y=62.5 (mid of 50 and 75) -->
+  <path class="gate" d="M 230,44 L 250,44 A 19,19 0 0,1 250,82 L 230,82 Z"/>
+  <text x="240" y="97" class="label-sm">AND</text>
+
+  <!-- AND2: I1·S — center y=157.5 (mid of 145 and 170) -->
+  <path class="gate" d="M 230,139 L 250,139 A 19,19 0 0,1 250,177 L 230,177 Z"/>
+  <text x="240" y="192" class="label-sm">AND</text>
+
+  <!-- AND1 output → OR top -->
+  <line class="wire" x1="269" y1="63" x2="295" y2="63"/>
+  <line class="wire" x1="295" y1="63" x2="295" y2="98"/>
+  <line class="wire" x1="295" y1="98" x2="344" y2="98"/>
+
+  <!-- AND2 output → OR bottom -->
+  <line class="wire" x1="269" y1="158" x2="310" y2="158"/>
+  <line class="wire" x1="310" y1="158" x2="310" y2="124"/>
+  <line class="wire" x1="310" y1="124" x2="344" y2="124"/>
+
+  <!-- OR gate — center y=111 (mid of 63 and 158) -->
+  <path class="gate" d="M 336,92 C 358,92 385,99 385,111 C 385,123 358,130 336,130 C 344,121 344,101 336,92 Z"/>
+  <text x="360" y="87" class="label-sm">OR</text>
+
+  <!-- OR output → Y -->
+  <line class="wire" x1="385" y1="111" x2="445" y2="111"/>
+  <text x="460" y="106" class="label" font-weight="bold">Y</text>
+
+</svg>
