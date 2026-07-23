@@ -55,14 +55,17 @@ There is no automated compilation pipeline — students compile manually in Quar
 ---
 ## อุปกรณ์ที่ใช้ในการทดลอง (Equipment)  (H2)
 ---
-# การทดลองที่ N.M <Sub-Experiment>   (H1 for each sub-experiment)
-## ขั้นตอนการทดลอง (Procedure)        (H2)
+## การทดลองที่ N.M <Sub-Experiment>   (H2 for each sub-experiment)
+### ขั้นตอนการทดลอง (Procedure)        (H3)
+#### ตารางที่ N.X <Table>             (H4 — per-table headings)
 ### คำถามท้ายการทดลอง (Questions)    (H3, at end of sub-experiment)
 ---
-# สรุปผลการทดลอง (Conclusion)         (H1, near end)
+## สรุปผลการทดลอง (Conclusion)         (H2, near end)
 ---
-# คำถามท้ายใบงาน (Review Questions)   (H1, final section)
+## คำถามท้ายใบงาน (Review Questions)   (H2, final section)
 ```
+
+> **Header hierarchy follows Lab 2 as canonical reference.** Sub-experiments use `##` (H2); tables use `####` (H4); procedure and questions use `###` (H3). When a sub-experiment contains sub-parts (e.g. 3.3.1–3.3.3), the sub-parts use `###` (H3) and their internal headers step down to `####` (H4).
 
 ### Markdown Formatting Rules
 
@@ -113,11 +116,33 @@ Identical text across all 8 labs:
 ### VHDL Code Blocks (when embedded in Markdown)
 
 - Use fenced code blocks with `vhdl` language tag
+- **Always include full code**: `library`, `use`, `entity`, `architecture` — not just snippets
 - Entity names in PascalCase, signal names in lowercase_snake_case
+- Architecture names follow style: `Structural` (gate-level), `Dataflow` (concurrent assignment), `Behavioral` (process)
 - Port maps with `=>` aligned
 - Comments in Thai or English where helpful
 - Use `std_logic` and `std_logic_vector` from `ieee.std_logic_1164.all`
 - Use `ieee.numeric_std.all` for arithmetic operations
+
+### VHDL Architecture Style Guide
+
+| Style | Description | Used When | Example |
+|-------|------------|-----------|---------|
+| **Structural** | Instantiate gate-level components | Teaching gate↔code mapping | `s_not <= not s; y <= and_s0 or and_s1;` |
+| **Dataflow** | Concurrent signal assignment (`when-else`, `with-select`) | Combinational circuits | `y <= a when s = '0' else b;` |
+| **Behavioral** | Sequential via `process(clk)` | Flip-Flop, Register, State Machine | `process(clk) begin if rising_edge(clk) then...` |
+
+> **Lab 3–4**: Use Structural + Dataflow only. **Lab 5+**: Introduce Behavioral with `process` and `rising_edge`.
+> When introducing `std_logic_vector` for the first time, show both individual-signal and vector approaches side-by-side as a comparison pattern.
+
+### `std_logic_vector`: `to` vs `downto`
+
+```vhdl
+signal a : std_logic_vector(0 to 9);      -- MSB = a(0), LSB = a(9)  ❌ not standard
+signal b : std_logic_vector(9 downto 0);  -- MSB = b(9), LSB = b(0)  ✅ standard
+```
+
+> **Always use `downto`** — it matches binary number convention where bit 0 = LSB. Teach this when vector is first introduced (Lab 3.2).
 
 ### Example VHDL style
 
@@ -179,7 +204,8 @@ Existing diagrams:
 - `xor-from-gates.svg` — XOR from AND/OR/NOT
 - `half-adder.svg` — Half Adder block diagram
 - `full-adder.svg` — Full Adder block diagram (redrawn; HA1/HA2 in same row, Cin routes through gap)
-- `mux-2to1.svg` — 2-to-1 Multiplexer
+- `mux-2to1.svg` — 2-to-1 Multiplexer block diagram
+- `mux-from-gates.svg` — MUX 2-to-1 internal gate-level circuit (NOT+AND×2+OR)
 - `d-flip-flop.svg` — D Flip-Flop symbol
 - `register-4bit.svg` — 4-bit Register block diagram
 - `clock-timing.svg` — Clock timing diagram
@@ -190,14 +216,19 @@ Existing diagrams:
 
 - **Must not overlap** with per-experiment questions (คำถามท้ายการทดลอง).
 - If a concept is already covered in a per-experiment question, remove the corresponding final review question and renumber.
-- Labs already cleaned: 1 (removed 3), 2 (removed 1), 4 (removed 1), 6 (removed 1).
+- Labs already cleaned: 1 (removed 3), 2 (removed 1), 3 (removed 1), 4 (removed 1), 6 (removed 1).
 
 ### Lab-Specific Notes
 
 - **Lab 1**: Structure is NOT gate → AND+OR (combined) → build XOR from AND/OR/NOT → Half Adder.
   ICs used: 74HC04 (NOT), 74HC08 (AND), 74HC32 (OR). No 74HC86 (XOR) — students build XOR.
 - **Lab 2**: Experiment 2.3 covers NAND Gate as Universal Gate using 74HC00 (added to equipment).
+- **Lab 3**: FPGA introduction — covers all basic DE10-Lite I/O (SW0–SW9, LED0–LED9, HEX0 7-segment).
+  MUX progression: gate-level (Structural) → VHDL (Dataflow) → 4-bit scaling → MUX + 7-segment application.
+  Introduces `std_logic_vector` with individual-vs-vector comparison and `to` vs `downto`.
 - **Labs 3–8**: FPGA/VHDL labs on DE10-Lite board. No ICs; use Quartus Prime Lite.
+  **No Oscilloscope or Function Generator references** — these labs use only the FPGA board (Switch, LED, 7-Segment).
+  Equipment list should omit: Digital Oscilloscope, Function Generator, IC part numbers.
 
 ### How to Add a New Worksheet
 
