@@ -162,12 +162,19 @@ e |   | c
 
    > Schematic เห็นภาพวงจรจริง / VHDL เขียนโค้ดต่อเกต — ทั้งสองแบบคือ Structural เหมือนกัน เลือกตามถนัด
 
-4. กำหนด Pin Assignment:
+4. **Simulate ด้วย Waveform** — ตรวจสอบความถูกต้องของวงจรก่อนลงบอร์ด:
+   - **File → New → University Program VWF** สร้าง Vector Waveform File
+   - **Edit → Insert → Insert Node or Bus** → Node Finder → เลือก `bcd` (input) และ `seg` (output)
+   - ตั้งค่า `bcd` เป็น `0000` → `0001` → ... → `1001` → `1010` → ... → `1111` (ไล่ครบ 16 ค่า)
+   - **Simulation → Run Functional Simulation**
+   - ตรวจสอบว่า `seg` แต่ละค่าตรงกับ Truth Table ในตารางที่ 4.1
+
+6. กำหนด Pin Assignment:
    - `bcd(3)` → SW3, `bcd(2)` → SW2, `bcd(1)` → SW1, `bcd(0)` → SW0
    - `seg(7:0)` → ขา HEX0 บน DE10-Lite (ดูตาราง Pin Assignment จากคู่มือบอร์ด)
 
-5. Compile และ Download
-6. ทดลองเปลี่ยนค่า SW3–SW0 — สังเกตตัวเลขที่แสดงบน HEX0 เทียบกับ Truth Table
+7. Compile และ Download
+8. ทดลองเปลี่ยนค่า SW3–SW0 — สังเกตตัวเลขที่แสดงบน HEX0 เทียบกับ Truth Table
 
 #### ตารางที่ 4.2 ผลการทดลอง BCD to 7-Segment
 
@@ -247,7 +254,7 @@ Binary Input (4-bit) → bin_to_bcd → bcd_to_7seg (หลักสิบ) → 
 
 2. **เขียนสมการ Boolean สำหรับ bcd1** — เนื่องจากค่าที่เป็นไปได้ของหลักสิบมีแค่ 0 (`0000`) หรือ 1 (`0001`) — มีเพียง `bcd1(0)` ที่เปลี่ยนค่า จงเขียนสมการ:
 
-   - `bcd1(0) = 1` เมื่อค่า `bin` อยู่ในช่วง 10–15 — นั่นคือเมื่อ $B_3 = 1$ และ ($B_2 = 0$ หรือ $B_1 = 1$ หรือ...) — นักศึกษาเขียนสมการให้สมบูรณ์จาก Truth Table
+   - `bcd1(0)` = 1 เมื่อค่า `bin` อยู่ในช่วง 10–15 — นั่นคือเมื่อ $B_3 = 1$ และ ($B_2 = 0$ หรือ $B_1 = 1$ หรือ...) — นักศึกษาเขียนสมการให้สมบูรณ์จาก Truth Table
 
 3. **เขียน VHDL แบบ Dataflow** — ใช้ `with-select` เลือกค่าเอาต์พุตตาม `bin`:
 
@@ -337,11 +344,16 @@ Binary Input (4-bit) → bin_to_bcd → bcd_to_7seg (หลักสิบ) → 
 
    > ทั้งสองแบบคือ Structural เหมือนกัน — `bcd_to_7seg` ถูกใช้ซ้ำ 2 ครั้ง เช่นเดียวกับการนำ IC มาต่อบน Breadboard 2 ตัว
 
-7. กำหนด Pin Assignment:
+5. **Simulate ด้วย Waveform** — ตรวจสอบก่อนลงบอร์ด:
+   - สร้าง Vector Waveform File → เพิ่ม `bin` (input), `hex1`, `hex0` (output)
+   - ตั้งค่า `bin` ไล่ `0000` ถึง `1111`
+   - Run Functional Simulation — ตรวจสอบว่า `hex1/hex0` แสดงค่าถูกต้องตามตารางที่ 4.5
+
+6. กำหนด Pin Assignment:
    - `bin(3)` → SW3, `bin(2)` → SW2, `bin(1)` → SW1, `bin(0)` → SW0
    - `hex1(7:0)` → ขา HEX1, `hex0(7:0)` → ขา HEX0
 
-8. Compile และ Download — สังเกตตัวเลขบน HEX1–HEX0 เมื่อเปลี่ยนค่า Switch
+7. Compile และ Download — สังเกตตัวเลขบน HEX1–HEX0 เมื่อเปลี่ยนค่า Switch
 
 #### ตารางที่ 4.5 ผลการทดลอง Binary to 7-Segment 2 หลัก
 
@@ -396,7 +408,7 @@ Full Adder เป็นวงจรบวกเลขพื้นฐาน — �
    end architecture;
    ```
 
-   > **Schematic:** ลาก XOR 2 ตัวต่ออนุกรมสำหรับ Sum + AND 3 ตัวป้อน OR สำหรับ Cout
+   > **Schematic:** ลาก XOR 2 ตัวต่ออนุกรมสำหรับ Sum + AND 2 ตัวป้อน OR สำหรับ Cout (ใช้ $A \oplus B$ ร่วมกับ Sum)
    >
    > ![ตัวอย่างวงจร Full Adder](images/lab-4/schematic-full-adder.jpg)
    >
@@ -422,12 +434,17 @@ Full Adder เป็นวงจรบวกเลขพื้นฐาน — �
     end architecture;
     ```
 
-4. กำหนด Pin Assignment:
+4. **Simulate ด้วย Waveform** — ตรวจสอบการทำงานของ Ripple Carry Adder:
+   - สร้าง Vector Waveform File → เพิ่ม `a`, `b` (input), `sum`, `overflow` (output)
+    - ทดสอบกรณี: 0+0, 3+5, 7+2, 9+8, 12+3 (ตามตารางที่ 4.6)
+   - Run Functional Simulation — ตรวจสอบ `sum` และ `overflow` ตรงตามที่คำนวณ
+
+6. กำหนด Pin Assignment:
    - `a(3..0)` → SW3–0, `b(3..0)` → SW7–4
    - `sum(3..0)` → LED3–0, `overflow` → LED5
 
-5. Compile และ Download
-6. ทดลองตามตาราง — บันทึกผล
+7. Compile และ Download
+8. ทดลองตามตาราง — บันทึกผล
 
 #### ตารางที่ 4.6 ผลการทดลอง Ripple Carry Adder 4 บิต
 
@@ -439,9 +456,9 @@ Full Adder เป็นวงจรบวกเลขพื้นฐาน — �
 | 9          | 8          |              |                 |             |
 | 12         | 3          |              |                 |             |
 
-7. ต่อผลลัพธ์ออก 7-Segment — ใช้ `bin_to_bcd` จากข้อ 4.2 และ `bcd_to_7seg` จากข้อ 4.1 แบบ Structural:
+9. ต่อผลลัพธ์ออก 7-Segment — ใช้ `bin_to_bcd` จากข้อ 4.2 และ `bcd_to_7seg` จากข้อ 4.1 แบบ Structural:
 
-   > เชื่อม `sum[3:0]` → `bin_to_bcd` → `bcd_to_7seg` ×2 → HEX1, HEX0
+   > เชื่อม `sum(3:0)` → `bin_to_bcd` → `bcd_to_7seg` ×2 → HEX1, HEX0
    >
    > เมื่อ `overflow = 1` (ผลบวก > 15) — ตัวเลขบน 7-Segment จะแสดงเฉพาะ 4 บิตต่ำ (ไม่ใช่ค่าจริง)  — ใช้ LED5 เป็นตัวบอกว่า "ผลลัพธ์เกินช่วง 0–15"
 
