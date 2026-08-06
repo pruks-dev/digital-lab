@@ -388,26 +388,22 @@ Full Adder เป็นวงจรบวกเลขพื้นฐาน — �
 
 2. **สร้างวงจร Full Adder** — เลือกทำ **Schematic** หรือ **VHDL** (หรือทั้งคู่):
 
-   ```vhdl
-   library ieee;
-   use ieee.std_logic_1164.all;
+    ```vhdl
+    library ieee;
+    use ieee.std_logic_1164.all;
 
-   entity full_adder is
-       port (
-           a    : in  std_logic;
-           b    : in  std_logic;
-           cin  : in  std_logic;
-           sum  : out std_logic;
-           cout : out std_logic
-       );
-   end entity;
+    entity full_adder is
+        port (
+            a    : in  std_logic;
+            b    : in  std_logic;
+            cin  : in  std_logic;
+            sum  : out std_logic;
+            cout : out std_logic
+        );
+    end entity;
 
-   architecture Structural of full_adder is
-   begin
-       sum  <= a xor b xor cin;
-       cout <= (a and b) or (a and cin) or (b and cin);
-   end architecture;
-   ```
+    -- นักศึกษาเขียน Architecture เองจากสมการ
+    ```
 
    > **Schematic:** ลาก XOR 2 ตัวต่ออนุกรมสำหรับ Sum + AND 2 ตัวป้อน OR สำหรับ Cout (ใช้ $A \oplus B$ ร่วมกับ Sum)
    >
