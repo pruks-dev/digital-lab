@@ -380,8 +380,9 @@ Full Adder เป็นวงจรบวกเลขพื้นฐาน — �
 
 1. **นำวงจร Full Adder จากใบงานที่ 2** — สมการที่ได้จากการลดรูปแล้ว:
 
-   $$Sum = A \oplus B \oplus C_{in}$$
-   $$C_{out} = A \cdot B + A \cdot C_{in} + B \cdot C_{in} \quad\text{หรือ}\quad C_{out} = A \cdot B + C_{in} \cdot (A \oplus B)$$
+   $Sum = A \oplus B \oplus C_{in}$
+
+   $C_{out} = A \cdot B + A \cdot C_{in} + B \cdot C_{in} = A \cdot B + C_{in} \cdot (A \oplus B)$
 
    > หากยังไม่ได้ลดรูป — ใช้ Truth Table + K-map จากใบงานที่ 2 หรือใช้สมการด้านบนได้โดยตรง
 
