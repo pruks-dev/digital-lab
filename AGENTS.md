@@ -226,6 +226,16 @@ Existing diagrams:
 - **Lab 3**: FPGA introduction — covers all basic DE10-Lite I/O (SW0–SW9, LED0–LED9, HEX0 7-segment).
   MUX progression: gate-level (Structural) → VHDL (Dataflow) → 4-bit scaling → MUX + 7-segment application.
   Introduces `std_logic_vector` with individual-vs-vector comparison and `to` vs `downto`.
+- **Lab 4**: Combinational circuit design from Truth Table to 7-Segment display. 3 experiments:
+  4.1 BCD to 7-Segment (Structural — K-map → gate equations → Schematic/VHDL),
+  4.2 Binary to Dual 7-Segment (Dataflow for bin_to_bcd + Structural component reuse),
+  4.3 Full Adder + Ripple Carry (Structural, component reuse ×4).
+  Architecture: Structural + Dataflow only — **no Behavioral** (no `process`, no sequential).
+  K-map: SOP (group `1`) or POS (group `0`) — students choose. SOP/POS must be used correctly.
+  Each experiment: Schematic **or** VHDL (not both). Simulation waveform (.vwf) before board test.
+  Component reuse emphasized — `bcd_to_7seg` from 4.1 reused in 4.2 and 4.3.
+  No Behavioral VHDL — this lab is purely combinational. No adder/subtractor — moved to later lab.
+  Questions: 2 per experiment, 3 end-of-lab (Structural comparison, component reuse, Schematic vs VHDL).
 - **Labs 3–8**: FPGA/VHDL labs on DE10-Lite board. No ICs; use Quartus Prime Lite.
   **No Oscilloscope or Function Generator references** — these labs use only the FPGA board (Switch, LED, 7-Segment).
   Equipment list should omit: Digital Oscilloscope, Function Generator, IC part numbers.
