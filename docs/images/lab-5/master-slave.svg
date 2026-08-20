@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 240" font-family="sans-serif">
+  <style>
+    .gate { fill: white; stroke: #333; stroke-width: 2; }
+    .wire { stroke: #333; stroke-width: 1.5; fill: none; }
+    .wire-thick { stroke: #333; stroke-width: 2.5; fill: none; }
+    .label { text-anchor: middle; font-size: 14px; fill: #333; }
+    .label-sm { text-anchor: middle; font-size: 11px; fill: #666; }
+  </style>
+
+  <!-- Master Latch -->
+  <rect class="gate" x="120" y="40" width="110" height="100" rx="4"/>
+  <text x="175" y="78" class="label" font-weight="bold" font-size="12">Master</text>
+  <text x="175" y="95" class="label" font-size="12">Latch</text>
+  <text x="175" y="128" class="label-sm">E</text>
+
+  <!-- Slave Latch -->
+  <rect class="gate" x="250" y="40" width="110" height="100" rx="4"/>
+  <text x="305" y="78" class="label" font-weight="bold" font-size="12">Slave</text>
+  <text x="305" y="95" class="label" font-size="12">Latch</text>
+  <text x="305" y="128" class="label-sm">E</text>
+
+  <!-- D input -->
+  <line class="wire-thick" x1="10" y1="90" x2="120" y2="90"/>
+  <text x="10" y="85" class="label" font-weight="bold">D</text>
+
+  <!-- m wire between latches -->
+  <line class="wire" x1="230" y1="90" x2="250" y2="90"/>
+  <text x="240" y="85" class="label-sm">m</text>
+
+  <!-- Q output -->
+  <line class="wire-thick" x1="360" y1="90" x2="420" y2="90"/>
+  <text x="430" y="94" class="label" font-weight="bold">Q</text>
+
+  <!-- CLK main line to slave enable -->
+  <line class="wire" x1="10" y1="190" x2="305" y2="190"/>
+  <line class="wire" x1="305" y1="190" x2="305" y2="140"/>
+  <text x="10" y="185" class="label" font-size="12">CLK</text>
+
+  <!-- CLK branch to master enable with inverter -->
+  <line class="wire" x1="175" y1="190" x2="175" y2="165"/>
+  <polyline class="gate" points="168,165 182,165 175,152" fill="white"/>
+  <circle cx="175" cy="147" r="3.5" fill="white" stroke="#333" stroke-width="1.5"/>
+  <line class="wire" x1="175" y1="143" x2="175" y2="140"/>
+  <text x="195" y="178" class="label-sm">CLK̅</text>
+</svg>

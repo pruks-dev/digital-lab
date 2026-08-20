@@ -5,22 +5,29 @@
     .label-sm { text-anchor: middle; font-size: 11px; fill: #666; }
   </style>
 
-  <text x="10" y="25" class="label" font-weight="bold">CLK</text>
+  <text x="30" y="25" class="label" font-weight="bold">CLK</text>
 
   <polyline class="wire" points="30,40 60,40 60,10 90,10 90,40 120,40 120,10 150,10 150,40 180,40 180,10 210,10 210,40 240,40 240,10 270,10 270,40 300,40 300,10 330,10 330,40 360,40 360,10 390,10 390,40"/>
 
-  <!-- Rising edge labels -->
-  <text x="75" y="60" class="label-sm">↑</text>
-  <text x="165" y="60" class="label-sm">↑</text>
-  <text x="255" y="60" class="label-sm">↑</text>
-  <text x="345" y="60" class="label-sm">↑</text>
+  <!-- Rising edge labels (ตรงกับขอบขึ้นที่ x = 60, 120, 180, 240, 300, 360) -->
+  <text x="60" y="60" class="label-sm">↑</text>
+  <text x="120" y="60" class="label-sm">↑</text>
+  <text x="180" y="60" class="label-sm">↑</text>
+  <text x="240" y="60" class="label-sm">↑</text>
+  <text x="300" y="60" class="label-sm">↑</text>
+  <text x="360" y="60" class="label-sm">↑</text>
 
-  <!-- Period arrow -->
-  <line class="wire" x1="75" y1="80" x2="165" y2="80"/>
-  <polyline class="wire" points="75,75 75,85" fill="none"/>
-  <polyline class="wire" points="165,75 165,85" fill="none"/>
-  <text x="120" y="95" class="label-sm">T (period)</text>
+  <!-- Falling edge labels (ตรงกับขอบตกที่ x = 90, 150, 210, 270, 330, 390) -->
+  <text x="90" y="60" class="label-sm">↓</text>
+  <text x="150" y="60" class="label-sm">↓</text>
+  <text x="210" y="60" class="label-sm">↓</text>
+  <text x="270" y="60" class="label-sm">↓</text>
+  <text x="330" y="60" class="label-sm">↓</text>
+  <text x="390" y="60" class="label-sm">↓</text>
 
-  <line class="wire" x1="75" y1="105" x2="120" y2="105"/>
-  <line class="wire" x1="120" y1="105" x2="120" y2="80"/>
+  <!-- Period arrow: ระหว่างขอบขึ้นที่ 60 ถึง 120 -->
+  <line class="wire" x1="60" y1="80" x2="120" y2="80"/>
+  <polyline class="wire" points="60,75 60,85" fill="none"/>
+  <polyline class="wire" points="120,75 120,85" fill="none"/>
+  <text x="90" y="95" class="label-sm">T (period)</text>
 </svg>
