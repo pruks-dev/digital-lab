@@ -93,6 +93,25 @@ There is no automated compilation pipeline — students compile manually in Quar
 - Use 0/1 binary values only
 - For decimal test data tables (e.g. Lab 7), use the same blank-output convention
 
+### Timing Diagram Recording Convention
+
+For **time-dependent behavior** (latch gating, edge-triggering, register sampling),
+record results with a timing diagram template instead of a truth table:
+
+```markdown
+#### ผังคลื่นสัญญาณที่ N.X <Description>   (H4 — same slot as tables)
+
+![alt text](images/lab-N/timing-<circuit>.svg)
+```
+
+- Template SVG: input waveforms pre-drawn as solid lines with SW/KEY pin annotations;
+  output rows show the signal name only — **students draw the waveform themselves**
+- No pre-drawn output values (same blank-output rule as truth tables)
+- Stimulus sequence must match the simulation/board procedure step-by-step
+- Add a `> **วิธีบันทึก:**` note explaining what students must draw and observe
+- Use plain truth tables when the experiment measures discrete logic states
+  (e.g., forbidden-state exploration), not time behavior
+
 ### Objectives Format
 
 - Use **bullet points** (`-`), not numbered lists
@@ -236,6 +255,12 @@ Existing diagrams:
   Component reuse emphasized — `bcd_to_7seg` from 4.1 reused in 4.2 and 4.3.
   No Behavioral VHDL — this lab is purely combinational. No adder/subtractor — moved to later lab.
   Questions: 2 per experiment, 3 end-of-lab (Structural comparison, component reuse, Schematic vs VHDL).
+- **Lab 5**: Sequential circuits — RS Latch (table recording, includes forbidden state) →
+  RS/D Gated Latches, D Flip-Flops (Master-Slave + Behavioral), Register 4-bit
+  (**timing-diagram recording** via `images/lab-5/timing-*.svg` templates).
+  KEY0 as manual clock — Active-Low: rising edge occurs on button release.
+  Behavioral (`process` + `rising_edge`) introduced here; same stimulus for 5.2.2 and 5.2.3
+  so students compare Structural vs Behavioral waveforms.
 - **Labs 3–8**: FPGA/VHDL labs on DE10-Lite board. No ICs; use Quartus Prime Lite.
   **No Oscilloscope or Function Generator references** — these labs use only the FPGA board (Switch, LED, 7-Segment).
   Equipment list should omit: Digital Oscilloscope, Function Generator, IC part numbers.
