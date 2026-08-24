@@ -35,25 +35,25 @@
   <text x="8" y="58" class="pin">(KEY0)</text>
   <polyline class="wire" points="80,52 128,52 128,28 176,28 176,52 224,52 224,28 272,28 272,52 320,52 320,28 368,28 368,52 416,52 416,28 464,28 464,52 512,52 512,28 560,28"/>
 
-  <!-- D3 (SW3) : changes only once, late -->
+  <!-- D3 (SW3) : pulses mid-period, ignored by Q until edges -->
   <text x="8" y="90" class="sig">D3</text>
   <text x="8" y="104" class="pin">(SW3)</text>
-  <polyline class="wire" points="80,98 332,98 332,74 560,74"/>
+  <polyline class="wire" points="80,98 160,98 160,74 176,74 176,98 332,98 332,74 380,74 380,98 404,98 404,74 472,74 472,98 496,98 496,74 560,74"/>
 
-  <!-- D2 (SW2) : wiggles mid-period (ignored by Q) -->
+  <!-- D2 (SW2) : pulses mid-period -->
   <text x="8" y="136" class="sig">D2</text>
   <text x="8" y="150" class="pin">(SW2)</text>
-  <polyline class="wire" points="80,144 184,144 184,120 208,120 208,144 248,144 248,120 356,120 356,144 440,144 440,120 560,120"/>
+  <polyline class="wire" points="80,144 100,144 100,120 124,120 124,144 184,144 184,120 208,120 208,144 248,144 248,120 356,120 356,144 440,144 440,120 560,120"/>
 
-  <!-- D1 (SW1) : wiggles mid-period (ignored by Q) -->
+  <!-- D1 (SW1) : pulses mid-period -->
   <text x="8" y="182" class="sig">D1</text>
   <text x="8" y="196" class="pin">(SW1)</text>
-  <polyline class="wire" points="80,190 152,190 152,166 248,166 248,190 332,190 332,166 356,166 356,190 440,190 440,166 560,166"/>
+  <polyline class="wire" points="80,190 152,190 152,166 248,166 248,190 280,190 280,166 304,166 304,190 440,190 440,166 528,166 528,190 552,190 552,166 560,166"/>
 
-  <!-- D0 (SW0) : changes once, early -->
+  <!-- D0 (SW0) : pulses mid-period -->
   <text x="8" y="228" class="sig">D0</text>
   <text x="8" y="242" class="pin">(SW0)</text>
-  <polyline class="wire" points="80,236 152,236 152,212 560,212"/>
+  <polyline class="wire" points="80,236 152,236 152,212 212,212 212,236 220,236 220,212 380,212 380,236 404,236 404,212 560,212"/>
 
   <!-- Q3-Q0 (LED3-LED0) : blank rows for students -->
   <text x="8" y="274" class="sig">Q3</text>

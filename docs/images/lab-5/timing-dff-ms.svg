@@ -29,10 +29,10 @@
   <text x="240" y="70" class="note" text-anchor="middle">↓</text>
   <text x="320" y="70" class="note" text-anchor="middle">↑</text>
 
-  <!-- D (SW0) : wiggles mid-period while released AND while pressed - Q ignores all of it -->
+  <!-- D (SW0) : dense wiggles while released AND while pressed - Q ignores all until edges -->
   <text x="8" y="104" class="sig">D</text>
   <text x="8" y="118" class="pin">(SW0)</text>
-  <polyline class="wire" points="80,88 176,88 176,112 200,112 200,88 224,88 224,112 352,112 352,88 400,88"/>
+  <polyline class="wire" points="80,88 176,88 176,112 200,112 200,88 224,88 224,112 264,112 264,88 288,88 288,112 352,112 352,88 400,88"/>
 
   <!-- Q (LED0) : blank for students -->
   <text x="8" y="216" class="sig">Q</text>

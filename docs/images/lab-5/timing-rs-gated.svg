@@ -22,15 +22,15 @@
   <text x="8" y="58" class="pin">(SW2)</text>
   <polyline class="wire" points="80,28 204,28 204,52 266,52 266,28 452,28"/>
 
-  <!-- S (SW0) : wiggles while E=1 (Q follows) and while E=0 (Q ignores) -->
+  <!-- S (SW0) : dense wiggles - Q follows when E=1, ignores when E=0 -->
   <text x="8" y="104" class="sig">S</text>
   <text x="8" y="118" class="pin">(SW0)</text>
-  <polyline class="wire" points="80,88 158,88 158,112 180,112 180,88 222,88 222,112 240,112 240,88 258,88 258,112 420,112 420,88 452,88"/>
+  <polyline class="wire" points="80,88 158,88 158,112 180,112 180,88 222,88 222,112 240,112 240,88 258,88 258,112 300,112 300,88 330,88 330,112 358,112 358,88 400,88 400,112 452,112"/>
 
   <!-- R (SW1) : mirrors S -->
   <text x="8" y="164" class="sig">R</text>
   <text x="8" y="178" class="pin">(SW1)</text>
-  <polyline class="wire" points="80,172 158,172 158,148 180,148 180,172 222,172 222,148 240,148 240,172 258,172 258,148 420,148 420,172 452,172"/>
+  <polyline class="wire" points="80,172 158,172 158,148 180,148 180,172 222,172 222,148 240,148 240,172 258,172 258,148 300,148 300,172 330,172 330,148 358,148 358,172 400,172 400,148 452,148"/>
 
   <!-- Q (LED0) : blank for students -->
   <text x="8" y="226" class="sig">Q</text>
