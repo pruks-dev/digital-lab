@@ -1,73 +1,84 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 290" font-family="sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 472" font-family="sans-serif">
   <style>
     .wire { stroke: #333; stroke-width: 2; fill: none; }
     .grid { stroke: #ddd; stroke-width: 1; }
-    .bus { stroke: #333; stroke-width: 2; fill: none; }
+    .guide { stroke: #aaa; stroke-width: 1; stroke-dasharray: 4 4; fill: none; }
     .tick { stroke: #bbb; stroke-width: 1; stroke-dasharray: 2 4; }
-    .blank { stroke: #aaa; stroke-width: 1; stroke-dasharray: 5 4; fill: none; }
     .sig { font-size: 13px; fill: #333; font-weight: bold; }
     .pin { font-size: 10px; fill: #888; }
-    .val { font-size: 11px; fill: #333; text-anchor: middle; }
-    .hint { font-size: 11px; fill: #999; text-anchor: middle; }
+    .note { font-size: 11px; fill: #666; }
     .axis-label { font-size: 11px; fill: #666; }
   </style>
 
   <!-- vertical grid -->
-  <line class="grid" x1="80" y1="16" x2="80" y2="246"/>
-  <line class="grid" x1="136" y1="16" x2="136" y2="246"/>
-  <line class="grid" x1="192" y1="16" x2="192" y2="246"/>
-  <line class="grid" x1="248" y1="16" x2="248" y2="246"/>
-  <line class="grid" x1="304" y1="16" x2="304" y2="246"/>
-  <line class="grid" x1="360" y1="16" x2="360" y2="246"/>
-  <line class="grid" x1="416" y1="16" x2="416" y2="246"/>
-  <line class="grid" x1="472" y1="16" x2="472" y2="246"/>
-  <line class="grid" x1="520" y1="16" x2="520" y2="246"/>
+  <line class="grid" x1="80" y1="16" x2="80" y2="430"/>
+  <line class="grid" x1="128" y1="16" x2="128" y2="430"/>
+  <line class="grid" x1="176" y1="16" x2="176" y2="430"/>
+  <line class="grid" x1="224" y1="16" x2="224" y2="430"/>
+  <line class="grid" x1="272" y1="16" x2="272" y2="430"/>
+  <line class="grid" x1="320" y1="16" x2="320" y2="430"/>
+  <line class="grid" x1="368" y1="16" x2="368" y2="430"/>
+  <line class="grid" x1="416" y1="16" x2="416" y2="430"/>
+  <line class="grid" x1="464" y1="16" x2="464" y2="430"/>
+  <line class="grid" x1="512" y1="16" x2="512" y2="430"/>
+  <line class="grid" x1="560" y1="16" x2="560" y2="430"/>
 
   <!-- sampling ticks at rising edges -->
-  <line class="tick" x1="136" y1="28" x2="136" y2="240"/>
-  <line class="tick" x1="248" y1="28" x2="248" y2="240"/>
-  <line class="tick" x1="360" y1="28" x2="360" y2="240"/>
-  <line class="tick" x1="472" y1="28" x2="472" y2="240"/>
+  <line class="tick" x1="128" y1="16" x2="128" y2="430"/>
+  <line class="tick" x1="224" y1="16" x2="224" y2="430"/>
+  <line class="tick" x1="320" y1="16" x2="320" y2="430"/>
+  <line class="tick" x1="416" y1="16" x2="416" y2="430"/>
+  <line class="tick" x1="512" y1="16" x2="512" y2="430"/>
 
   <!-- CLK (KEY0) : active-low button, pressed = 0, released = 1 -->
   <text x="8" y="44" class="sig">CLK</text>
   <text x="8" y="58" class="pin">(KEY0)</text>
-  <polyline class="wire" points="80,52 136,52 136,28 192,28 192,52 248,52 248,28 304,28 304,52 360,52 360,28 416,28 416,52 472,52 472,28 520,28"/>
+  <polyline class="wire" points="80,52 128,52 128,28 176,28 176,52 224,52 224,28 272,28 272,52 320,52 320,28 368,28 368,52 416,52 416,28 464,28 464,52 512,52 512,28 560,28"/>
 
-  <!-- D[3:0] bus (SW3-SW0) -->
-  <text x="8" y="96" class="sig">D[3:0]</text>
-  <text x="8" y="110" class="pin">(SW3–SW0)</text>
-  <!-- top line with gaps at transitions -->
-  <line class="bus" x1="80" y1="82" x2="156" y2="82"/>
-  <line class="bus" x1="172" y1="82" x2="268" y2="82"/>
-  <line class="bus" x1="284" y1="82" x2="380" y2="82"/>
-  <line class="bus" x1="396" y1="82" x2="520" y2="82"/>
-  <!-- bottom line with gaps at transitions -->
-  <line class="bus" x1="80" y1="118" x2="156" y2="118"/>
-  <line class="bus" x1="172" y1="118" x2="268" y2="118"/>
-  <line class="bus" x1="284" y1="118" x2="380" y2="118"/>
-  <line class="bus" x1="396" y1="118" x2="520" y2="118"/>
-  <!-- X transitions -->
-  <line class="bus" x1="156" y1="82" x2="172" y2="118"/>
-  <line class="bus" x1="156" y1="118" x2="172" y2="82"/>
-  <line class="bus" x1="268" y1="82" x2="284" y2="118"/>
-  <line class="bus" x1="268" y1="118" x2="284" y2="82"/>
-  <line class="bus" x1="380" y1="82" x2="396" y2="118"/>
-  <line class="bus" x1="380" y1="118" x2="396" y2="82"/>
-  <!-- bus values -->
-  <text x="122" y="74" class="val">0000</text>
-  <text x="226" y="74" class="val">0101</text>
-  <text x="338" y="74" class="val">1010</text>
-  <text x="458" y="74" class="val">1111</text>
+  <!-- D3 (SW3) : changes only once, late -->
+  <text x="8" y="90" class="sig">D3</text>
+  <text x="8" y="104" class="pin">(SW3)</text>
+  <polyline class="wire" points="80,98 332,98 332,74 560,74"/>
 
-  <!-- Q[3:0] blank band for students -->
-  <text x="8" y="210" class="sig">Q[3:0]</text>
-  <text x="8" y="224" class="pin">(LED3–LED0)</text>
-  <rect class="blank" x="80" y="196" width="440" height="36"/>
-  <text x="300" y="218" class="hint">นักศึกษาวาดค่า Q หลังขอบขึ้นแต่ละจุด (เส้นประแนวตั้ง)</text>
+  <!-- D2 (SW2) : wiggles mid-period (ignored by Q) -->
+  <text x="8" y="136" class="sig">D2</text>
+  <text x="8" y="150" class="pin">(SW2)</text>
+  <polyline class="wire" points="80,144 184,144 184,120 208,120 208,144 248,144 248,120 356,120 356,144 440,144 440,120 560,120"/>
+
+  <!-- D1 (SW1) : wiggles mid-period (ignored by Q) -->
+  <text x="8" y="182" class="sig">D1</text>
+  <text x="8" y="196" class="pin">(SW1)</text>
+  <polyline class="wire" points="80,190 152,190 152,166 248,166 248,190 332,190 332,166 356,166 356,190 440,190 440,166 560,166"/>
+
+  <!-- D0 (SW0) : changes once, early -->
+  <text x="8" y="228" class="sig">D0</text>
+  <text x="8" y="242" class="pin">(SW0)</text>
+  <polyline class="wire" points="80,236 152,236 152,212 560,212"/>
+
+  <!-- Q3-Q0 (LED3-LED0) : blank rows for students -->
+  <text x="8" y="274" class="sig">Q3</text>
+  <text x="8" y="288" class="pin">(LED3)</text>
+  <line class="guide" x1="80" y1="258" x2="560" y2="258"/>
+  <line class="guide" x1="80" y1="282" x2="560" y2="282"/>
+
+  <text x="8" y="320" class="sig">Q2</text>
+  <text x="8" y="334" class="pin">(LED2)</text>
+  <line class="guide" x1="80" y1="304" x2="560" y2="304"/>
+  <line class="guide" x1="80" y1="328" x2="560" y2="328"/>
+
+  <text x="8" y="366" class="sig">Q1</text>
+  <text x="8" y="380" class="pin">(LED1)</text>
+  <line class="guide" x1="80" y1="350" x2="560" y2="350"/>
+  <line class="guide" x1="80" y1="374" x2="560" y2="374"/>
+
+  <text x="8" y="412" class="sig">Q0</text>
+  <text x="8" y="426" class="pin">(LED0)</text>
+  <line class="guide" x1="80" y1="396" x2="560" y2="396"/>
+  <line class="guide" x1="80" y1="420" x2="560" y2="420"/>
 
   <!-- time axis -->
-  <line class="wire" x1="80" y1="262" x2="514" y2="262"/>
-  <polyline class="wire" points="514,258 520,262 514,266"/>
-  <text x="520" y="278" class="axis-label" text-anchor="end">เวลา →</text>
+  <line class="wire" x1="80" y1="444" x2="554" y2="444"/>
+  <polyline class="wire" points="554,440 560,444 554,448"/>
+  <text x="80" y="462" class="note">นักศึกษาวาด Q หลังขอบขึ้นแต่ละจุด (เส้นประแนวตั้ง) — D เปลี่ยนกลางคาบแล้ว Q ต้องนิ่งจนถึงขอบถัดไป</text>
+  <text x="560" y="462" class="axis-label" text-anchor="end">เวลา →</text>
 </svg>

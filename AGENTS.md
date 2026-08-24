@@ -99,7 +99,7 @@ For **time-dependent behavior** (latch gating, edge-triggering, register samplin
 record results with a timing diagram template instead of a truth table:
 
 ```markdown
-#### ผังคลื่นสัญญาณที่ N.X <Description>   (H4 — same slot as tables)
+#### Timing Diagram ที่ N.X <Description>   (H4 — same slot as tables)
 
 ![alt text](images/lab-N/timing-<circuit>.svg)
 ```
