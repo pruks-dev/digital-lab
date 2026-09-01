@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 300" font-family="sans-serif">
+  <style>
+    .gate { fill: white; stroke: #333; stroke-width: 2; }
+    .wire { stroke: #333; stroke-width: 1.5; fill: none; }
+    .wire-thick { stroke: #333; stroke-width: 2.5; fill: none; }
+    .label { text-anchor: middle; font-size: 14px; fill: #333; }
+    .label-sm { text-anchor: middle; font-size: 11px; fill: #666; }
+    .pin { text-anchor: middle; font-size: 12px; fill: #333; }
+    .char { text-anchor: middle; font-size: 20px; font-weight: bold; fill: #333; }
+  </style>
+
+  <!-- Message ROM row -->
+  <text x="30" y="40" class="label" font-weight="bold">ข้อความ "HELLO" + space 3 ตัว (8 ตัวอักษร)</text>
+
+  <!-- 8 character boxes -->
+  <g>
+    <rect class="gate" x="30" y="55" width="60" height="60" rx="4"/>
+    <text x="60" y="92" class="char">H</text>
+    <rect class="gate" x="100" y="55" width="60" height="60" rx="4"/>
+    <text x="130" y="92" class="char">E</text>
+    <rect class="gate" x="170" y="55" width="60" height="60" rx="4"/>
+    <text x="200" y="92" class="char">L</text>
+    <rect class="gate" x="240" y="55" width="60" height="60" rx="4"/>
+    <text x="270" y="92" class="char">L</text>
+    <rect class="gate" x="310" y="55" width="60" height="60" rx="4"/>
+    <text x="340" y="92" class="char">O</text>
+    <rect class="gate" x="380" y="55" width="60" height="60" rx="4"/>
+    <text x="410" y="92" class="char"> </text>
+    <rect class="gate" x="450" y="55" width="60" height="60" rx="4"/>
+    <text x="480" y="92" class="char"> </text>
+    <rect class="gate" x="520" y="55" width="60" height="60" rx="4"/>
+    <text x="550" y="92" class="char"> </text>
+  </g>
+
+  <!-- index labels -->
+  <text x="60" y="135" class="label-sm">0</text>
+  <text x="130" y="135" class="label-sm">1</text>
+  <text x="200" y="135" class="label-sm">2</text>
+  <text x="270" y="135" class="label-sm">3</text>
+  <text x="340" y="135" class="label-sm">4</text>
+  <text x="410" y="135" class="label-sm">5</text>
+  <text x="480" y="135" class="label-sm">6</text>
+  <text x="550" y="135" class="label-sm">7</text>
+
+  <!-- Window highlight (position = 1) -->
+  <rect x="95" y="48" width="410" height="74" fill="none" stroke="#e53935" stroke-width="3" stroke-dasharray="6,4" rx="4"/>
+  <text x="300" y="160" class="label" fill="#e53935" font-weight="bold">หน้าต่าง 6 หลัก (position = 1) → "ELLO  "</text>
+
+  <!-- Position counter -->
+  <rect class="gate" x="30" y="200" width="180" height="70" rx="4"/>
+  <text x="120" y="230" class="label" font-weight="bold">Position Counter</text>
+  <text x="120" y="248" class="label-sm">state = ตำแหน่งเริ่ม</text>
+  <line class="wire-thick" x1="210" y1="235" x2="300" y2="235"/>
+  <text x="255" y="228" class="pin">position</text>
+
+  <text x="120" y="300" class="label-sm">SW9 = '0' นับเพิ่ม (วิ่งซ้าย) | SW9 = '1' นับลด (วิ่งขวา)</text>
+</svg>

@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 320" font-family="sans-serif">
+  <style>
+    .gate { fill: white; stroke: #333; stroke-width: 2; }
+    .wire { stroke: #333; stroke-width: 1.5; fill: none; }
+    .wire-thick { stroke: #333; stroke-width: 2.5; fill: none; }
+    .label { text-anchor: middle; font-size: 14px; fill: #333; }
+    .label-sm { text-anchor: middle; font-size: 11px; fill: #666; }
+    .pin { text-anchor: middle; font-size: 12px; fill: #333; }
+  </style>
+
+  <!-- tick source -->
+  <text x="30" y="70" class="pin" font-weight="bold">tick</text>
+  <line class="wire-thick" x1="30" y1="75" x2="95" y2="75"/>
+
+  <!-- 6 counters in a row -->
+  <!-- sec units -->
+  <rect class="gate" x="95" y="30" width="110" height="90" rx="4"/>
+  <text x="150" y="70" class="label" font-weight="bold">วินาที</text>
+  <text x="150" y="88" class="label-sm">หน่วย</text>
+  <text x="150" y="104" class="label-sm">mod-10</text>
+  <line class="wire-thick" x1="205" y1="75" x2="250" y2="75"/>
+  <text x="227" y="68" class="pin">carry</text>
+
+  <!-- sec tens -->
+  <rect class="gate" x="250" y="30" width="110" height="90" rx="4"/>
+  <text x="305" y="70" class="label" font-weight="bold">วินาที</text>
+  <text x="305" y="88" class="label-sm">สิบ</text>
+  <text x="305" y="104" class="label-sm">mod-6</text>
+  <line class="wire-thick" x1="360" y1="75" x2="405" y2="75"/>
+  <text x="382" y="68" class="pin">carry</text>
+
+  <!-- min units -->
+  <rect class="gate" x="405" y="30" width="110" height="90" rx="4"/>
+  <text x="460" y="70" class="label" font-weight="bold">นาที</text>
+  <text x="460" y="88" class="label-sm">หน่วย</text>
+  <text x="460" y="104" class="label-sm">mod-10</text>
+  <line class="wire-thick" x1="515" y1="75" x2="560" y2="75"/>
+  <text x="537" y="68" class="pin">carry</text>
+
+  <!-- min tens -->
+  <rect class="gate" x="560" y="30" width="110" height="90" rx="4"/>
+  <text x="615" y="70" class="label" font-weight="bold">นาที</text>
+  <text x="615" y="88" class="label-sm">สิบ</text>
+  <text x="615" y="104" class="label-sm">mod-6</text>
+  <line class="wire-thick" x1="670" y1="75" x2="715" y2="75"/>
+  <text x="692" y="68" class="pin">carry</text>
+
+  <!-- hours -->
+  <rect class="gate" x="715" y="30" width="130" height="90" rx="4"/>
+  <text x="780" y="70" class="label" font-weight="bold">ชั่วโมง</text>
+  <text x="780" y="88" class="label-sm">hours_counter</text>
+  <text x="780" y="104" class="label-sm">0–23</text>
+
+  <!-- decoders row -->
+  <rect class="gate" x="95" y="200" width="110" height="50" rx="4"/>
+  <rect class="gate" x="250" y="200" width="110" height="50" rx="4"/>
+  <rect class="gate" x="405" y="200" width="110" height="50" rx="4"/>
+  <rect class="gate" x="560" y="200" width="110" height="50" rx="4"/>
+  <rect class="gate" x="715" y="200" width="130" height="50" rx="4"/>
+  <text x="150" y="230" class="label-sm">bcd_to_7seg</text>
+  <text x="305" y="230" class="label-sm">bcd_to_7seg</text>
+  <text x="460" y="230" class="label-sm">bcd_to_7seg</text>
+  <text x="615" y="230" class="label-sm">bcd_to_7seg</text>
+  <text x="780" y="230" class="label-sm">bcd_to_7seg ×2</text>
+
+  <line class="wire-thick" x1="150" y1="120" x2="150" y2="200"/>
+  <line class="wire-thick" x1="305" y1="120" x2="305" y2="200"/>
+  <line class="wire-thick" x1="460" y1="120" x2="460" y2="200"/>
+  <line class="wire-thick" x1="615" y1="120" x2="615" y2="200"/>
+  <line class="wire-thick" x1="780" y1="120" x2="780" y2="200"/>
+
+  <!-- HEX labels -->
+  <line class="wire-thick" x1="150" y1="250" x2="150" y2="290"/>
+  <line class="wire-thick" x1="305" y1="250" x2="305" y2="290"/>
+  <line class="wire-thick" x1="460" y1="250" x2="460" y2="290"/>
+  <line class="wire-thick" x1="615" y1="250" x2="615" y2="290"/>
+  <line class="wire-thick" x1="780" y1="250" x2="780" y2="290"/>
+  <text x="150" y="305" class="pin" font-weight="bold">HEX0</text>
+  <text x="305" y="305" class="pin" font-weight="bold">HEX1</text>
+  <text x="460" y="305" class="pin" font-weight="bold">HEX2</text>
+  <text x="615" y="305" class="pin" font-weight="bold">HEX3</text>
+  <text x="780" y="305" class="pin" font-weight="bold">HEX4–5</text>
+</svg>

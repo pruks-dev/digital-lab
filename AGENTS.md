@@ -261,6 +261,15 @@ Existing diagrams:
   KEY0 as manual clock — Active-Low: rising edge occurs on button release.
   Behavioral (`process` + `rising_edge`) introduced here; same stimulus for 5.2.2 and 5.2.3
   so students compare Structural vs Behavioral waveforms.
+- **Lab 6**: Counter & Clock — Ripple Counter (Structural, student writes architecture) →
+  Clock Divider (GENERIC) → Behavioral Binary Counter → Real-Time Clock (HH:MM:SS, Mod-N
+  GENERIC reuse + enable chain) → Stopwatch (run flag + edge detect, no debounce — DE10
+  KEY has hardware debounce) → Scrolling Message (state position).
+  **Timing-diagram recording** for 6.1 (Ripple Counter) and 6.2 (Binary Counter) via
+  `images/lab-6/timing-*.svg` templates — emphasizes ripple (staggered) vs synchronous
+  (all bits change together) behavior. Remaining experiments (6.3–6.6) use truth tables.
+  `hours_counter` BCD split must slice `(3 downto 0)` (5-bit `hour` → 4-bit `units`).
+  No Oscilloscope/Function Generator — FPGA board only.
 - **Labs 3–8**: FPGA/VHDL labs on DE10-Lite board. No ICs; use Quartus Prime Lite.
   **No Oscilloscope or Function Generator references** — these labs use only the FPGA board (Switch, LED, 7-Segment).
   Equipment list should omit: Digital Oscilloscope, Function Generator, IC part numbers.

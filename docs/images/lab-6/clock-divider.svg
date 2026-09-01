@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 260" font-family="sans-serif">
+  <style>
+    .gate { fill: white; stroke: #333; stroke-width: 2; }
+    .wire { stroke: #333; stroke-width: 1.5; fill: none; }
+    .wire-thick { stroke: #333; stroke-width: 2.5; fill: none; }
+    .label { text-anchor: middle; font-size: 14px; fill: #333; }
+    .label-sm { text-anchor: middle; font-size: 11px; fill: #666; }
+    .pin { text-anchor: middle; font-size: 12px; fill: #333; }
+  </style>
+
+  <!-- Oscillator -->
+  <rect class="gate" x="30" y="80" width="110" height="70" rx="4"/>
+  <text x="85" y="110" class="label" font-weight="bold">Oscillator</text>
+  <text x="85" y="128" class="label-sm">50 MHz</text>
+  <line class="wire-thick" x1="140" y1="115" x2="230" y2="115"/>
+  <text x="185" y="108" class="pin">clk</text>
+
+  <!-- Clock Divider -->
+  <rect class="gate" x="230" y="60" width="150" height="110" rx="4"/>
+  <text x="305" y="110" class="label" font-weight="bold">Clock</text>
+  <text x="305" y="128" class="label" font-weight="bold">Divider</text>
+  <text x="305" y="148" class="label-sm">DIV_COUNT</text>
+  <line class="wire-thick" x1="380" y1="115" x2="470" y2="115"/>
+  <text x="425" y="108" class="pin">tick</text>
+
+  <!-- Counter -->
+  <rect class="gate" x="470" y="60" width="150" height="110" rx="4"/>
+  <text x="545" y="110" class="label" font-weight="bold">Binary</text>
+  <text x="545" y="128" class="label" font-weight="bold">Counter</text>
+  <line class="wire-thick" x1="620" y1="115" x2="710" y2="115"/>
+  <text x="665" y="108" class="pin">count</text>
+
+  <!-- tick annotation -->
+  <text x="425" y="200" class="label-sm">tick = '1' กว้าง 1 cycle</text>
+  <text x="425" y="216" class="label-sm">ทุก 1 วินาที (DIV_COUNT = 50,000,000)</text>
+
+  <!-- count annotation -->
+  <text x="665" y="200" class="label-sm">count เพิ่ม 1 ทุก tick</text>
+  <text x="665" y="216" class="label-sm">LED3–LED0 แสดงเลขฐานสอง</text>
+</svg>

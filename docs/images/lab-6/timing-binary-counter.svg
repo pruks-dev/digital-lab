@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 420" font-family="sans-serif">
+  <style>
+    .wire { stroke: #333; stroke-width: 2; fill: none; }
+    .grid { stroke: #ddd; stroke-width: 1; }
+    .guide { stroke: #aaa; stroke-width: 1; stroke-dasharray: 4 4; fill: none; }
+    .tick { stroke: #bbb; stroke-width: 1; stroke-dasharray: 2 4; }
+    .sig { font-size: 13px; fill: #333; font-weight: bold; }
+    .pin { font-size: 10px; fill: #888; }
+    .note { font-size: 11px; fill: #666; }
+    .axis-label { font-size: 11px; fill: #666; }
+  </style>
+
+  <!-- vertical grid (8 seconds) -->
+  <line class="grid" x1="80" y1="16" x2="80" y2="380"/>
+  <line class="grid" x1="140" y1="16" x2="140" y2="380"/>
+  <line class="grid" x1="200" y1="16" x2="200" y2="380"/>
+  <line class="grid" x1="260" y1="16" x2="260" y2="380"/>
+  <line class="grid" x1="320" y1="16" x2="320" y2="380"/>
+  <line class="grid" x1="380" y1="16" x2="380" y2="380"/>
+  <line class="grid" x1="440" y1="16" x2="440" y2="380"/>
+  <line class="grid" x1="500" y1="16" x2="500" y2="380"/>
+  <line class="grid" x1="560" y1="16" x2="560" y2="380"/>
+
+  <!-- sampling ticks at rising edges of tick (every 1 s) -->
+  <line class="tick" x1="140" y1="16" x2="140" y2="380"/>
+  <line class="tick" x1="200" y1="16" x2="200" y2="380"/>
+  <line class="tick" x1="260" y1="16" x2="260" y2="380"/>
+  <line class="tick" x1="320" y1="16" x2="320" y2="380"/>
+  <line class="tick" x1="380" y1="16" x2="380" y2="380"/>
+  <line class="tick" x1="440" y1="16" x2="440" y2="380"/>
+  <line class="tick" x1="500" y1="16" x2="500" y2="380"/>
+  <line class="tick" x1="560" y1="16" x2="560" y2="380"/>
+
+  <!-- tick (from clock_divider) : 1-cycle pulse every 1 s -->
+  <text x="8" y="44" class="sig">tick</text>
+  <text x="8" y="58" class="pin">(divider)</text>
+  <polyline class="wire" points="80,52 132,52 132,28 148,28 148,52 192,52 192,28 208,28 208,52 252,52 252,28 268,28 268,52 312,52 312,28 328,28 328,52 372,52 372,28 388,28 388,52 432,52 432,28 448,28 448,52 492,52 492,28 508,28 508,52 552,52 552,28 560,28"/>
+
+  <!-- Q3-Q0 (LED3-LED0) : blank rows for students -->
+  <text x="8" y="104" class="sig">Q3</text>
+  <text x="8" y="118" class="pin">(LED3)</text>
+  <line class="guide" x1="80" y1="88" x2="560" y2="88"/>
+  <line class="guide" x1="80" y1="112" x2="560" y2="112"/>
+
+  <text x="8" y="150" class="sig">Q2</text>
+  <text x="8" y="164" class="pin">(LED2)</text>
+  <line class="guide" x1="80" y1="134" x2="560" y2="134"/>
+  <line class="guide" x1="80" y1="158" x2="560" y2="158"/>
+
+  <text x="8" y="196" class="sig">Q1</text>
+  <text x="8" y="210" class="pin">(LED1)</text>
+  <line class="guide" x1="80" y1="180" x2="560" y2="180"/>
+  <line class="guide" x1="80" y1="204" x2="560" y2="204"/>
+
+  <text x="8" y="242" class="sig">Q0</text>
+  <text x="8" y="256" class="pin">(LED0)</text>
+  <line class="guide" x1="80" y1="226" x2="560" y2="226"/>
+  <line class="guide" x1="80" y1="250" x2="560" y2="250"/>
+
+  <!-- count labels under each rising edge -->
+  <text x="140" y="280" class="note" text-anchor="middle">1</text>
+  <text x="200" y="280" class="note" text-anchor="middle">2</text>
+  <text x="260" y="280" class="note" text-anchor="middle">3</text>
+  <text x="320" y="280" class="note" text-anchor="middle">4</text>
+  <text x="380" y="280" class="note" text-anchor="middle">5</text>
+  <text x="440" y="280" class="note" text-anchor="middle">6</text>
+  <text x="500" y="280" class="note" text-anchor="middle">7</text>
+  <text x="560" y="280" class="note" text-anchor="middle">8</text>
+
+  <!-- time axis -->
+  <line class="wire" x1="80" y1="300" x2="554" y2="300"/>
+  <polyline class="wire" points="554,296 560,300 554,304"/>
+  <text x="80" y="318" class="note">นักศึกษาวาด Q3–Q0 หลังขอบขึ้นของ tick แต่ละจุด (เส้นประแนวตั้ง) — ทุกบิตเปลี่ยนพร้อมกันที่ขอบเดียวกัน (ต่างจาก Ripple Counter ที่ไหลเป็นทอด ๆ) — LED0 กระพริบ 1 ครั้งต่อ 2 วินาที</text>
+  <text x="560" y="318" class="axis-label" text-anchor="end">เวลา →</text>
+</svg>

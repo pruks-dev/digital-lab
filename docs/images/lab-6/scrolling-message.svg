@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 430" font-family="sans-serif">
+  <style>
+    .gate { fill: white; stroke: #333; stroke-width: 2; }
+    .wire { stroke: #333; stroke-width: 1.5; fill: none; }
+    .wire-thick { stroke: #333; stroke-width: 2.5; fill: none; }
+    .label { text-anchor: middle; font-size: 14px; fill: #333; }
+    .label-sm { text-anchor: middle; font-size: 11px; fill: #666; }
+    .pin { text-anchor: middle; font-size: 12px; fill: #333; }
+  </style>
+
+  <!-- Clock source -->
+  <text x="450" y="30" class="pin" font-weight="bold">clk 50MHz</text>
+  <line class="wire-thick" x1="450" y1="35" x2="450" y2="50"/>
+
+  <!-- Clock Divider -->
+  <rect class="gate" x="380" y="50" width="140" height="60" rx="4"/>
+  <text x="450" y="78" class="label" font-weight="bold">Clock</text>
+  <text x="450" y="96" class="label" font-weight="bold">Divider</text>
+  <line class="wire-thick" x1="450" y1="110" x2="450" y2="140"/>
+  <text x="462" y="128" class="pin">tick</text>
+
+  <!-- Position Counter -->
+  <rect class="gate" x="380" y="140" width="140" height="60" rx="4"/>
+  <text x="450" y="168" class="label" font-weight="bold">Position</text>
+  <text x="450" y="186" class="label" font-weight="bold">Counter</text>
+  <text x="450" y="196" class="label-sm">state 0–2</text>
+  <line class="wire-thick" x1="450" y1="200" x2="450" y2="230"/>
+  <text x="462" y="218" class="pin">position</text>
+
+  <!-- Direction switch -->
+  <rect class="gate" x="600" y="140" width="120" height="50" rx="4"/>
+  <text x="660" y="170" class="label-sm">SW9 (ทิศทาง)</text>
+  <line class="wire" x1="600" y1="165" x2="520" y2="165"/>
+
+  <!-- position bus: horizontal line across all lanes -->
+  <line class="wire-thick" x1="90" y1="230" x2="850" y2="230"/>
+
+  <!-- 6 lanes in a single row: each = Message ROM + char_to_7seg + HEX -->
+  <!-- Lane 0 (HEX0, rightmost) -->
+  <line class="wire-thick" x1="150" y1="230" x2="150" y2="240"/>
+  <rect class="gate" x="90" y="240" width="120" height="50" rx="4"/>
+  <text x="150" y="262" class="label-sm">ROM</text>
+  <text x="150" y="278" class="label-sm">addr=pos+0</text>
+  <line class="wire-thick" x1="150" y1="290" x2="150" y2="300"/>
+  <rect class="gate" x="90" y="300" width="120" height="45" rx="4"/>
+  <text x="150" y="327" class="label-sm">char_to_7seg</text>
+  <line class="wire-thick" x1="150" y1="345" x2="150" y2="355"/>
+  <rect class="gate" x="90" y="355" width="120" height="45" rx="4"/>
+  <text x="150" y="382" class="label" font-weight="bold">HEX0</text>
+
+  <!-- Lane 1 (HEX1) -->
+  <line class="wire-thick" x1="290" y1="230" x2="290" y2="240"/>
+  <rect class="gate" x="230" y="240" width="120" height="50" rx="4"/>
+  <text x="290" y="262" class="label-sm">ROM</text>
+  <text x="290" y="278" class="label-sm">addr=pos+1</text>
+  <line class="wire-thick" x1="290" y1="290" x2="290" y2="300"/>
+  <rect class="gate" x="230" y="300" width="120" height="45" rx="4"/>
+  <text x="290" y="327" class="label-sm">char_to_7seg</text>
+  <line class="wire-thick" x1="290" y1="345" x2="290" y2="355"/>
+  <rect class="gate" x="230" y="355" width="120" height="45" rx="4"/>
+  <text x="290" y="382" class="label" font-weight="bold">HEX1</text>
+
+  <!-- Lane 2 (HEX2) -->
+  <line class="wire-thick" x1="430" y1="230" x2="430" y2="240"/>
+  <rect class="gate" x="370" y="240" width="120" height="50" rx="4"/>
+  <text x="430" y="262" class="label-sm">ROM</text>
+  <text x="430" y="278" class="label-sm">addr=pos+2</text>
+  <line class="wire-thick" x1="430" y1="290" x2="430" y2="300"/>
+  <rect class="gate" x="370" y="300" width="120" height="45" rx="4"/>
+  <text x="430" y="327" class="label-sm">char_to_7seg</text>
+  <line class="wire-thick" x1="430" y1="345" x2="430" y2="355"/>
+  <rect class="gate" x="370" y="355" width="120" height="45" rx="4"/>
+  <text x="430" y="382" class="label" font-weight="bold">HEX2</text>
+
+  <!-- Lane 3 (HEX3) -->
+  <line class="wire-thick" x1="570" y1="230" x2="570" y2="240"/>
+  <rect class="gate" x="510" y="240" width="120" height="50" rx="4"/>
+  <text x="570" y="262" class="label-sm">ROM</text>
+  <text x="570" y="278" class="label-sm">addr=pos+3</text>
+  <line class="wire-thick" x1="570" y1="290" x2="570" y2="300"/>
+  <rect class="gate" x="510" y="300" width="120" height="45" rx="4"/>
+  <text x="570" y="327" class="label-sm">char_to_7seg</text>
+  <line class="wire-thick" x1="570" y1="345" x2="570" y2="355"/>
+  <rect class="gate" x="510" y="355" width="120" height="45" rx="4"/>
+  <text x="570" y="382" class="label" font-weight="bold">HEX3</text>
+
+  <!-- Lane 4 (HEX4) -->
+  <line class="wire-thick" x1="710" y1="230" x2="710" y2="240"/>
+  <rect class="gate" x="650" y="240" width="120" height="50" rx="4"/>
+  <text x="710" y="262" class="label-sm">ROM</text>
+  <text x="710" y="278" class="label-sm">addr=pos+4</text>
+  <line class="wire-thick" x1="710" y1="290" x2="710" y2="300"/>
+  <rect class="gate" x="650" y="300" width="120" height="45" rx="4"/>
+  <text x="710" y="327" class="label-sm">char_to_7seg</text>
+  <line class="wire-thick" x1="710" y1="345" x2="710" y2="355"/>
+  <rect class="gate" x="650" y="355" width="120" height="45" rx="4"/>
+  <text x="710" y="382" class="label" font-weight="bold">HEX4</text>
+
+  <!-- Lane 5 (HEX5, leftmost) -->
+  <line class="wire-thick" x1="850" y1="230" x2="850" y2="240"/>
+  <rect class="gate" x="790" y="240" width="120" height="50" rx="4"/>
+  <text x="850" y="262" class="label-sm">ROM</text>
+  <text x="850" y="278" class="label-sm">addr=pos+5</text>
+  <line class="wire-thick" x1="850" y1="290" x2="850" y2="300"/>
+  <rect class="gate" x="790" y="300" width="120" height="45" rx="4"/>
+  <text x="850" y="327" class="label-sm">char_to_7seg</text>
+  <line class="wire-thick" x1="850" y1="345" x2="850" y2="355"/>
+  <rect class="gate" x="790" y="355" width="120" height="45" rx="4"/>
+  <text x="850" y="382" class="label" font-weight="bold">HEX5</text>
+
+  <!-- annotation -->
+  <text x="450" y="420" class="label-sm">แต่ละ HEX มี Message ROM + char_to_7seg ของตัวเอง (instantiate ซ้ำ 6 ชุด) — addr = position + i — position เลื่อน → ตัวอักษรวิ่ง</text>
+</svg>
