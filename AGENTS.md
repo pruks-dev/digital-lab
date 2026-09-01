@@ -230,6 +230,12 @@ Existing diagrams:
 - `clock-timing.svg` — Clock timing diagram
 - `adder-4bit.svg` — 4-bit adder block diagram
 - `calculator-system.svg` — Calculator system integration diagram
+- `lab-6/clock-divider.svg` — Clock Divider with Binary Counter block diagram
+- `lab-6/ripple-counter.gif` — Ripple Counter animation (replaces old SVG)
+- `lab-6/rtc-chain.svg` — Real-Time Clock enable chain (Mod-10/Mod-6 cascade)
+- `lab-6/state-position.svg` — State Position: 6-digit window on 8-char message
+- `lab-6/scrolling-message.svg` — Scrolling Message system (6 lanes: ROM + char_to_7seg per HEX)
+- `lab-6/timing-ripple-counter.svg`, `lab-6/timing-binary-counter.svg` — timing templates (6.1, 6.2)
 
 ### Review Questions (คำถามท้ายใบงาน)
 
@@ -267,7 +273,10 @@ Existing diagrams:
   KEY has hardware debounce) → Scrolling Message (state position).
   **Timing-diagram recording** for 6.1 (Ripple Counter) and 6.2 (Binary Counter) via
   `images/lab-6/timing-*.svg` templates — emphasizes ripple (staggered) vs synchronous
-  (all bits change together) behavior. Remaining experiments (6.3–6.6) use truth tables.
+  (all bits change together) behavior.
+  Recording: 6.3 RTC = checklist + board photo; 6.4 Stopwatch = table; 6.5 Scrolling = table;
+  6.3.1 (message_rom) = simulate waveform only, no table.
+  Questions: 1–2 per experiment (6.1: 1, 6.2: 2, 6.3: 2).
   `hours_counter` BCD split must slice `(3 downto 0)` (5-bit `hour` → 4-bit `units`).
   No Oscilloscope/Function Generator — FPGA board only.
 - **Labs 3–8**: FPGA/VHDL labs on DE10-Lite board. No ICs; use Quartus Prime Lite.
