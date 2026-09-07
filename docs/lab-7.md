@@ -217,6 +217,7 @@ $$acc = acc \pm b$$
 - KEY0 เป็น manual clock — กด 1 ครั้ง = สะสม 1 ครั้ง (rising edge ตอนปล่อยปุ่ม)
 - KEY1 เป็น reset — กดเมื่อไหร่ `acc` กลับเป็น 0 ทันที (active-low)
 - LEDR9 แสดง **overflow** — ติดเมื่อบวกเกิน 255 หรือลบติดลบ (ผลลัพธ์ wrap)
+- HEX3 แสดง "−" เมื่อผลลบติดลบ (negative)
 - HEX2/HEX1/HEX0 แสดงค่าสะสม (0–255)
 
 ### ขั้นตอนการทดลอง
@@ -227,9 +228,10 @@ $$acc = acc \pm b$$
 
     แต่ละส่วนของวงจรทำงานดังนี้:
 
-    - **Accumulator** — process ที่ทำงานทุก `rising_edge(clk)` (KEY0) — บวก/ลบ `b` เข้า `acc` ตาม `add_sub` — `acc` เป็น Register ที่ "จำ" ค่าสะสมไว้ — เมื่อกด KEY1 (`reset`) ให้ `acc` กลับเป็น 0 — เมื่อผลบวกเกิน 255 หรือผลลบติดลบ ให้ตั้ง `overflow = '1'` (แสดงบน LEDR9)
+    - **Accumulator** — process ที่ทำงานทุก `rising_edge(clk)` (KEY0) — บวก/ลบ `b` เข้า `acc` ตาม `add_sub` — `acc` เป็น Register ที่ "จำ" ค่าสะสมไว้ — เมื่อกด KEY1 (`reset`) ให้ `acc` กลับเป็น 0 — เมื่อผลบวกเกิน 255 หรือผลลบติดลบ ให้ตั้ง `overflow = '1'` (แสดงบน LEDR9) — เมื่อผลลบติดลบ ให้ตั้ง `negative = '1'` ด้วย (แสดง "−" บน HEX3)
     - **bin_to_bcd (Double Dabble)** — process ที่แปลง `acc` (8 บิต) เป็น BCD 3 หลัก — หลักการ: เลื่อนบิตทีละ 1 ไปทางซ้าย — ถ้า BCD digit ใดเกิน 4 ให้บวก 3 ก่อนเลื่อน (เพราะการเลื่อนซ้าย = คูณ 2 — การบวก 3 ช่วย "พก" หลัก) — ทำครบ 8 ครั้ง (เท่าจำนวนบิต)
     - **bcd_to_7seg ×3** — แปลง BCD แต่ละหลัก (ร้อย/สิบ/หน่วย) เป็น 7-segment pattern
+    - **HEX3** — แสดง "−" (segment g) เมื่อ `negative = '1'` — นอกนั้นดับ
 
     ```vhdl
     library ieee;
@@ -242,6 +244,7 @@ $$acc = acc \pm b$$
             reset   : in  std_logic;                    -- KEY1 (reset acc = 0)
             b       : in  std_logic_vector(7 downto 0); -- ค่าที่บวก/ลบสะสม (SW7–SW0)
             add_sub : in  std_logic;                    -- SW8: '0' = บวก, '1' = ลบ
+            hex3    : out std_logic_vector(7 downto 0); -- เครื่องหมายลบ (HEX3)
             hex2    : out std_logic_vector(7 downto 0); -- หลักร้อย
             hex1    : out std_logic_vector(7 downto 0); -- หลักสิบ
             hex0    : out std_logic_vector(7 downto 0); -- หลักหน่วย
@@ -257,17 +260,18 @@ $$acc = acc \pm b$$
             );
         end component;
 
-        signal acc  : unsigned(7 downto 0) := (others => '0');  -- ค่าสะสม 8 บิต
-        signal bcd2 : std_logic_vector(3 downto 0);             -- หลักร้อย
-        signal bcd1 : std_logic_vector(3 downto 0);             -- หลักสิบ
-        signal bcd0 : std_logic_vector(3 downto 0);             -- หลักหน่วย
+        signal acc      : unsigned(7 downto 0) := (others => '0');  -- ค่าสะสม 8 บิต
+        signal negative : std_logic := '0';                          -- ผลลบติดลบ?
+        signal bcd2     : std_logic_vector(3 downto 0);             -- หลักร้อย
+        signal bcd1     : std_logic_vector(3 downto 0);             -- หลักสิบ
+        signal bcd0     : std_logic_vector(3 downto 0);             -- หลักหน่วย
     begin
 
         -- (1) Accumulator: process(clk) — rising_edge
-        --     ถ้า reset = '0' (active-low): acc <= (others => '0'); overflow <= '0';
+        --     ถ้า reset = '0' (active-low): acc <= (others => '0'); overflow <= '0'; negative <= '0';
         --     ถ้า add_sub = '0' (บวก): ใช้ variable ขนาด 9 บิต (resize) ตรวจ bit ที่ 8
         --         overflow <= '1' เมื่อผลบวกเกิน 255;  acc <= ผลบวก 8 บิตล่าง (wrap)
-        --     ถ้า add_sub = '1' (ลบ): ถ้า acc < unsigned(b) → overflow <= '1' (ผลลบติดลบ)
+        --     ถ้า add_sub = '1' (ลบ): ถ้า acc < unsigned(b) → overflow <= '1'; negative <= '1' (ผลลบติดลบ)
         --         acc <= acc - unsigned(b)
 
         -- (2) bin_to_bcd: process(acc) — variable temp : unsigned(19 downto 0)
@@ -275,6 +279,8 @@ $$acc = acc \pm b$$
         --     ส่งผลลัพธ์: bcd2/bcd1/bcd0 จาก temp(19..16)/(15..12)/(11..8)
 
         -- (3) U_DEC2/U_DEC1/U_DEC0: bcd_to_7seg — bcd => bcd2/bcd1/bcd0
+
+        -- (4) hex3: "10111111" เมื่อ negative = '1' (segment g ติด) — นอกนั้น "11111111"
 
     end architecture;
     ```
@@ -284,12 +290,12 @@ $$acc = acc \pm b$$
     > **Double Dabble (shift-add-3):** วิธีแปลงเลขฐานสองเป็น BCD — เลื่อนบิตทีละ 1 ไปทางซ้าย — ถ้า BCD digit ใดเกิน 4 ให้บวก 3 ก่อนเลื่อน (เพราะการเลื่อนซ้าย = คูณ 2 — การบวก 3 ช่วย "พก" หลัก) — ทำครบ 8 ครั้ง (เท่าจำนวนบิต) จะได้ BCD 3 หลัก
 
 3. **Simulate ด้วย Waveform** — ตรวจสอบความถูกต้องของวงจรก่อนลงบอร์ด:
-    - **File → New → University Program VWF** → Insert Node `clk`, `reset`, `b`, `add_sub` (input) และ `hex2`, `hex1`, `hex0`, `overflow` (output)
-    - ตั้งค่า `b = 100` (01100100), `add_sub = 0` — กด `clk` (rising edge) 1 ครั้ง — ตรวจสอบ acc = 100, `overflow` = 0
+    - **File → New → University Program VWF** → Insert Node `clk`, `reset`, `b`, `add_sub` (input) และ `hex3`, `hex2`, `hex1`, `hex0`, `overflow` (output)
+    - ตั้งค่า `b = 100` (01100100), `add_sub = 0` — กด `clk` (rising edge) 1 ครั้ง — ตรวจสอบ acc = 100, `overflow` = 0, HEX3 ดับ
     - กด `reset` (`0`) — ตรวจสอบ acc = 0
     - ตั้งค่า `b = 200` (11001000), `add_sub = 0` — กด `clk` 1 ครั้ง — ตรวจสอบ acc = 200, `overflow` = 0
-    - ตั้งค่า `b = 100` (01100100), `add_sub = 0` — กด `clk` 1 ครั้ง — ตรวจสอบ acc = 44 (300 → wrap), **`overflow` = 1**
-    - เปลี่ยน `add_sub = 1` — กด `clk` 1 ครั้ง — ตรวจสอบ acc = 200 (44 − 100 = −56 → wrap), **`overflow` = 1**
+    - ตั้งค่า `b = 100` (01100100), `add_sub = 0` — กด `clk` 1 ครั้ง — ตรวจสอบ acc = 44 (300 → wrap), **`overflow` = 1**, HEX3 ยังดับ (บวกเกิน ไม่ใช่ติดลบ)
+    - เปลี่ยน `add_sub = 1` — กด `clk` 1 ครั้ง — ตรวจสอบ acc = 200 (44 − 100 = −56 → wrap), **`overflow` = 1**, **HEX3 แสดง "−"** (ผลลบติดลบ)
     - ตรวจสอบ BCD: เมื่อ acc = 200 → `bcd2` = 2, `bcd1` = 0, `bcd0` = 0
 
 4. กำหนด Pin Assignment:
@@ -298,6 +304,7 @@ $$acc = acc \pm b$$
     - `b(7)`–`b(0)` → SW7–SW0
     - `add_sub` → SW8
     - `overflow` → LEDR9
+    - `hex3(7:0)` → ขา HEX3
     - `hex2(7:0)` → ขา HEX2
     - `hex1(7:0)` → ขา HEX1
     - `hex0(7:0)` → ขา HEX0
@@ -308,20 +315,20 @@ $$acc = acc \pm b$$
 
 #### ตารางที่ 7.2 ผลการทดลอง Accumulator
 
-| ลำดับ | B (SW7–0) | SW8 | acc ก่อนกด | acc หลังกด KEY0 | overflow (LEDR9) |
-| ----- | ---------- | --- | ---------- | --------------- | ---------------- |
-| 1 | 127 | 0 (บวก) | 0 |  |  |
-| 2 | 131 | 0 (บวก) |  |  |  |
-| 3 | 89 | 0 (บวก) |  |  |  |
-| 4 | 73 | 1 (ลบ) |  |  |  |
-| 5 | 167 | 1 (ลบ) |  |  |  |
-| 6 | 251 | 0 (บวก) |  |  |  |
-| 7 | 53 | 1 (ลบ) |  |  |  |
-| 8 | 113 | 1 (ลบ) |  |  |  |
-| 9 | 199 | 0 (บวก) |  |  |  |
-| 10 | 97 | 0 (บวก) |  |  |  |
+| ลำดับ | B (SW7–0) | SW8 | acc ก่อนกด | acc หลังกด KEY0 | overflow (LEDR9) | HEX3 |
+| ----- | ---------- | --- | ---------- | --------------- | ---------------- | ---- |
+| 1 | 127 | 0 (บวก) | 0 |  |  |  |
+| 2 | 131 | 0 (บวก) |  |  |  |  |
+| 3 | 89 | 0 (บวก) |  |  |  |  |
+| 4 | 73 | 1 (ลบ) |  |  |  |  |
+| 5 | 167 | 1 (ลบ) |  |  |  |  |
+| 6 | 251 | 0 (บวก) |  |  |  |  |
+| 7 | 53 | 1 (ลบ) |  |  |  |  |
+| 8 | 113 | 1 (ลบ) |  |  |  |  |
+| 9 | 199 | 0 (บวก) |  |  |  |  |
+| 10 | 97 | 0 (บวก) |  |  |  |  |
 
-> **สังเกต:** ค่าสะสมไหลต่อเนื่องทีละ B ทุกครั้งที่กด KEY0 (acc ก่อนกดของแถวถัดไป = acc หลังกดของแถวก่อนหน้า — นักศึกษาเติมเอง) — เมื่อบวกเกิน 255 จะ **วนกลับ** (Modulo 256) เช่น 127 + 131 = 258 → แสดง 2 และ **LEDR9 ติด** (overflow) — เมื่อลบติดลบก็วนกลับ เช่น 18 − 167 = −149 → แสดง 107 (256 − 149) และ **LEDR9 ติด** — กด KEY1 เมื่อไหร่ `acc` กลับเป็น 0 ทันที (reset) — นี่คือ **state ที่สะสมค่า** — ต่างจากข้อ 7.1 ที่ state เก็บค่าเดียว (ผลลัพธ์ล่าสุด) ข้อนี้ state สะสมค่าไปเรื่อย ๆ
+> **สังเกต:** ค่าสะสมไหลต่อเนื่องทีละ B ทุกครั้งที่กด KEY0 (acc ก่อนกดของแถวถัดไป = acc หลังกดของแถวก่อนหน้า — นักศึกษาเติมเอง) — เมื่อบวกเกิน 255 จะ **วนกลับ** (Modulo 256) เช่น 127 + 131 = 258 → แสดง 2 และ **LEDR9 ติด** (overflow) — เมื่อลบติดลบก็วนกลับ เช่น 18 − 167 = −149 → แสดง 107 (256 − 149) และ **LEDR9 ติด** + **HEX3 แสดง "−"** — ต่างกันตรงที่ LEDR9 ติดทั้งบวกเกินและลบติดลบ แต่ HEX3 แสดง "−" เฉพาะลบติดลบ — กด KEY1 เมื่อไหร่ `acc` กลับเป็น 0 ทันที (reset) — นี่คือ **state ที่สะสมค่า** — ต่างจากข้อ 7.1 ที่ state เก็บค่าเดียว (ผลลัพธ์ล่าสุด) ข้อนี้ state สะสมค่าไปเรื่อย ๆ
 
 ### คำถามท้ายการทดลองที่ 7.2
 
