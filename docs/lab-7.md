@@ -38,6 +38,14 @@
 >
 > นั่นคือ กลับบิตทุกบิตของ B ($\overline{B}$) แล้วบวก 1 — ผลลัพธ์ที่ได้คือคำตอบที่ถูกต้องในระบบ Two's Complement — **การลบคือการต่อยอดจากวงจรบวก** — ไม่ต้องสร้างวงจรลบใหม่ ใช้ Ripple Carry Adder จากใบงานที่ 4 ได้เลย
 
+**วงจร Adder/Subtractor 4 บิต:**
+
+![บล็อกไดอะแกรม Adder/Subtractor](images/lab-7/adder-subtractor.svg)
+
+- **Mode Register** — จำปุ่มที่กดล่าสุด (KEY0 = บวก, KEY1 = ลบ) — ส่งค่า `mode` ให้วงจร
+- **XOR** — กลับบิต B เมื่อ `mode = 1` (ลบ): `B xor mode` — ถ้า mode = 0 ได้ B ตรง, mode = 1 ได้ $\overline{B}$
+- **Adder 4-bit** — บวก $A + (B \oplus mode) + cin$ โดย `cin = mode` — เมื่อลบ: $A + \overline{B} + 1 = A - B$
+
 **ภาพรวมของระบบ:**
 
 ![บล็อกไดอะแกรมเครื่องคิดเลขพื้นฐาน](images/lab-7/calculator.svg)
