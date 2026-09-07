@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 320" font-family="sans-serif">
+  <style>
+    .gate { fill: white; stroke: #333; stroke-width: 2; }
+    .box { fill: #f0f4ff; stroke: #333; stroke-width: 2; }
+    .wire { stroke: #333; stroke-width: 1.5; fill: none; }
+    .wire-thick { stroke: #333; stroke-width: 2.5; fill: none; }
+    .label { text-anchor: middle; font-size: 13px; fill: #333; }
+    .label-sm { text-anchor: middle; font-size: 11px; fill: #666; }
+    .dot { fill: #333; }
+  </style>
+
+  <!-- Inputs -->
+  <text x="20" y="84" class="label" font-weight="bold">B[7:0]</text>
+  <text x="20" y="124" class="label" font-weight="bold">SW8</text>
+  <text x="20" y="164" class="label" font-weight="bold">KEY0</text>
+  <text x="20" y="204" class="label" font-weight="bold">KEY1</text>
+
+  <!-- Accumulator -->
+  <rect class="box" x="160" y="60" width="140" height="160" rx="4"/>
+  <text x="230" y="130" class="label" font-weight="bold">Accumulator</text>
+  <text x="230" y="150" class="label-sm">acc = acc ± b</text>
+
+  <!-- bin_to_bcd (8-bit) -->
+  <rect class="box" x="340" y="90" width="120" height="100" rx="4"/>
+  <text x="400" y="130" class="label" font-weight="bold">bin_to_bcd</text>
+  <text x="400" y="150" class="label-sm">8-bit → BCD</text>
+
+  <!-- bcd_to_7seg (hundreds) -->
+  <rect class="box" x="500" y="60" width="110" height="55" rx="4"/>
+  <text x="555" y="87" class="label" font-weight="bold">bcd_to_7seg</text>
+
+  <!-- bcd_to_7seg (tens) -->
+  <rect class="box" x="500" y="122" width="110" height="55" rx="4"/>
+  <text x="555" y="149" class="label" font-weight="bold">bcd_to_7seg</text>
+
+  <!-- bcd_to_7seg (units) -->
+  <rect class="box" x="500" y="184" width="110" height="55" rx="4"/>
+  <text x="555" y="211" class="label" font-weight="bold">bcd_to_7seg</text>
+
+  <!-- Outputs -->
+  <text x="680" y="88" class="label" font-weight="bold">HEX2</text>
+  <text x="680" y="150" class="label" font-weight="bold">HEX1</text>
+  <text x="680" y="212" class="label" font-weight="bold">HEX0</text>
+
+  <!-- Wire: B to Accumulator -->
+  <line class="wire-thick" x1="40" y1="80" x2="160" y2="80"/>
+
+  <!-- Wire: SW8 to Accumulator -->
+  <line class="wire" x1="40" y1="120" x2="160" y2="120"/>
+
+  <!-- Wire: KEY0 to Accumulator -->
+  <line class="wire" x1="40" y1="160" x2="160" y2="160"/>
+
+  <!-- Wire: KEY1 (Reset) to Accumulator -->
+  <line class="wire" x1="40" y1="200" x2="160" y2="200"/>
+
+  <!-- Wire: Accumulator to bin_to_bcd -->
+  <line class="wire-thick" x1="300" y1="140" x2="340" y2="140"/>
+
+  <!-- Wire: overflow to LEDR9 (down from Accumulator bottom) -->
+  <line class="wire" x1="230" y1="220" x2="230" y2="250"/>
+
+  <!-- Output: LEDR9 (overflow) -->
+  <text x="230" y="254" class="label" font-weight="bold">LEDR9</text>
+
+  <!-- Wire: bin_to_bcd bcd2 to bcd_to_7seg (hundreds) — exit block before turning -->
+  <path class="wire-thick" d="M460,105 H470 V87 H500"/>
+
+  <!-- Wire: bin_to_bcd bcd1 to bcd_to_7seg (tens) -->
+  <line class="wire-thick" x1="460" y1="140" x2="500" y2="140"/>
+
+  <!-- Wire: bin_to_bcd bcd0 to bcd_to_7seg (units) — exit block before turning -->
+  <path class="wire-thick" d="M460,175 H470 V211 H500"/>
+
+  <!-- Wire: bcd_to_7seg to HEX2 (stop before label) -->
+  <line class="wire-thick" x1="610" y1="87" x2="660" y2="87"/>
+
+  <!-- Wire: bcd_to_7seg to HEX1 (stop before label) -->
+  <line class="wire-thick" x1="610" y1="149" x2="660" y2="149"/>
+
+  <!-- Wire: bcd_to_7seg to HEX0 (stop before label) -->
+  <line class="wire-thick" x1="610" y1="211" x2="660" y2="211"/>
+
+  <!-- Title -->
+  <text x="450" y="270" class="label" font-size="15" font-weight="bold">Accumulator (วงจรบวกสะสม)</text>
+  <text x="450" y="292" class="label-sm">KEY0 = accumulate, KEY1 = Reset, SW8 = Add/Subtract, LEDR9 = Overflow — acc = acc ± b on every press (กด KEY0 หนึ่งครั้ง: acc = acc ± b — KEY1 รีเซ็ต acc = 0 — SW8 เลือกบวก/ลบ — LEDR9 ติดเมื่อบวกเกิน 255 หรือลบติดลบ)</text>
+</svg>

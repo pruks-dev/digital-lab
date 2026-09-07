@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 360" font-family="sans-serif">
+  <style>
+    .gate { fill: white; stroke: #333; stroke-width: 2; }
+    .box { fill: #f0f4ff; stroke: #333; stroke-width: 2; }
+    .wire { stroke: #333; stroke-width: 1.5; fill: none; }
+    .wire-thick { stroke: #333; stroke-width: 2.5; fill: none; }
+    .label { text-anchor: middle; font-size: 13px; fill: #333; }
+    .label-sm { text-anchor: middle; font-size: 11px; fill: #666; }
+    .dot { fill: #333; }
+  </style>
+
+  <!-- Inputs -->
+  <text x="20" y="84" class="label" font-weight="bold">A[3:0]</text>
+  <text x="20" y="124" class="label" font-weight="bold">B[3:0]</text>
+  <text x="20" y="164" class="label" font-weight="bold">KEY0</text>
+  <text x="20" y="204" class="label" font-weight="bold">KEY1</text>
+
+  <!-- Calculate (Add/Subtract) -->
+  <rect class="box" x="160" y="60" width="130" height="160" rx="4"/>
+  <text x="225" y="130" class="label" font-weight="bold">Calculator</text>
+  <text x="225" y="150" class="label-sm">Add/Subtract</text>
+
+  <!-- Register (lock result) -->
+  <rect class="box" x="330" y="90" width="120" height="100" rx="4"/>
+  <text x="390" y="130" class="label" font-weight="bold">Register</text>
+  <text x="390" y="150" class="label-sm">Hold result</text>
+
+  <!-- bin_to_bcd (5-bit) -->
+  <rect class="box" x="490" y="90" width="120" height="100" rx="4"/>
+  <text x="550" y="130" class="label" font-weight="bold">bin_to_bcd</text>
+  <text x="550" y="150" class="label-sm">5-bit → BCD</text>
+
+  <!-- bcd_to_7seg (tens) -->
+  <rect class="box" x="650" y="70" width="110" height="55" rx="4"/>
+  <text x="705" y="97" class="label" font-weight="bold">bcd_to_7seg</text>
+
+  <!-- bcd_to_7seg (units) -->
+  <rect class="box" x="650" y="145" width="110" height="55" rx="4"/>
+  <text x="705" y="172" class="label" font-weight="bold">bcd_to_7seg</text>
+
+  <!-- Outputs -->
+  <text x="800" y="101" class="label" font-weight="bold">HEX1</text>
+  <text x="800" y="176" class="label" font-weight="bold">HEX0</text>
+  <text x="800" y="248" class="label" font-weight="bold">HEX5</text>
+  <text x="800" y="264" class="label-sm">"−" when negative (เมื่อติดลบ)</text>
+
+  <!-- Wire: A to Calculate -->
+  <line class="wire-thick" x1="40" y1="80" x2="160" y2="80"/>
+
+  <!-- Wire: B to Calculate -->
+  <line class="wire-thick" x1="40" y1="120" x2="160" y2="120"/>
+
+  <!-- Wire: KEY0/KEY1 to Calculate -->
+  <line class="wire" x1="40" y1="160" x2="160" y2="160"/>
+  <line class="wire" x1="40" y1="200" x2="160" y2="200"/>
+
+  <!-- Wire: Calculate to Register -->
+  <line class="wire-thick" x1="290" y1="120" x2="330" y2="120"/>
+
+  <!-- Wire: Register to bin_to_bcd -->
+  <line class="wire-thick" x1="450" y1="120" x2="490" y2="120"/>
+
+  <!-- Wire: bin_to_bcd bcd1 to bcd_to_7seg (tens) — turn before block edge -->
+  <path class="wire" d="M610,105 V97 H650"/>
+
+  <!-- Wire: bin_to_bcd bcd0 to bcd_to_7seg (units) — turn before block edge -->
+  <path class="wire" d="M610,135 V172 H650"/>
+
+  <!-- Wire: bcd_to_7seg to HEX1 (stop before label) -->
+  <line class="wire-thick" x1="760" y1="97" x2="770" y2="97"/>
+
+  <!-- Wire: bcd_to_7seg to HEX0 (stop before label) -->
+  <line class="wire-thick" x1="760" y1="172" x2="770" y2="172"/>
+
+  <!-- Wire: negative to HEX5 (down, right — stop before label) -->
+  <path class="wire" d="M225,220 V240 H770"/>
+
+  <!-- Title -->
+  <text x="450" y="300" class="label" font-size="15" font-weight="bold">Basic Calculator (เครื่องคิดเลขพื้นฐาน)</text>
+  <text x="450" y="322" class="label-sm">KEY0 = Add, KEY1 = Subtract — result stays on display until next press (ผลลัพธ์ค้างบนจอจนกว่าจะกดปุ่มใหม่)</text>
+</svg>
