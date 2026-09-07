@@ -54,8 +54,8 @@
   <text x="970" y="248" class="label" font-weight="bold">HEX5</text>
   <text x="970" y="264" class="label-sm">"−" when negative (เมื่อติดลบ)</text>
 
-  <!-- Wire: A to Adder -->
-  <line class="wire-thick" x1="40" y1="100" x2="290" y2="100"/>
+  <!-- Wire: A to Adder (pass above 2's Comp, turn down into Adder) -->
+  <path class="wire-thick" d="M40,90 H270 V100 H290"/>
 
   <!-- Wire: B to 2's Comp -->
   <line class="wire-thick" x1="40" y1="120" x2="140" y2="120"/>
@@ -63,8 +63,8 @@
   <!-- Wire: KEY1 to 2's Comp -->
   <line class="wire" x1="40" y1="150" x2="140" y2="150"/>
 
-  <!-- Wire: KEY0 to Adder -->
-  <line class="wire" x1="40" y1="170" x2="290" y2="170"/>
+  <!-- Wire: KEY0 to Adder (pass below 2's Comp, turn up into Adder) -->
+  <path class="wire" d="M40,180 H270 V170 H290"/>
 
   <!-- Wire: 2's Comp to Adder -->
   <line class="wire-thick" x1="250" y1="130" x2="290" y2="130"/>
@@ -78,11 +78,11 @@
   <!-- Wire: Abs to bin_to_bcd -->
   <line class="wire-thick" x1="650" y1="120" x2="690" y2="120"/>
 
-  <!-- Wire: bin_to_bcd bcd1 to bcd_to_7seg (tens) — turn before block edge -->
-  <path class="wire" d="M790,105 V95 H830"/>
+  <!-- Wire: bin_to_bcd bcd1 to bcd_to_7seg (tens) — exit block right, then turn up -->
+  <path class="wire" d="M790,105 H800 V95 H830"/>
 
-  <!-- Wire: bin_to_bcd bcd0 to bcd_to_7seg (units) — turn before block edge -->
-  <path class="wire" d="M790,145 V165 H830"/>
+  <!-- Wire: bin_to_bcd bcd0 to bcd_to_7seg (units) — exit block right, then turn down -->
+  <path class="wire" d="M790,145 H800 V165 H830"/>
 
   <!-- Wire: bcd_to_7seg to HEX1 (stop before label) -->
   <line class="wire-thick" x1="930" y1="95" x2="950" y2="95"/>
