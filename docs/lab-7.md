@@ -36,7 +36,7 @@
 >
 > $$A - B = A + (\overline{B} + 1)$$
 >
-> นั่นคือ กลับบิตทุกบิตของ B ($\overline{B}$) แล้วบวก 1 — ผลลัพธ์ที่ได้คือคำตอบที่ถูกต้องในระบบ Two's Complement
+> นั่นคือ กลับบิตทุกบิตของ B ($\overline{B}$) แล้วบวก 1 — ผลลัพธ์ที่ได้คือคำตอบที่ถูกต้องในระบบ Two's Complement — **การลบคือการต่อยอดจากวงจรบวก** — ไม่ต้องสร้างวงจรลบใหม่ ใช้ Ripple Carry Adder จากใบงานที่ 4 ได้เลย
 
 **ภาพรวมของระบบ:**
 
@@ -141,7 +141,9 @@
         --     แล้วสร้าง press0/press1 = '1' เมื่อปุ่มเปลี่ยนจาก 1 → 0
 
         -- (2) Result Register: process(clk) — ถ้า press0 → บวก, press1 → ลบ
-        --     ใช้ signed: result <= signed(resize(a,6)) + signed(resize(b,6)) หรือลบ
+        --     บวก: result <= signed(resize(a,6)) + signed(resize(b,6))
+        --     ลบ:  result <= signed(resize(a,6)) + (not signed(resize(b,6)) + 1)
+        --           ^^^^^^^^^  A + (~B + 1) — 2's complement ของ B — ใช้ adder เดิม (ต่อยอดจาก lab 4)
         --     negative <= result(5)  -- sign bit (MSB): '1' = ติดลบ
         --     ถ้า result < 0 → abs_result <= unsigned(0 - result(4 downto 0))  -- 2's complement
         --     else: abs_result <= unsigned(result(4 downto 0))
@@ -271,7 +273,8 @@ $$acc = acc \pm b$$
         -- (1) Accumulator: process(clk) — rising_edge
         --     ถ้า reset = '0' (active-low): acc <= (others => '0'); overflow <= '0'
         --     ถ้า add_sub = '0' (บวก): acc <= acc + signed(resize(unsigned(b), 10))
-        --     ถ้า add_sub = '1' (ลบ): acc <= acc - signed(resize(unsigned(b), 10))
+        --     ถ้า add_sub = '1' (ลบ): acc <= acc + (not signed(resize(unsigned(b), 10)) + 1)
+        --           ^^^^^^^^^  acc + (~B + 1) — 2's complement ของ B — ใช้ adder เดิม
         --     overflow <= '1' เมื่อ acc > 255 หรือ acc < 0 (เกินช่วงแสดงผล 0–255)
 
         -- (2) abs_acc: ถ้า acc < 0 → abs_acc <= unsigned(0 - acc)  -- 2's complement
