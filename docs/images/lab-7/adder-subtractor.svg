@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 360" font-family="sans-serif">
+  <style>
+    .gate { fill: white; stroke: #333; stroke-width: 2; }
+    .box { fill: #f0f4ff; stroke: #333; stroke-width: 2; }
+    .wire { stroke: #333; stroke-width: 1.5; fill: none; }
+    .wire-thick { stroke: #333; stroke-width: 2.5; fill: none; }
+    .label { text-anchor: middle; font-size: 13px; fill: #333; }
+    .label-sm { text-anchor: middle; font-size: 11px; fill: #666; }
+    .dot { fill: #333; }
+  </style>
+
+  <!-- Inputs -->
+  <text x="30" y="65" class="label" font-weight="bold">A[3:0]</text>
+  <text x="30" y="110" class="label" font-weight="bold">B[3:0]</text>
+  <text x="30" y="135" class="label" font-weight="bold">KEY0</text>
+  <text x="30" y="165" class="label" font-weight="bold">KEY1</text>
+
+  <!-- Mode Register: KEY0/KEY1 -> mode -->
+  <rect class="box" x="100" y="135" width="110" height="60" rx="4"/>
+  <text x="155" y="158" class="label" font-weight="bold">Mode</text>
+  <text x="155" y="173" class="label" font-weight="bold">Register</text>
+  <text x="155" y="210" class="label-sm">clk 50 MHz</text>
+
+  <!-- XOR bank for B -->
+  <rect class="box" x="280" y="110" width="90" height="70" rx="4"/>
+  <text x="325" y="140" class="label" font-weight="bold">XOR</text>
+  <text x="325" y="160" class="label-sm">B xor mode</text>
+
+  <!-- Adder -->
+  <rect class="gate" x="460" y="70" width="140" height="140" rx="4"/>
+  <text x="530" y="115" class="label" font-weight="bold" font-size="15">Adder</text>
+  <text x="530" y="135" class="label-sm">4-bit</text>
+  <text x="530" y="165" class="label-sm">cin = mode</text>
+
+  <!-- Wire: A to Adder -->
+  <line class="wire-thick" x1="60" y1="80" x2="460" y2="80"/>
+
+  <!-- Wire: B to XOR (top input) -->
+  <line class="wire-thick" x1="60" y1="125" x2="280" y2="125"/>
+
+  <!-- Wire: KEY0/KEY1 to Mode Register -->
+  <line class="wire" x1="60" y1="150" x2="100" y2="150"/>
+  <line class="wire" x1="60" y1="180" x2="100" y2="180"/>
+
+  <!-- Wire: mode out -> XOR bottom input (straight, aligned) -->
+  <line class="wire" x1="210" y1="165" x2="280" y2="165"/>
+
+  <!-- Wire: mode to cin (Manhattan: down, right, up) — branches mid-wire -->
+  <path class="wire" d="M245,165 V230 H520 V210"/>
+
+  <!-- Junction dot where mode splits to XOR and cin -->
+  <circle class="dot" cx="245" cy="165" r="3"/>
+
+  <!-- Wire: XOR out to Adder -->
+  <line class="wire-thick" x1="370" y1="145" x2="460" y2="145"/>
+
+  <!-- Outputs -->
+  <line class="wire-thick" x1="600" y1="140" x2="670" y2="140"/>
+  <text x="715" y="144" class="label" font-weight="bold">sum[3:0]</text>
+
+  <line class="wire" x1="600" y1="190" x2="670" y2="190"/>
+  <text x="715" y="194" class="label" font-weight="bold">cout</text>
+
+  <!-- Title -->
+  <text x="400" y="280" class="label" font-size="15" font-weight="bold">Adder/Subtractor Block Diagram</text>
+  <text x="400" y="305" class="label-sm">mode = 0: บวก (B ตรง, cin=0) | mode = 1: ลบ (B กลับบิต, cin=1)</text>
+</svg>

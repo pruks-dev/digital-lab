@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 320" font-family="sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-60 -40 1460 500" font-family="sans-serif">
   <style>
     .gate { fill: white; stroke: #333; stroke-width: 2; }
     .box { fill: #f0f4ff; stroke: #333; stroke-width: 2; }
@@ -9,79 +9,151 @@
     .dot { fill: #333; }
   </style>
 
-  <!-- Inputs -->
-  <text x="20" y="84" class="label" font-weight="bold">B[7:0]</text>
-  <text x="20" y="124" class="label" font-weight="bold">SW8</text>
-  <text x="20" y="164" class="label" font-weight="bold">KEY0</text>
-  <text x="20" y="204" class="label" font-weight="bold">KEY1</text>
+  <!-- ============ INPUTS (ซ้ายสุด) ============ -->
+  <text x="40" y="45" class="label" font-weight="bold" text-anchor="end">
+    <tspan x="40" dy="0">Clk</tspan>
+    <tspan x="40" dy="15">50 MHz</tspan>
+  </text>
+  <text x="40" y="105" class="label" font-weight="bold" text-anchor="end">A[7:0]</text>
+  <text x="40" y="200" class="label" font-weight="bold" text-anchor="end">SW8</text>
+  <text x="40" y="300" class="label" font-weight="bold" text-anchor="end">KEY0</text>
+  <text x="40" y="340" class="label" font-weight="bold" text-anchor="end">KEY1</text>
 
-  <!-- Accumulator -->
-  <rect class="box" x="160" y="60" width="140" height="160" rx="4"/>
-  <text x="230" y="130" class="label" font-weight="bold">Accumulator</text>
-  <text x="230" y="150" class="label-sm">acc = acc ± b</text>
+  <!-- ============ BLOCK 1: Edge Detect (x=110..210, y=280..360) ============ -->
+  <rect class="box" x="110" y="280" width="100" height="80" rx="4"/>
+  <text x="160" y="320" class="label" dominant-baseline="middle" font-weight="bold">Edge Detect</text>
 
-  <!-- bin_to_bcd (10-bit) -->
-  <rect class="box" x="340" y="90" width="120" height="100" rx="4"/>
-  <text x="400" y="130" class="label" font-weight="bold">bin_to_bcd</text>
-  <text x="400" y="150" class="label-sm">10-bit → BCD</text>
+  <!-- ============ BLOCK 2: A / Ā+1 (x=285..365, y=75..135) ============ -->
+  <rect class="box" x="285" y="75" width="80" height="60" rx="4"/>
+  <text x="325" y="105" class="label" dominant-baseline="middle" font-weight="bold">A / <tspan text-decoration="overline">A</tspan>+1</text>
 
-  <!-- bcd_to_7seg (hundreds) -->
-  <rect class="box" x="500" y="60" width="110" height="55" rx="4"/>
-  <text x="555" y="87" class="label" font-weight="bold">bcd_to_7seg</text>
+  <!-- ============ BLOCK 3: Adder 9-bit (trapezoid: ซ้ายยาว 70 / ขวาสั้น 40, กว้าง 80) ============ -->
+  <polygon class="box" points="440,85 520,100 520,140 440,155"/>
+  <text x="480" y="115" class="label" dominant-baseline="middle" font-weight="bold">Adder</text>
+  <text x="480" y="132" class="label-sm" dominant-baseline="middle">9-bit</text>
 
-  <!-- bcd_to_7seg (tens) -->
-  <rect class="box" x="500" y="122" width="110" height="55" rx="4"/>
-  <text x="555" y="149" class="label" font-weight="bold">bcd_to_7seg</text>
+  <!-- ============ BLOCK 4: Accumulator Register (x=595..715, y=90..150) ============ -->
+  <rect class="box" x="595" y="90" width="120" height="60" rx="4"/>
+  <text x="655" y="112" class="label" dominant-baseline="middle" font-weight="bold">Accumulator</text>
+  <text x="655" y="128" class="label-sm" dominant-baseline="middle">acc = acc ± a</text>
 
-  <!-- bcd_to_7seg (units) -->
-  <rect class="box" x="500" y="184" width="110" height="55" rx="4"/>
-  <text x="555" y="211" class="label" font-weight="bold">bcd_to_7seg</text>
+  <!-- ============ BLOCK 5: Sign & Abs (x=790..890, y=90..150) ============ -->
+  <rect class="box" x="790" y="90" width="100" height="60" rx="4"/>
+  <text x="840" y="120" class="label" dominant-baseline="middle" font-weight="bold">Sign &amp; Abs</text>
 
-  <!-- Outputs -->
-  <text x="680" y="88" class="label" font-weight="bold">HEX2</text>
-  <text x="680" y="150" class="label" font-weight="bold">HEX1</text>
-  <text x="680" y="212" class="label" font-weight="bold">HEX0</text>
+  <!-- ============ BLOCK 6: bin_to_bcd (x=965..1075, y=100..160) ============ -->
+  <rect class="box" x="965" y="100" width="110" height="60" rx="4"/>
+  <text x="1020" y="125" class="label" dominant-baseline="middle" font-weight="bold">bin_to_bcd</text>
+  <text x="1020" y="142" class="label-sm" dominant-baseline="middle">8-bit → BCD</text>
 
-  <!-- Wire: B to Accumulator -->
-  <line class="wire-thick" x1="40" y1="80" x2="160" y2="80"/>
+  <!-- ============ BLOCK 7a: bcd_to_7seg hundreds (x=1145..1255, y=70..120) ============ -->
+  <rect class="box" x="1145" y="70" width="110" height="50" rx="4"/>
+  <text x="1200" y="95" class="label" dominant-baseline="middle" font-weight="bold">bcd_to_7seg</text>
 
-  <!-- Wire: SW8 to Accumulator -->
-  <line class="wire" x1="40" y1="120" x2="160" y2="120"/>
+  <!-- ============ BLOCK 7b: bcd_to_7seg tens (x=1145..1255, y=140..190) ============ -->
+  <rect class="box" x="1145" y="140" width="110" height="50" rx="4"/>
+  <text x="1200" y="165" class="label" dominant-baseline="middle" font-weight="bold">bcd_to_7seg</text>
 
-  <!-- Wire: KEY0 to Accumulator -->
-  <line class="wire" x1="40" y1="160" x2="160" y2="160"/>
+  <!-- ============ BLOCK 7c: bcd_to_7seg units (x=1145..1255, y=210..260) ============ -->
+  <rect class="box" x="1145" y="210" width="110" height="50" rx="4"/>
+  <text x="1200" y="235" class="label" dominant-baseline="middle" font-weight="bold">bcd_to_7seg</text>
 
-  <!-- Wire: KEY1 (Reset) to Accumulator -->
-  <line class="wire" x1="40" y1="200" x2="160" y2="200"/>
+  <!-- ============ OUTPUTS (ขวาสุด) ============ -->
+  <text x="1310" y="40" class="label" font-weight="bold">HEX3[6]</text>
+  <text x="1310" y="60" class="label-sm">"−" เมื่อติดลบ</text>
+  <text x="1320" y="101" class="label" font-weight="bold">HEX2[7:0]</text>
+  <text x="1320" y="171" class="label" font-weight="bold">HEX1[7:0]</text>
+  <text x="1320" y="241" class="label" font-weight="bold">HEX0[7:0]</text>
 
-  <!-- Wire: Accumulator to bin_to_bcd -->
-  <line class="wire-thick" x1="300" y1="140" x2="340" y2="140"/>
+  <!-- ============ WIRES ============ -->
 
-  <!-- Wire: overflow to LEDR9 (down from Accumulator bottom) -->
-  <line class="wire" x1="230" y1="220" x2="230" y2="250"/>
+  <!-- clk 50MHz → branch ที่ (160,60) แล้วลงมา Edge Detect (กลางบน) -->
+  <path class="wire" d="M70,60 H160 V280"/>
 
-  <!-- Output: LEDR9 (overflow) -->
-  <text x="230" y="254" class="label" font-weight="bold">LEDR9</text>
+  <!-- clk → Register (กลางบน): branch ที่ (160,60) ไปขวา แล้วลงมา -->
+  <path class="wire" d="M160,60 H655 V90"/>
 
-  <!-- Wire: bin_to_bcd bcd2 to bcd_to_7seg (hundreds) — exit block before turning -->
-  <path class="wire-thick" d="M460,105 H470 V87 H500"/>
+  <!-- Junction dot ที่ branch -->
+  <circle cx="160" cy="60" r="3" class="dot"/>
 
-  <!-- Wire: bin_to_bcd bcd1 to bcd_to_7seg (tens) -->
-  <line class="wire-thick" x1="460" y1="140" x2="500" y2="140"/>
+  <!-- A[7:0] → A / Ā+1 (กลางซ้าย): แนวนอนตรง -->
+  <line class="wire-thick" x1="70" y1="105" x2="285" y2="105"/>
+  <text x="200" y="88" class="label-sm">A[7:0]</text>
 
-  <!-- Wire: bin_to_bcd bcd0 to bcd_to_7seg (units) — exit block before turning -->
-  <path class="wire-thick" d="M460,175 H470 V211 H500"/>
+  <!-- add_sub (SW8) → A / Ā+1 (ด้านล่าง): ลากใต้บล็อก แล้วตั้งฉากขึ้นเข้าด้านล่าง -->
+  <path class="wire" d="M70,200 H325 V135"/>
+  <text x="210" y="185" class="label-sm">add_sub</text>
 
-  <!-- Wire: bcd_to_7seg to HEX2 (stop before label) -->
-  <line class="wire-thick" x1="610" y1="87" x2="660" y2="87"/>
+  <!-- KEY0 → Edge Detect (กลางซ้าย): แนวนอนตรง -->
+  <line class="wire" x1="70" y1="300" x2="110" y2="300"/>
+  <text x="77" y="285" class="label-sm">KEY0</text>
 
-  <!-- Wire: bcd_to_7seg to HEX1 (stop before label) -->
-  <line class="wire-thick" x1="610" y1="149" x2="660" y2="149"/>
+  <!-- KEY1 → Edge Detect (กลางซ้าย): แนวนอนตรง -->
+  <line class="wire" x1="70" y1="340" x2="110" y2="340"/>
+  <text x="77" y="325" class="label-sm">KEY1</text>
 
-  <!-- Wire: bcd_to_7seg to HEX0 (stop before label) -->
-  <line class="wire-thick" x1="610" y1="211" x2="660" y2="211"/>
+  <!-- press_add (Edge Detect กลางขวา) → Register: วิ่งตรง แล้วหักขึ้น -->
+  <path class="wire" d="M210,300 H640 V150"/>
+  <text x="280" y="285" class="label-sm">press_add</text>
 
-  <!-- Title -->
-  <text x="450" y="270" class="label" font-size="15" font-weight="bold">Accumulator (วงจรบวกสะสม)</text>
-  <text x="450" y="292" class="label-sm">KEY0 = accumulate, KEY1 = Reset, SW8 = Add/Subtract, LEDR9 = Overflow — acc = acc ± b on every press (กด KEY0 หนึ่งครั้ง: acc = acc ± b — KEY1 รีเซ็ต acc = 0 — SW8 เลือกบวก/ลบ — LEDR9 ติดเมื่อบวกเกิน 255 หรือลบติดลบ — ถ้าติดลบ HEX แสดงค่าสัมบูรณ์ นักศึกษาบันทึกเครื่องหมายลบเอง)</text>
+  <!-- press_rst (Edge Detect กลางขวา) → Register: วิ่งตรง แล้วหักขึ้น -->
+  <path class="wire" d="M210,340 H670 V150"/>
+  <text x="280" y="325" class="label-sm">press_rst</text>
+
+  <!-- A / Ā+1 กลางขวา → Adder กลางซ้ายบน: แนวนอนตรง -->
+  <line class="wire-thick" x1="365" y1="105" x2="440" y2="105"/>
+  <text x="402" y="88" class="label-sm">a_proc</text>
+
+  <!-- acc (Register ขวา ล่าง) → Adder ด้านซ้ายล่าง: ออกจาก connect point เดียวกับ acc→Sign&Abs ไปขวาถึงกึ่งกลาง ลงมาแค่พอพ้น Adder อ้อมซ้ายเกิน Adder แล้วขึ้นวนเข้าด้านซ้าย (feedback loop) -->
+  <path class="wire-thick" d="M715,135 H752 V170 H420 V135 H440"/>
+  <text x="577" y="155" class="label-sm">acc</text>
+
+  <!-- Junction dot: acc แยก 2 ทาง (Sign & Abs ไปต่อขวา + feedback หักลง) — กึ่งกลางระหว่าง Register กับ Sign & Abs -->
+  <circle cx="752" cy="135" r="3" class="dot"/>
+
+  <!-- Adder กลางขวา → Register กลางซ้าย: แนวนอนตรง -->
+  <line class="wire-thick" x1="520" y1="120" x2="595" y2="120"/>
+  <text x="557" y="105" class="label-sm">acc_next</text>
+
+  <!-- Register ขวา ล่าง → Sign & Abs กลางซ้าย: แนวนอนตรง (acc — label อยู่ที่ feedback แล้ว ไม่ซ้ำ) -->
+  <line class="wire-thick" x1="715" y1="135" x2="790" y2="135"/>
+
+  <!-- Sign & Abs ด้านขวาล่าง → bin_to_bcd กลางซ้าย: แนวนอนตรง -->
+  <line class="wire-thick" x1="890" y1="130" x2="965" y2="130"/>
+  <text x="930" y="115" class="label-sm">abs_acc</text>
+
+  <!-- negative (Sign & Abs ด้านขวาบน) → HEX3: ออกแนวนอน แล้วหักขึ้น -->
+  <path class="wire" d="M890,95 H910 V40 H1270"/>
+  <text x="1095" y="25" class="label-sm">negative</text>
+
+  <!-- bin_to_bcd bcd2 (ขวา บน) → bcd_to_7seg hundreds (กลางซ้าย): ออกแนวนอน แล้วหักขึ้น -->
+  <path class="wire-thick" d="M1075,110 H1105 V95 H1145"/>
+  <text x="1080" y="95" class="label-sm">bcd2</text>
+
+  <!-- bin_to_bcd bcd1 (ขวา กลาง) → bcd_to_7seg tens (กลางซ้าย): ออกแนวนอน แล้วหักลง -->
+  <path class="wire-thick" d="M1075,130 H1105 V165 H1145"/>
+  <text x="1065" y="180" class="label-sm">bcd1</text>
+
+  <!-- bin_to_bcd bcd0 (ขวา ล่าง) → bcd_to_7seg units (กลางซ้าย): ออกแนวนอน ลงก่อนถึง x=1105 (เลี่ยงชน bcd1) แล้วหักลง -->
+  <path class="wire-thick" d="M1075,150 H1090 V235 H1145"/>
+  <text x="1070" y="255" class="label-sm">bcd0</text>
+
+  <!-- bcd_to_7seg hundreds กลางขวา → HEX2: แนวนอนตรง -->
+  <line class="wire-thick" x1="1255" y1="95" x2="1270" y2="95"/>
+
+  <!-- bcd_to_7seg tens กลางขวา → HEX1: แนวนอนตรง -->
+  <line class="wire-thick" x1="1255" y1="165" x2="1270" y2="165"/>
+
+  <!-- bcd_to_7seg units กลางขวา → HEX0: แนวนอนตรง -->
+  <line class="wire-thick" x1="1255" y1="235" x2="1270" y2="235"/>
+
+  <!-- overflow (Register ขวา บน) → LEDR9: ออกขวา ไปก่อน ขึ้นเหนือ negative แล้วลากไปขวาสุด (ระดับเดียวกับ label LEDR9) -->
+  <path class="wire" d="M715,105 H775 V5 H1270"/>
+  <text x="1095" y="-10" class="label-sm">overflow</text>
+  <text x="1310" y="5" class="label" font-weight="bold">LEDR9</text>
+
+  <!-- ============ TITLE ============ -->
+  <text x="620" y="400" class="label" font-size="15" font-weight="bold">Accumulator (วงจรบวกสะสม)</text>
+  <text x="620" y="418" class="label-sm">KEY0 = Accumulate (acc = acc ± a), KEY1 = Reset, SW8 = Add/Subtract, LEDR9 = Overflow</text>
+  <text x="620" y="436" class="label-sm">acc เกินช่วง 0–255 จะ wrap (วนกลับ) — ถ้าติดลบ HEX3 แสดง "−" — HEX2/1/0 แสดงค่าสัมบูรณ์</text>
 </svg>

@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 360" font-family="sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-60 0 1460 460" font-family="sans-serif">
   <style>
     .gate { fill: white; stroke: #333; stroke-width: 2; }
     .box { fill: #f0f4ff; stroke: #333; stroke-width: 2; }
@@ -9,95 +9,145 @@
     .dot { fill: #333; }
   </style>
 
-  <!-- Inputs -->
-  <text x="20" y="104" class="label" font-weight="bold">A[3:0]</text>
-  <text x="20" y="124" class="label" font-weight="bold">B[3:0]</text>
-  <text x="20" y="164" class="label" font-weight="bold">KEY0</text>
-  <text x="20" y="194" class="label" font-weight="bold">KEY1</text>
+  <!-- ============ INPUTS (ซ้ายสุด) ============ -->
+  <text x="40" y="45" class="label" font-weight="bold" text-anchor="end">
+    <tspan x="40" dy="0">Clk</tspan>
+    <tspan x="40" dy="15">50 MHz</tspan>
+  </text>
+  <text x="40" y="105" class="label" font-weight="bold" text-anchor="end">A[3:0]</text>
+  <text x="40" y="200" class="label" font-weight="bold" text-anchor="end">B[3:0]</text>
+  <text x="40" y="300" class="label" font-weight="bold" text-anchor="end">KEY0</text>
+  <text x="40" y="340" class="label" font-weight="bold" text-anchor="end">KEY1</text>
 
-  <!-- 2's Complement -->
-  <rect class="box" x="140" y="100" width="110" height="90" rx="4"/>
-  <text x="195" y="130" class="label" font-weight="bold">2's Comp</text>
-  <text x="195" y="150" class="label-sm">~B + 1 (ลบ)</text>
+  <!-- ============ BLOCK 1: Edge Detect (x=110..210, y=280..360) ============ -->
+  <rect class="box" x="110" y="280" width="100" height="80" rx="4"/>
+  <text x="160" y="320" class="label" dominant-baseline="middle" font-weight="bold">Edge Detect</text>
 
-  <!-- Adder -->
-  <rect class="box" x="290" y="80" width="100" height="100" rx="4"/>
-  <text x="340" y="125" class="label" font-weight="bold">Adder</text>
-  <text x="340" y="145" class="label-sm">4-bit</text>
+  <!-- ============ BLOCK 2: B / B̄+1 (x=285..365, y=170..230) ============ -->
+  <rect class="box" x="285" y="170" width="80" height="60" rx="4"/>
+  <text x="325" y="200" class="label" dominant-baseline="middle" font-weight="bold">B / <tspan text-decoration="overline">B</tspan>+1</text>
 
-  <!-- Register -->
-  <rect class="box" x="430" y="90" width="100" height="90" rx="4"/>
-  <text x="480" y="120" class="label" font-weight="bold">Register</text>
-  <text x="480" y="140" class="label-sm">Hold result</text>
-  <text x="480" y="158" class="label-sm">press → update</text>
+  <!-- ============ BLOCK 3: Adder 6-bit (trapezoid: ซ้ายยาว 70 / ขวาสั้น 40, กว้าง 80) ============ -->
+  <polygon class="box" points="440,85 520,100 520,140 440,155"/>
+  <text x="480" y="115" class="label" dominant-baseline="middle" font-weight="bold">Adder</text>
+  <text x="480" y="132" class="label-sm" dominant-baseline="middle">6-bit</text>
 
-  <!-- Abs -->
-  <rect class="box" x="570" y="90" width="80" height="70" rx="4"/>
-  <text x="610" y="120" class="label" font-weight="bold">Abs</text>
-  <text x="610" y="140" class="label-sm">|x|</text>
+  <!-- ============ BLOCK 4: Result Register (x=595..715, y=90..150) ============ -->
+  <rect class="box" x="595" y="90" width="120" height="60" rx="4"/>
+  <text x="655" y="115" class="label" dominant-baseline="middle" font-weight="bold">Register</text>
+  <text x="655" y="132" class="label-sm" dominant-baseline="middle">hold result</text>
 
-  <!-- bin_to_bcd -->
-  <rect class="box" x="690" y="90" width="100" height="70" rx="4"/>
-  <text x="740" y="120" class="label" font-weight="bold">bin_to_bcd</text>
-  <text x="740" y="140" class="label-sm">5-bit → BCD</text>
+  <!-- ============ BLOCK 5: Sign & Abs (x=790..890, y=90..150) ============ -->
+  <rect class="box" x="790" y="90" width="100" height="60" rx="4"/>
+  <text x="840" y="120" class="label" dominant-baseline="middle" font-weight="bold">Sign &amp; Abs</text>
 
-  <!-- bcd_to_7seg (tens) -->
-  <rect class="box" x="830" y="70" width="100" height="50" rx="4"/>
-  <text x="880" y="97" class="label" font-weight="bold">bcd_to_7seg</text>
+  <!-- ============ BLOCK 6: bin_to_bcd (x=965..1075, y=100..160) ============ -->
+  <rect class="box" x="965" y="100" width="110" height="60" rx="4"/>
+  <text x="1020" y="125" class="label" dominant-baseline="middle" font-weight="bold">bin_to_bcd</text>
+  <text x="1020" y="142" class="label-sm" dominant-baseline="middle">5-bit → BCD</text>
 
-  <!-- bcd_to_7seg (units) -->
-  <rect class="box" x="830" y="140" width="100" height="50" rx="4"/>
-  <text x="880" y="167" class="label" font-weight="bold">bcd_to_7seg</text>
+  <!-- ============ BLOCK 7a: bcd_to_7seg tens (x=1145..1255, y=70..120) ============ -->
+  <rect class="box" x="1145" y="70" width="110" height="50" rx="4"/>
+  <text x="1200" y="95" class="label" dominant-baseline="middle" font-weight="bold">bcd_to_7seg</text>
 
-  <!-- Outputs -->
-  <text x="970" y="101" class="label" font-weight="bold">HEX1</text>
-  <text x="970" y="171" class="label" font-weight="bold">HEX0</text>
-  <text x="970" y="248" class="label" font-weight="bold">HEX5</text>
-  <text x="970" y="264" class="label-sm">"−" when negative (เมื่อติดลบ)</text>
+  <!-- ============ BLOCK 7b: bcd_to_7seg units (x=1145..1255, y=140..190) ============ -->
+  <rect class="box" x="1145" y="140" width="110" height="50" rx="4"/>
+  <text x="1200" y="165" class="label" dominant-baseline="middle" font-weight="bold">bcd_to_7seg</text>
 
-  <!-- Wire: A to Adder (pass above 2's Comp, turn down into Adder) -->
-  <path class="wire-thick" d="M40,90 H270 V100 H290"/>
+  <!-- ============ OUTPUTS (ขวาสุด) ============ -->
+  <text x="1310" y="40" class="label" font-weight="bold">HEX2[6]</text>
+  <text x="1310" y="60" class="label-sm">"−" เมื่อติดลบ</text>
+  <text x="1320" y="101" class="label" font-weight="bold">HEX1[7:0]</text>
+  <text x="1320" y="171" class="label" font-weight="bold">HEX0[7:0]</text>
 
-  <!-- Wire: B to 2's Comp -->
-  <line class="wire-thick" x1="40" y1="120" x2="140" y2="120"/>
+  <!-- ============ WIRES ============ -->
 
-  <!-- Wire: KEY0 to Register (press0) -->
-  <path class="wire" d="M40,160 V210 H490 V180"/>
+  <!-- clk 50MHz → branch ที่ (145,60) แล้วลงมา Edge Detect (กลางบน) -->
+  <path class="wire" d="M70,60 H160 V280"/>
 
-  <!-- Wire: KEY1 to Register (press1) -->
-  <path class="wire" d="M40,190 V210 H470 V180"/>
+  <!-- clk → Result Register (กลางบน): branch ที่ (145,60) ไปขวา แล้วลงมา -->
+  <path class="wire" d="M160,60 H655 V90"/>
 
-  <!-- Wire: Register mode to 2's Comp (select subtract) -->
-  <path class="wire" d="M450,180 V230 H195 V190"/>
+  <!-- Junction dot ที่ branch -->
+  <circle cx="160" cy="60" r="3" class="dot"/>
 
-  <!-- Wire: 2's Comp to Adder -->
-  <line class="wire-thick" x1="250" y1="130" x2="290" y2="130"/>
+  <!-- A[3:0] → Adder (กลางซ้ายบน): แนวนอนตรง -->
+  <line class="wire-thick" x1="70" y1="105" x2="440" y2="105"/>
+  <text x="242" y="90" class="label-sm">A[3:0]</text>
 
-  <!-- Wire: Adder to Register -->
-  <line class="wire-thick" x1="390" y1="120" x2="430" y2="120"/>
+  <!-- B[3:0] → B / B̄+1 (กลางซ้าย): แนวนอนตรง -->
+  <line class="wire-thick" x1="70" y1="200" x2="285" y2="200"/>
+  <text x="210" y="185" class="label-sm">B[3:0]</text>
 
-  <!-- Wire: Register to Abs -->
-  <line class="wire-thick" x1="530" y1="120" x2="570" y2="120"/>
+  <!-- KEY0 → Edge Detect (กลางซ้าย): แนวนอนตรง -->
+  <line class="wire" x1="70" y1="300" x2="110" y2="300"/>
+  <text x="77" y="285" class="label-sm">KEY0</text>
 
-  <!-- Wire: Abs to bin_to_bcd -->
-  <line class="wire-thick" x1="650" y1="120" x2="690" y2="120"/>
+  <!-- KEY1 → Edge Detect (กลางซ้าย): แนวนอนตรง -->
+  <line class="wire" x1="70" y1="340" x2="110" y2="340"/>
+  <text x="77" y="325" class="label-sm">KEY1</text>
 
-  <!-- Wire: bin_to_bcd bcd1 to bcd_to_7seg (tens) — exit block right, then turn up -->
-  <path class="wire" d="M790,105 H800 V95 H830"/>
+  <!-- press0 (Edge Detect กลางขวา) → แยก 2 ทาง: B / B̄+1 + Register -->
+  <path class="wire" d="M210,300 H640"/>
+  <text x="280" y="285" class="label-sm">press0</text>
 
-  <!-- Wire: bin_to_bcd bcd0 to bcd_to_7seg (units) — exit block right, then turn down -->
-  <path class="wire" d="M790,145 H800 V165 H830"/>
+  <!-- press0 → B / B̄+1 (ล่างซ้าย): ขึ้นไป -->
+  <path class="wire" d="M310,300 V230"/>
 
-  <!-- Wire: bcd_to_7seg to HEX1 (stop before label) -->
-  <line class="wire-thick" x1="930" y1="95" x2="950" y2="95"/>
+  <!-- press0 → Register (ล่างซ้าย): หักขึ้น -->
+  <path class="wire" d="M640,300 V150"/>
 
-  <!-- Wire: bcd_to_7seg to HEX0 (stop before label) -->
-  <line class="wire-thick" x1="930" y1="165" x2="950" y2="165"/>
+  <!-- Junction dot press0 -->
+  <circle cx="310" cy="300" r="3" class="dot"/>
 
-  <!-- Wire: negative to HEX5 (from Register right side, down) -->
-  <path class="wire" d="M530,170 V240 H950"/>
+  <!-- press1 (Edge Detect กลางขวา) → แยก 2 ทาง: B / B̄+1 + Register -->
+  <path class="wire" d="M210,340 H670"/>
+  <text x="280" y="325" class="label-sm">press1</text>
 
-  <!-- Title -->
-  <text x="550" y="300" class="label" font-size="15" font-weight="bold">Basic Calculator (เครื่องคิดเลขพื้นฐาน)</text>
-  <text x="550" y="322" class="label-sm">KEY0 = Add (A + B), KEY1 = Subtract (A + ~B + 1) — press updates Register, result holds until next press (กดปุ่ม = update — ผลลัพธ์ค้างจนกว่าจะกดปุ่มใหม่)</text>
+  <!-- press1 → B / B̄+1 (ล่างขวา): ขึ้นไป -->
+  <path class="wire" d="M340,340 V230"/>
+
+  <!-- press1 → Register (ล่างขวา): หักขึ้น -->
+  <path class="wire" d="M670,340 V150"/>
+
+  <!-- Junction dot press1 -->
+  <circle cx="340" cy="340" r="3" class="dot"/>
+
+  <!-- B / B̄+1 กลางขวา → Adder กลางซ้ายล่าง: วิ่งตรง แล้วหักขึ้น -->
+  <path class="wire-thick" d="M365,200 H400 V135 H440"/>
+  <text x="370" y="185" class="label-sm">B_proc</text>
+
+  <!-- Adder กลางขวา → Register กลางซ้าย: แนวนอนตรง -->
+  <line class="wire-thick" x1="520" y1="120" x2="595" y2="120"/>
+  <text x="557" y="105" class="label-sm">result</text>
+
+  <!-- Register กลางขวา → Sign &amp; Abs กลางซ้าย: แนวนอนตรง -->
+  <line class="wire-thick" x1="715" y1="120" x2="790" y2="120"/>
+  <text x="752" y="105" class="label-sm">result</text>
+
+  <!-- Sign &amp; Abs ด้านขวาล่าง → bin_to_bcd กลางซ้าย: แนวนอนตรง -->
+  <line class="wire-thick" x1="890" y1="130" x2="965" y2="130"/>
+  <text x="930" y="115" class="label-sm">abs_result</text>
+
+  <!-- bin_to_bcd bcd1 (กลางขวา) → bcd_to_7seg tens (กลางซ้าย): ออกแนวนอน แล้วหักขึ้น -->
+  <path class="wire-thick" d="M1075,115 H1105 V95 H1145"/>
+  <text x="1080" y="100" class="label-sm">bcd1</text>
+
+  <!-- bin_to_bcd bcd0 (กลางขวา) → bcd_to_7seg units (กลางซ้าย): ออกแนวนอน แล้วหักลง -->
+  <path class="wire-thick" d="M1075,145 H1105 V165 H1145"/>
+  <text x="1080" y="180" class="label-sm">bcd0</text>
+
+  <!-- bcd_to_7seg tens กลางขวา → HEX1: แนวนอนตรง -->
+  <line class="wire-thick" x1="1255" y1="95" x2="1270" y2="95"/>
+
+  <!-- bcd_to_7seg units กลางขวา → HEX0: แนวนอนตรง -->
+  <line class="wire-thick" x1="1255" y1="165" x2="1270" y2="165"/>
+
+  <!-- negative (Sign &amp; Abs ด้านขวาบน) → HEX2: ออกแนวนอน แล้วหักขึ้น -->
+  <path class="wire" d="M890,95 H910 V40 H1270"/>
+  <text x="1095" y="25" class="label-sm">negative</text>
+
+  <!-- ============ TITLE ============ -->
+  <text x="620" y="400" class="label" font-size="15" font-weight="bold">Basic Calculator (เครื่องคิดเลขพื้นฐาน)</text>
+  <text x="620" y="422" class="label-sm">KEY0 = Add (A + B), KEY1 = Subtract (A + <tspan text-decoration="overline">B</tspan> + 1) — press updates Register, result holds until next press (กดปุ่ม = update — ผลลัพธ์ค้างจนกว่าจะกดปุ่มใหม่)</text>
 </svg>
