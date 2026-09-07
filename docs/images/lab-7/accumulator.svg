@@ -20,10 +20,10 @@
   <text x="230" y="130" class="label" font-weight="bold">Accumulator</text>
   <text x="230" y="150" class="label-sm">acc = acc ± b</text>
 
-  <!-- bin_to_bcd (8-bit) -->
+  <!-- bin_to_bcd (10-bit) -->
   <rect class="box" x="340" y="90" width="120" height="100" rx="4"/>
   <text x="400" y="130" class="label" font-weight="bold">bin_to_bcd</text>
-  <text x="400" y="150" class="label-sm">8-bit → BCD</text>
+  <text x="400" y="150" class="label-sm">10-bit → BCD</text>
 
   <!-- bcd_to_7seg (hundreds) -->
   <rect class="box" x="500" y="60" width="110" height="55" rx="4"/>
