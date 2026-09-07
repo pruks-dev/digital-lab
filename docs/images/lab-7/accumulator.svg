@@ -38,7 +38,6 @@
   <text x="555" y="211" class="label" font-weight="bold">bcd_to_7seg</text>
 
   <!-- Outputs -->
-  <text x="680" y="34" class="label" font-weight="bold">HEX3</text>
   <text x="680" y="88" class="label" font-weight="bold">HEX2</text>
   <text x="680" y="150" class="label" font-weight="bold">HEX1</text>
   <text x="680" y="212" class="label" font-weight="bold">HEX0</text>
@@ -64,9 +63,6 @@
   <!-- Output: LEDR9 (overflow) -->
   <text x="230" y="254" class="label" font-weight="bold">LEDR9</text>
 
-  <!-- Wire: negative to HEX3 (up from Accumulator top) -->
-  <path class="wire" d="M230,60 V30 H660"/>
-
   <!-- Wire: bin_to_bcd bcd2 to bcd_to_7seg (hundreds) — exit block before turning -->
   <path class="wire-thick" d="M460,105 H470 V87 H500"/>
 
@@ -87,5 +83,5 @@
 
   <!-- Title -->
   <text x="450" y="270" class="label" font-size="15" font-weight="bold">Accumulator (วงจรบวกสะสม)</text>
-  <text x="450" y="292" class="label-sm">KEY0 = accumulate, KEY1 = Reset, SW8 = Add/Subtract, LEDR9 = Overflow, HEX3 = Negative sign — acc = acc ± b on every press (กด KEY0 หนึ่งครั้ง: acc = acc ± b — KEY1 รีเซ็ต acc = 0 — SW8 เลือกบวก/ลบ — LEDR9 ติดเมื่อบวกเกิน 255 หรือลบติดลบ — HEX3 แสดง "−" เมื่อผลลบติดลบ)</text>
+  <text x="450" y="292" class="label-sm">KEY0 = accumulate, KEY1 = Reset, SW8 = Add/Subtract, LEDR9 = Overflow — acc = acc ± b on every press (กด KEY0 หนึ่งครั้ง: acc = acc ± b — KEY1 รีเซ็ต acc = 0 — SW8 เลือกบวก/ลบ — LEDR9 ติดเมื่อบวกเกิน 255 หรือลบติดลบ — ถ้าติดลบ HEX แสดงค่าสัมบูรณ์ นักศึกษาบันทึกเครื่องหมายลบเอง)</text>
 </svg>
