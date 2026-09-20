@@ -282,6 +282,13 @@ Existing diagrams:
 - **Labs 3–8**: FPGA/VHDL labs on DE10-Lite board. No ICs; use Quartus Prime Lite.
   **No Oscilloscope or Function Generator references** — these labs use only the FPGA board (Switch, LED, 7-Segment).
   Equipment list should omit: Digital Oscilloscope, Function Generator, IC part numbers.
+- **Lab 8**: FSM Multiplier (Shift-and-Add) — **anti-AI-spoiler policy**: student-written code
+  (e.g. `multiplier_fsm`, `multiplier_top` architectures) uses **entity-only skeletons** —
+  code blocks provide library + entity only; architecture contains a Thai comment placeholder
+  like `-- นักศึกษาเขียน Architecture เอง`. No internal signal declarations, no implemented
+  branches, no enumerated state types, no numbered VHDL-equivalent hints (state table keeps
+  assignment symbols as spec). Blockquotes may describe concepts and name `numeric_std`
+  functions but must not translate table rows into VHDL statements.
 
 ### How to Add a New Worksheet
 

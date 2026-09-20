@@ -1,0 +1,139 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-100 0 1280 620" font-family="sans-serif">
+  <style>
+    .box { fill: #f0f4ff; stroke: #333; stroke-width: 2; }
+    .wire { stroke: #333; stroke-width: 1.5; fill: none; }
+    .wire-thick { stroke: #333; stroke-width: 2.5; fill: none; }
+    .ctrl { stroke: #333; stroke-width: 1.5; fill: none; stroke-dasharray: 6 4; }
+    .label { text-anchor: middle; font-size: 13px; fill: #333; }
+    .label-sm { text-anchor: middle; font-size: 11px; fill: #666; }
+    .in { text-anchor: end; font-size: 13px; font-weight: bold; fill: #333; }
+    .in-sm { text-anchor: end; font-size: 10px; fill: #888; }
+    .out { text-anchor: start; font-size: 13px; font-weight: bold; fill: #333; }
+    .out-sm { text-anchor: start; font-size: 10px; fill: #888; }
+    .dot { fill: #333; }
+  </style>
+
+  <defs>
+    <marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L8,4.5 L0,9 Z" fill="#333"/>
+    </marker>
+  </defs>
+
+  <!-- ============ CLK (แยกจากล่าง — เข้าขอบซ้ายล่างของทุกบล็อก แบบ D Flip-Flop) ============ -->
+  <text x="60" y="524" class="in">Clk (50 MHz)</text>
+  <path class="wire" d="M70,520 H745"/>
+  <circle cx="115" cy="520" r="3" class="dot"/>
+  <circle cx="315" cy="520" r="3" class="dot"/>
+  <circle cx="399" cy="520" r="3" class="dot"/>
+  <circle cx="745" cy="520" r="3" class="dot"/>
+
+  <!-- clk → FSM (jump ขึ้นจาก rail — dot ห่างจุดเข้า 25px เท่า block อื่น — หักขวาเข้าขอบซ้ายช่วงล่าง) -->
+  <path class="wire" d="M399,520 V468 H424" marker-end="url(#arrow)"/>
+
+  <!-- clk → a_reg (hop ข้าม start, B — เข้าขอบซ้ายล่าง) -->
+  <path class="wire" d="M115,520 V436 A6,6 0 0 0 115,424 V203 A6,6 0 0 0 115,191 V115 H140" marker-end="url(#arrow)"/>
+
+  <!-- clk → b_reg (hop ข้าม start, เส้นประ — เข้าขอบซ้ายล่าง) -->
+  <path class="wire" d="M315,520 V436 A6,6 0 0 0 315,424 V336 A6,6 0 0 0 315,324 V215 H340" marker-end="url(#arrow)"/>
+
+  <!-- clk → acc (hop ข้าม done, เส้นประ en_acc, acc feedback — เข้าขอบซ้ายล่าง) -->
+  <path class="wire" d="M745,520 V436 A6,6 0 0 0 745,424 V246 A6,6 0 0 0 745,234 V201 A6,6 0 0 0 745,189 V143 H770" marker-end="url(#arrow)"/>
+
+  <!-- ============ INPUT A → a_reg ============ -->
+  <text x="40" y="101" class="in">A[3:0]</text>
+  <text x="40" y="115" class="in-sm">(SW3–SW0)</text>
+  <line class="wire-thick" x1="70" y1="97" x2="140" y2="97" marker-end="url(#arrow)"/>
+
+  <!-- ============ INPUT B → b_reg (แถวสอง) ============ -->
+  <text x="40" y="201" class="in">B[3:0]</text>
+  <text x="40" y="215" class="in-sm">(SW7–SW4)</text>
+  <line class="wire-thick" x1="70" y1="197" x2="340" y2="197" marker-end="url(#arrow)"/>
+
+  <!-- ============ a_reg (8-bit, shift left) ============ -->
+  <rect class="box" x="140" y="70" width="110" height="55" rx="4"/>
+  <text x="195" y="92" class="label" font-weight="bold">a_reg</text>
+  <text x="195" y="110" class="label-sm">8-bits</text>
+
+  <!-- ============ b_reg (4-bit, shift right) ============ -->
+  <rect class="box" x="340" y="170" width="110" height="55" rx="4"/>
+  <text x="395" y="192" class="label" font-weight="bold">b_reg</text>
+  <text x="395" y="210" class="label-sm">4-bits</text>
+
+  <!-- ============ MUX (เลือก a_reg หรือ 0) ============ -->
+  <polygon class="box" points="460,75 530,90 530,126 460,141"/>
+  <text x="495" y="106" class="label" font-weight="bold">MUX</text>
+  <text x="495" y="120" class="label-sm">2-to-1</text>
+
+  <!-- a_reg → MUX (input บน) -->
+  <line class="wire-thick" x1="250" y1="88" x2="460" y2="88" marker-end="url(#arrow)"/>
+
+  <!-- คงที่ 0 → MUX (input ล่าง — หนา/ยาวเท่า input บน ตามมาตรฐาน mux-2to1) -->
+  <text x="352" y="128" class="in">0</text>
+  <line class="wire-thick" x1="360" y1="124" x2="460" y2="124" marker-end="url(#arrow)"/>
+
+  <!-- b_reg(0) → MUX select (datapath ทึบ) -->
+  <path class="wire" d="M450,197 H495 V138" marker-end="url(#arrow)"/>
+  <text x="508" y="216" class="label-sm">sel = b_reg(0)</text>
+
+  <!-- ============ Adder 8-bit ============ -->
+  <polygon class="box" points="610,100 690,112 690,138 610,150"/>
+  <text x="650" y="122" class="label" font-weight="bold">Adder</text>
+  <text x="650" y="136" class="label-sm">8-bit</text>
+
+  <!-- MUX → Adder -->
+  <line class="wire-thick" x1="530" y1="108" x2="610" y2="108" marker-end="url(#arrow)"/>
+  <text x="570" y="100" class="label-sm">a_reg หรือ 0</text>
+
+  <!-- ============ acc (8-bit) ============ -->
+  <rect class="box" x="770" y="98" width="110" height="55" rx="4"/>
+  <text x="825" y="120" class="label" font-weight="bold">acc</text>
+  <text x="825" y="138" class="label-sm">8-bits</text>
+
+  <!-- Adder → acc -->
+  <line class="wire-thick" x1="690" y1="125" x2="770" y2="125" marker-end="url(#arrow)"/>
+  <text x="730" y="117" class="label-sm">ผลบวก</text>
+
+  <!-- ============ OUTPUT: acc → ผลคูณ (output เดียว — dot แตก feedback) ============ -->
+  <line class="wire-thick" x1="880" y1="125" x2="950" y2="125"/>
+  <circle cx="905" cy="125" r="3" class="dot"/>
+
+  <!-- feedback แตกจาก dot บนเส้น output → ขึ้น vertical x=585 (ซ้าย Adder 25px) → หักขวาเข้าขอบซ้าย Adder -->
+  <path class="wire-thick" d="M905,125 V195 H585 V138 H610" marker-end="url(#arrow)"/>
+  <text x="695" y="189" class="label-sm">acc</text>
+
+  <!-- ผลคูณต่อจาก dot → arrow -->
+  <line class="wire-thick" x1="905" y1="125" x2="950" y2="125" marker-end="url(#arrow)"/>
+  <text x="962" y="121" class="out">ผลคูณ (0–225)</text>
+  <text x="962" y="137" class="out-sm">→ bin_to_bcd (ต่อใน top)</text>
+
+  <!-- ============ FSM (Control Unit) ============ -->
+  <rect class="box" x="430" y="400" width="280" height="90" rx="4"/>
+  <text x="570" y="438" class="label" font-weight="bold">multiplier_fsm</text>
+  <text x="570" y="456" class="label-sm">Control Unit</text>
+
+  <!-- start → FSM -->
+  <text x="40" y="434" class="in">start</text>
+  <text x="40" y="448" class="in-sm">(พัลส์ 1 clock จาก KEY0)</text>
+  <line class="wire" x1="70" y1="430" x2="424" y2="430" marker-end="url(#arrow)"/>
+
+  <!-- FSM → done -->
+  <line class="wire" x1="710" y1="430" x2="955" y2="430" marker-end="url(#arrow)"/>
+  <text x="962" y="434" class="out">done</text>
+  <text x="962" y="450" class="out-sm">(LEDR9)</text>
+  <!-- ============ CONTROL LINES (เส้นประ — channel ของตัวเอง) ============ -->
+  <!-- ============ CONTROL LINES (เส้นประ — channel ของตัวเอง) ============ -->
+  <!-- load / shift ซ้าย → a_reg (hop ข้ามสาย B) -->
+  <path class="ctrl" d="M470,400 V330 H195 V203 A6,6 0 0 0 195,191 V125" marker-end="url(#arrow)"/>
+  <text x="254" y="322" class="label-sm">load / shift ซ้าย</text>
+
+  <!-- load / shift ขวา → b_reg -->
+  <path class="ctrl" d="M530,400 V315 H395 V225" marker-end="url(#arrow)"/>
+  <text x="465" y="307" class="label-sm">load / shift ขวา</text>
+
+  <!-- en_acc → acc (เข้าตรงกลางบล็อก x=825) -->
+  <path class="ctrl" d="M640,400 V240 H825 V153" marker-end="url(#arrow)"/>
+  <text x="735" y="230" class="label-sm">en_acc</text>
+
+  <!-- ============ TITLE ============ -->
+  <text x="590" y="560" class="label" font-size="15" font-weight="bold">FSM Multiplier (Shift-and-Add)</text>
+</svg>

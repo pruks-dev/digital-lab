@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 870 560" font-family="sans-serif">
+  <style>
+    .wire { stroke: #333; stroke-width: 2; fill: none; }
+    .grid { stroke: #ddd; stroke-width: 1; }
+    .guide { stroke: #aaa; stroke-width: 1; stroke-dasharray: 4 4; fill: none; }
+    .tick { stroke: #bbb; stroke-width: 1; stroke-dasharray: 2 4; }
+    .sig { font-size: 13px; fill: #333; font-weight: bold; }
+    .pin { font-size: 10px; fill: #888; }
+    .note { font-size: 11px; fill: #666; }
+    .axis-label { font-size: 11px; fill: #666; }
+  </style>
+
+  <!-- vertical grid -->
+  <line class="grid" x1="90" y1="16" x2="90" y2="480"/>
+  <line class="grid" x1="150" y1="16" x2="150" y2="480"/>
+  <line class="grid" x1="210" y1="16" x2="210" y2="480"/>
+  <line class="grid" x1="270" y1="16" x2="270" y2="480"/>
+  <line class="grid" x1="330" y1="16" x2="330" y2="480"/>
+  <line class="grid" x1="390" y1="16" x2="390" y2="480"/>
+  <line class="grid" x1="450" y1="16" x2="450" y2="480"/>
+  <line class="grid" x1="510" y1="16" x2="510" y2="480"/>
+  <line class="grid" x1="570" y1="16" x2="570" y2="480"/>
+  <line class="grid" x1="630" y1="16" x2="630" y2="480"/>
+  <line class="grid" x1="690" y1="16" x2="690" y2="480"/>
+  <line class="grid" x1="750" y1="16" x2="750" y2="480"/>
+  <line class="grid" x1="810" y1="16" x2="810" y2="480"/>
+
+  <!-- state transition ticks (rising edges, after start) -->
+  <line class="tick" x1="150" y1="16" x2="150" y2="480"/>
+  <line class="tick" x1="210" y1="16" x2="210" y2="480"/>
+  <line class="tick" x1="270" y1="16" x2="270" y2="480"/>
+  <line class="tick" x1="330" y1="16" x2="330" y2="480"/>
+  <line class="tick" x1="390" y1="16" x2="390" y2="480"/>
+  <line class="tick" x1="450" y1="16" x2="450" y2="480"/>
+  <line class="tick" x1="510" y1="16" x2="510" y2="480"/>
+  <line class="tick" x1="570" y1="16" x2="570" y2="480"/>
+  <line class="tick" x1="630" y1="16" x2="630" y2="480"/>
+  <line class="tick" x1="690" y1="16" x2="690" y2="480"/>
+  <line class="tick" x1="750" y1="16" x2="750" y2="480"/>
+
+  <!-- clock -->
+  <text x="8" y="44" class="sig">clk</text>
+  <polyline class="wire" points="90,50 105,50 105,28 135,28 135,50 165,50 165,28 195,28 195,50 225,50 225,28 255,28 255,50 285,50 285,28 315,28 315,50 345,50 345,28 375,28 375,50 405,50 405,28 435,28 435,50 465,50 465,28 495,28 495,50 525,50 525,28 555,28 555,50 585,50 585,28 615,28 615,50 645,50 645,28 675,28 675,50 705,50 705,28 735,28 735,50 765,50 765,28 795,28 795,50 810,50"/>
+
+  <!-- KEY0 (active-low, student presses once) -->
+  <text x="8" y="100" class="sig">key0</text>
+  <text x="8" y="114" class="pin">(start)</text>
+  <polyline class="wire" points="90,106 120,106 120,88 150,88 150,106 810,106"/>
+
+  <!-- state name row: blank for students -->
+  <text x="8" y="166" class="sig">state</text>
+  <line class="guide" x1="90" y1="150" x2="810" y2="150"/>
+  <line class="guide" x1="90" y1="174" x2="810" y2="174"/>
+
+  <!-- acc: blank row -->
+  <text x="8" y="226" class="sig">acc</text>
+  <text x="8" y="240" class="pin">(8-bit)</text>
+  <line class="guide" x1="90" y1="210" x2="810" y2="210"/>
+  <line class="guide" x1="90" y1="234" x2="810" y2="234"/>
+
+  <!-- a_reg: blank row -->
+  <text x="8" y="286" class="sig">a_reg</text>
+  <text x="8" y="300" class="pin">(shift left)</text>
+  <line class="guide" x1="90" y1="270" x2="810" y2="270"/>
+  <line class="guide" x1="90" y1="294" x2="810" y2="294"/>
+
+  <!-- b_reg: blank row -->
+  <text x="8" y="346" class="sig">b_reg</text>
+  <text x="8" y="360" class="pin">(shift right)</text>
+  <line class="guide" x1="90" y1="330" x2="810" y2="330"/>
+  <line class="guide" x1="90" y1="354" x2="810" y2="354"/>
+
+  <!-- i counter: blank row -->
+  <text x="8" y="406" class="sig">i</text>
+  <text x="8" y="420" class="pin">(0–3)</text>
+  <line class="guide" x1="90" y1="390" x2="810" y2="390"/>
+  <line class="guide" x1="90" y1="414" x2="810" y2="414"/>
+
+  <!-- done: blank row -->
+  <text x="8" y="466" class="sig">done</text>
+  <line class="guide" x1="90" y1="450" x2="810" y2="450"/>
+  <line class="guide" x1="90" y1="474" x2="810" y2="474"/>
+
+  <!-- clock cycle labels -->
+  <text x="150" y="500" class="note" text-anchor="middle">1</text>
+  <text x="210" y="500" class="note" text-anchor="middle">2</text>
+  <text x="270" y="500" class="note" text-anchor="middle">3</text>
+  <text x="330" y="500" class="note" text-anchor="middle">4</text>
+  <text x="390" y="500" class="note" text-anchor="middle">5</text>
+  <text x="450" y="500" class="note" text-anchor="middle">6</text>
+  <text x="510" y="500" class="note" text-anchor="middle">7</text>
+  <text x="570" y="500" class="note" text-anchor="middle">8</text>
+  <text x="630" y="500" class="note" text-anchor="middle">9</text>
+  <text x="690" y="500" class="note" text-anchor="middle">10</text>
+  <text x="750" y="500" class="note" text-anchor="middle">11</text>
+
+  <!-- time axis -->
+  <line class="wire" x1="90" y1="516" x2="804" y2="516"/>
+  <polyline class="wire" points="804,512 810,516 804,520"/>
+  <text x="810" y="534" class="axis-label" text-anchor="end">เวลา →</text>
+
+  <!-- recording note -->
+  <text x="90" y="554" class="note">วาด state (IDLE/ADD/SHIFT/DONE), ค่า acc/a_reg/b_reg/i และ done หลังขอบขึ้น clk แต่ละจุด (เส้นประแนวตั้ง)</text>
+</svg>
