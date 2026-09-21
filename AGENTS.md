@@ -236,6 +236,11 @@ Existing diagrams:
 - `lab-6/state-position.svg` — State Position: 6-digit window on 8-char message
 - `lab-6/scrolling-message.svg` — Scrolling Message system (6 lanes: ROM + char_to_7seg per HEX)
 - `lab-6/timing-ripple-counter.svg`, `lab-6/timing-binary-counter.svg` — timing templates (6.1, 6.2)
+- `mini-project/vga-system.svg` — FSM + VGA system block diagram (inputs SW/KEY · GPIO · ADC → FSM → draw logic → VGA controller → monitor)
+- `mini-project/vga-timing.svg` — VGA 640×480@60 horizontal timing (visible/FP/sync/BP regions, HS/VS waveforms)
+- `mini-project/stack-cpu.svg` — (unused, kept) Simple Stack CPU system block diagram (Control + Datapath)
+- `mini-project/stack-operation.svg` — (unused, kept) Stack operations: PUSH/ADD/SUB (wrap+flag)/MUL (HI:LO) + rules box
+- `mini-project/fsm-cpu-state.svg` — (unused, kept) CPU FSM state diagram (FETCH/EXECUTE/HALT)
 
 ### Review Questions (คำถามท้ายใบงาน)
 
@@ -287,8 +292,39 @@ Existing diagrams:
   code blocks provide library + entity only; architecture contains a Thai comment placeholder
   like `-- นักศึกษาเขียน Architecture เอง`. No internal signal declarations, no implemented
   branches, no enumerated state types, no numbered VHDL-equivalent hints (state table keeps
-  assignment symbols as spec). Blockquotes may describe concepts and name `numeric_std`
+  assignment symbols as spec).   Blockquotes may describe concepts and name `numeric_std`
   functions but must not translate table rows into VHDL statements.
+- **Mini Project**: Open-ended FSM + VGA project (`mini-project.md`, nav entry "Mini Project (FSM + VGA)") —
+  groups of 2, students choose their own topic (no proposal step, no topic approval). Mandatory
+  minimum: **FSM ≥ 3 states** (state diagram + state table in report) and **VGA output 640×480 @ 60 Hz**
+  (on-screen content not prescribed — students define it in their own spec). Inputs free choice:
+  SW/KEY, GPIO (×2 headers, 3.3 V only, shared GND), ADC **inside MAX 10** (on-die 12-bit SAR,
+  6 channels **ADC_IN0–ADC_IN5** via Arduino Shield header JP8, 0–5 V; Analog Front-End halves
+  5 V → 2.5 V, so V_input = value/4095 × 5.0; access only via **Altera Modular ADC IP** from
+  IP Catalog — no hand-written SPI; no onboard potentiometer — test with external pot/sensor
+  through breadboard + shared GND; ref. DE10-Lite manual 3.6–3.7 and 5.6 ADC Measurement). VGA principle section is detailed enough to implement:
+  scan concept as dual Mod-N counters (ties to Lab 6), 640×480@60 timing table (visible/porch/sync,
+  800×525, pixel clock 25.175 MHz, hsync 96 px, vsync 2 lines, active-low), pixel clock options
+  (÷2 → 25 MHz / PLL / 50 MHz + enable), VGA signals incl. VGA_BLANK_N/VGA_SYNC_N/VGA_CLK,
+  drawing = position comparison + color MUX, FSM updates object-position registers.
+  Example idea list (Pong, ADC voltmeter/bar-graph, memory game, scoreboard, traffic light,
+  slot machine, reaction game, etch-a-sketch, animation) — name + 1–2 sentence description, no how-to.
+  **Anti-AI-spoiler (stronger than Lab 8)**: principle-description document only — **no VHDL
+  code blocks at all** (no skeletons, no entity templates); concepts via text, tables, SVG
+  diagrams and blockquotes only. **Structure is a project brief, NOT a worksheet** — no
+  Objectives, no Equipment, no step-by-step procedures, no blank recording tables, no skills-map
+  table. Sections: ภาพรวม → ข้อกำหนดหลัก (Requirements) → อินพุตที่มีบนบอร์ด → หลักการ VGA →
+  ตัวอย่างแนวคิดโปรเจกต์ → สเปกโปรเจกต์ที่ต้องกำหนดเอง (5-item spec requirement: goal, FSM spec,
+  I/O, VGA screen, testing) → เกณฑ์ความสำเร็จ (Acceptance Criteria checklist) → ข้อกำหนดการส่งงาน
+  (3 items: Quartus project, report — spec 5 ข้อ goes inside the report, member roles — demo)
+  + rubric NOT public — kept in `private/mini-project-rubric.md` (outside docs/, never published
+  to the site; mini-project.md only states group 30 + individual 10 = 40 points and that details
+  are announced in class): group 30 (system 12 = FSM 5/VGA 5/inputs 2 · VHDL 7 = module split
+  3/style 2/reuse 2 · report 8 = spec 2/diagram-table 3/waveform-photos 2/issues+roles 1 ·
+  topic difficulty 3 as 0–3 level, easy topics not penalized) + individual 10/person (explain
+  own part 5 / whole-system 3 / short scenario 2 — members may score differently).
+  Old Stack CPU SVGs kept but unused: `mini-project/stack-cpu.svg`, `stack-operation.svg`,
+  `fsm-cpu-state.svg`.
 
 ### How to Add a New Worksheet
 

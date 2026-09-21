@@ -1,0 +1,174 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 740" font-family="sans-serif">
+  <defs>
+    <marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L8,4.5 L0,9 Z" fill="#333"/>
+    </marker>
+    <marker id="arrow-start" markerWidth="9" markerHeight="9" refX="1" refY="4.5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M8,0 L0,4.5 L8,9 Z" fill="#333"/>
+    </marker>
+    <marker id="arrow-xs" markerWidth="6" markerHeight="5" refX="4.5" refY="2" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L5,2 L0,4 Z" fill="#333"/>
+    </marker>
+    <marker id="arrow-xs-start" markerWidth="6" markerHeight="5" refX="0.5" refY="2" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M5,0 L0,2 L5,4 Z" fill="#333"/>
+    </marker>
+  </defs>
+  <style>
+    .wire { stroke: #333; stroke-width: 2; fill: none; }
+    .dim { stroke: #333; stroke-width: 1; fill: none; }
+    .grid { stroke: #ddd; stroke-width: 1; }
+    .sig { font-size: 13px; fill: #333; font-weight: bold; }
+    .pin { font-size: 10px; fill: #888; }
+    .note { font-size: 11px; fill: #666; }
+    .region { font-size: 10px; fill: #666; text-anchor: middle; }
+    .cnt { font-size: 10px; fill: #444; text-anchor: middle; }
+    .ptitle { font-size: 12px; fill: #333; font-weight: bold; }
+    .zoom { stroke: #999; stroke-width: 1; stroke-dasharray: 5 4; fill: none; }
+    .busfill { fill: #eef5ee; stroke: none; }
+    .busx { stroke: #333; stroke-width: 1.5; fill: none; }
+  </style>
+
+  <!-- ================= PANEL 1 : HORIZONTAL (1 line = 800 pixels) ================= -->
+  <!-- scale: 700 px / 800 pixels — boundaries at x = 100, 660, 674, 758, 800 -->
+  <text x="100" y="30" class="ptitle">Horizontal — 1 line (800 pixels)</text>
+
+  <!-- region shading -->
+  <rect x="100" y="84" width="560" height="176" fill="#eef5ee"/>
+  <rect x="660" y="84" width="14"  height="176" fill="#f5f5f5"/>
+  <rect x="674" y="84" width="84"  height="176" fill="#fbeeee"/>
+  <rect x="758" y="84" width="42"  height="176" fill="#f0f0fa"/>
+
+  <!-- vertical grid at region boundaries -->
+  <line class="grid" x1="100" y1="36" x2="100" y2="272"/>
+  <line class="grid" x1="660" y1="36" x2="660" y2="272"/>
+  <line class="grid" x1="674" y1="36" x2="674" y2="272"/>
+  <line class="grid" x1="758" y1="36" x2="758" y2="272"/>
+  <line class="grid" x1="800" y1="36" x2="800" y2="272"/>
+
+  <!-- region labels -->
+  <text x="380" y="50" class="region">visible 640</text>
+  <text x="716" y="50" class="region">sync 96</text>
+  <text x="667" y="64" class="region">FP 16</text>
+  <text x="716" y="64" class="region">(Active-Low)</text>
+  <text x="779" y="64" class="region">BP 48</text>
+
+  <!-- region dimension arrows (double-headed) -->
+  <line class="dim" x1="100" y1="74" x2="660" y2="74" marker-start="url(#arrow-start)" marker-end="url(#arrow)"/>
+  <line class="dim" x1="660" y1="74" x2="674" y2="74" marker-start="url(#arrow-xs-start)" marker-end="url(#arrow-xs)"/>
+  <line class="dim" x1="674" y1="74" x2="758" y2="74" marker-start="url(#arrow-start)" marker-end="url(#arrow)"/>
+  <line class="dim" x1="758" y1="74" x2="800" y2="74" marker-start="url(#arrow-xs-start)" marker-end="url(#arrow-xs)"/>
+
+  <!-- VGA_HS waveform: high during visible+FP+BP, low during sync -->
+  <text x="8" y="104" class="sig">VGA_HS</text>
+  <polyline class="wire" points="100,100 674,100 674,138 758,138 758,100 800,100"/>
+
+  <!-- VGA_R/G/B: bus notation — pixel color values during visible, 0 during porch/sync -->
+  <text x="8" y="196" class="sig">VGA_R/G/B</text>
+  <text x="8" y="210" class="pin">(color bus)</text>
+  <rect class="busfill" x="100" y="186" width="560" height="26"/>
+  <line class="busx" x1="100" y1="186" x2="660" y2="186"/>
+  <line class="busx" x1="100" y1="212" x2="660" y2="212"/>
+  <line class="busx" x1="92"  y1="186" x2="100" y2="212"/>
+  <line class="busx" x1="92"  y1="212" x2="100" y2="186"/>
+  <line class="busx" x1="660" y1="186" x2="668" y2="212"/>
+  <line class="busx" x1="660" y1="212" x2="668" y2="186"/>
+  <text x="380" y="204" class="region">RGB = pixel color</text>
+  <polyline class="wire" points="668,212 800,212"/>
+  <text x="729" y="226" class="region">0</text>
+
+  <!-- x counter values -->
+  <text x="380" y="250" class="cnt">0 → 639</text>
+  <text x="667" y="250" class="cnt">640→655</text>
+  <text x="716" y="250" class="cnt">656→751</text>
+  <text x="779" y="250" class="cnt">752→799</text>
+
+  <!-- axis arrow -->
+  <line class="wire" x1="100" y1="266" x2="800" y2="266" marker-end="url(#arrow)"/>
+  <text x="812" y="270" class="note">time →</text>
+
+  <text x="100" y="292" class="note">Horizontal: 1 line = 800 pixels ≈ 31.78 µs (pixel clock 25.175 MHz)</text>
+
+  <!-- ================= PANEL 2 : VERTICAL (1 frame = 525 lines = 525 HS periods) ================= -->
+  <!-- visible/FP/sync/BP = 480/10/2/33 lines — widths stylized (sync widened to fit arrows); boundaries at x = 100, 700, 720, 744, 800 -->
+  <!-- HS pulse train: 1 pulse = 20 px, break slashes mark omitted middle pulses -->
+  <text x="170" y="330" class="ptitle">Vertical — 1 frame (525 lines = 525 HS periods)</text>
+
+  <!-- region shading -->
+  <rect x="100" y="384" width="600" height="252" fill="#eef5ee"/>
+  <rect x="700" y="384" width="20"  height="252" fill="#f5f5f5"/>
+  <rect x="720" y="384" width="24"  height="252" fill="#fbeeee"/>
+  <rect x="744" y="384" width="56"  height="252" fill="#f0f0fa"/>
+
+  <!-- vertical grid at region boundaries -->
+  <line class="grid" x1="100" y1="348" x2="100" y2="644"/>
+  <line class="grid" x1="700" y1="348" x2="700" y2="644"/>
+  <line class="grid" x1="720" y1="348" x2="720" y2="644"/>
+  <line class="grid" x1="744" y1="348" x2="744" y2="644"/>
+  <line class="grid" x1="800" y1="348" x2="800" y2="644"/>
+
+  <!-- region labels -->
+  <text x="400" y="356" class="region">visible 480</text>
+  <text x="732" y="356" class="region">sync 2</text>
+  <text x="710" y="370" class="region">FP 10</text>
+  <text x="772" y="370" class="region">BP 33</text>
+
+  <!-- region dimension arrows (double-headed) -->
+  <line class="dim" x1="100" y1="378" x2="700" y2="378" marker-start="url(#arrow-start)" marker-end="url(#arrow)"/>
+  <line class="dim" x1="700" y1="378" x2="720" y2="378" marker-start="url(#arrow-xs-start)" marker-end="url(#arrow-xs)"/>
+  <line class="dim" x1="720" y1="378" x2="744" y2="378" marker-start="url(#arrow-xs-start)" marker-end="url(#arrow-xs)"/>
+  <line class="dim" x1="744" y1="378" x2="800" y2="378" marker-start="url(#arrow-xs-start)" marker-end="url(#arrow-xs)"/>
+
+  <!-- VGA_HS: pulse train — 1 pulse per line; omitted pulses shown as break slashes -->
+  <text x="8" y="444" class="sig">VGA_HS</text>
+  <polyline class="wire" points="100,428 112,428 112,452 120,452 120,428 132,428 132,452 140,452 140,428 152,428 152,452 160,452 160,428 172,428 172,452 180,452 180,428 192,428 192,452 200,452 200,428 212,428 212,452 220,452 220,428 232,428 232,452 240,452 240,428 252,428 252,452 260,452 260,428 272,428 272,452 280,452 280,428 292,428 292,452 300,452 300,428 312,428 312,452 320,452 320,428 332,428 332,452 340,452"/>
+  <polyline class="wire" points="560,428 572,428 572,452 580,452 580,428 592,428 592,452 600,452 600,428 612,428 612,452 620,452 620,428 632,428 632,452 640,452 640,428 652,428 652,452 660,452 660,428 672,428 672,452 680,452 680,428 692,428 692,452 700,452 700,428 712,428 712,452 720,452 720,428 732,428 732,452 740,452 740,428 752,428 752,452 760,452 760,428 772,428 772,452 780,452 780,428 792,428 792,452 800,452"/>
+
+  <!-- break slashes at the omitted-pulse gap -->
+  <line class="wire" x1="348" y1="416" x2="362" y2="464"/>
+  <line class="wire" x1="358" y1="416" x2="372" y2="464"/>
+  <line class="wire" x1="548" y1="416" x2="562" y2="464"/>
+  <line class="wire" x1="538" y1="416" x2="552" y2="464"/>
+
+  <!-- zoom cone: first HS pulse expands to the whole Horizontal panel above -->
+  <rect class="zoom" x="98" y="422" width="24" height="36"/>
+  <line class="zoom" x1="98" y1="422" x2="100" y2="308"/>
+  <line class="zoom" x1="122" y1="422" x2="800" y2="308"/>
+  <text x="500" y="330" class="note">zoom: one HS pulse</text>
+
+  <!-- dim arrow: 1 HS period = 1 line -->
+  <line class="dim" x1="100" y1="404" x2="120" y2="404" marker-start="url(#arrow-xs-start)" marker-end="url(#arrow-xs)"/>
+  <text x="132" y="408" class="note">HS toggles every line — × 525 pulses per frame (break = omitted pulses)</text>
+
+  <!-- VGA_VS: low for exactly 2 HS periods at end of frame -->
+  <text x="8" y="529" class="sig">VGA_VS</text>
+  <polyline class="wire" points="100,506 720,506 720,544 744,544 744,506 800,506"/>
+
+  <!-- dim arrow: VS pulse = 2 HS periods -->
+  <line class="dim" x1="720" y1="562" x2="744" y2="562" marker-start="url(#arrow-xs-start)" marker-end="url(#arrow-xs)"/>
+  <text x="732" y="578" class="region">2 lines (not to scale)</text>
+
+  <!-- VGA_R/G/B: bus notation — pixel color values during visible, 0 during porch/sync -->
+  <text x="8" y="610" class="sig">VGA_R/G/B</text>
+  <rect class="busfill" x="100" y="590" width="600" height="26"/>
+  <line class="busx" x1="100" y1="590" x2="700" y2="590"/>
+  <line class="busx" x1="100" y1="616" x2="700" y2="616"/>
+  <line class="busx" x1="92"  y1="590" x2="100" y2="616"/>
+  <line class="busx" x1="92"  y1="616" x2="100" y2="590"/>
+  <line class="busx" x1="700" y1="590" x2="708" y2="616"/>
+  <line class="busx" x1="700" y1="616" x2="708" y2="590"/>
+  <text x="400" y="608" class="region">RGB = pixel color</text>
+  <polyline class="wire" points="708,616 800,616"/>
+  <text x="750" y="632" class="region">0</text>
+
+  <!-- y counter values -->
+  <text x="400" y="652" class="cnt">0 → 479</text>
+  <text x="710" y="652" class="cnt">480→489</text>
+  <text x="732" y="666" class="cnt">490→491</text>
+  <text x="772" y="680" class="cnt">492→524</text>
+
+  <!-- axis arrow -->
+  <line class="wire" x1="100" y1="692" x2="800" y2="692" marker-end="url(#arrow)"/>
+  <text x="812" y="696" class="note">time →</text>
+
+  <text x="100" y="724" class="note">Vertical: 1 frame = 525 lines (HS periods) ≈ 16.7 ms (≈ 60 Hz) — VS pulse = 2 lines; porch/sync widths stylized (not to scale)</text>
+</svg>

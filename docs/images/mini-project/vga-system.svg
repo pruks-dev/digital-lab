@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 640" font-family="sans-serif">
+  <style>
+    .box { fill: #f0f4ff; stroke: #333; stroke-width: 2; }
+    .input { fill: #eef7ee; stroke: #333; stroke-width: 2; }
+    .disp { fill: #fff7e6; stroke: #333; stroke-width: 2; }
+    .wire { stroke: #333; stroke-width: 1.5; fill: none; }
+    .wire-thick { stroke: #333; stroke-width: 2.5; fill: none; }
+    .ctrl { stroke: #333; stroke-width: 1.5; fill: none; stroke-dasharray: 6 4; }
+    .label { text-anchor: middle; font-size: 13px; fill: #333; }
+    .label-sm { text-anchor: middle; font-size: 11px; fill: #666; }
+    .title { text-anchor: middle; font-size: 15px; font-weight: bold; fill: #333; }
+  </style>
+
+  <defs>
+    <marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L8,4.5 L0,9 Z" fill="#333"/>
+    </marker>
+  </defs>
+
+  <!-- ============ INPUT: SW / KEY ============ -->
+  <rect class="input" x="40" y="80" width="170" height="76" rx="4"/>
+  <text x="125" y="108" class="label" font-weight="bold">SW9–SW0, KEY1–KEY0</text>
+  <text x="125" y="128" class="label-sm">onboard switches / buttons</text>
+  <text x="125" y="146" class="label-sm">digital, level / pulse</text>
+
+  <!-- ============ INPUT: GPIO ============ -->
+  <rect class="input" x="40" y="196" width="170" height="76" rx="4"/>
+  <text x="125" y="224" class="label" font-weight="bold">GPIO ×2</text>
+  <text x="125" y="244" class="label-sm">external circuit (buttons, sensors)</text>
+  <text x="125" y="262" class="label-sm">digital 3.3 V</text>
+
+  <!-- ============ INPUT: ADC ============ -->
+  <rect class="input" x="40" y="312" width="170" height="76" rx="4"/>
+  <text x="125" y="340" class="label" font-weight="bold">ADC (inside MAX 10)</text>
+  <text x="125" y="360" class="label-sm">ADC_IN0–5 (Arduino Shield)</text>
+  <text x="125" y="378" class="label-sm">0–5 V → 12-bit</text>
+
+  <!-- ============ CONTROL: game FSM ============ -->
+  <rect class="box" x="360" y="150" width="260" height="150" rx="4"/>
+  <text x="490" y="190" class="title">System FSM</text>
+  <text x="490" y="216" class="label-sm">≥ 3 states — self-designed</text>
+  <text x="490" y="240" class="label-sm">e.g. READY → PLAY → END</text>
+  <text x="490" y="270" class="label-sm">game state in Registers</text>
+  <text x="490" y="290" class="label-sm">(position, score, time)</text>
+
+  <!-- ============ DATAPATH: draw logic ============ -->
+  <rect class="box" x="700" y="150" width="220" height="150" rx="4"/>
+  <text x="810" y="190" class="title">Drawing Logic</text>
+  <text x="810" y="216" class="label-sm">compare (x, y) with object bounds</text>
+  <text x="810" y="240" class="label-sm">color MUX (Lab 3)</text>
+  <text x="810" y="268" class="label-sm">object position Registers</text>
+  <text x="810" y="288" class="label-sm">(Lab 5)</text>
+
+  <!-- ============ DATAPATH: VGA controller ============ -->
+  <rect class="box" x="700" y="370" width="220" height="120" rx="4"/>
+  <text x="810" y="400" class="title">VGA Controller</text>
+  <text x="810" y="424" class="label-sm">x counter (Mod-800) + y counter (Mod-525)</text>
+  <text x="810" y="444" class="label-sm">generates VGA_HS / VGA_VS</text>
+  <text x="810" y="464" class="label-sm">Counter + Clock Divider (Lab 6)</text>
+
+  <!-- ============ OUTPUT: monitor ============ -->
+  <rect class="disp" x="1010" y="380" width="150" height="100" rx="4"/>
+  <text x="1085" y="420" class="label" font-weight="bold">VGA Monitor</text>
+  <text x="1085" y="442" class="label-sm">640×480 @ 60 Hz</text>
+
+  <!-- ============ WIRE: inputs → FSM ============ -->
+  <path class="wire-thick" d="M210,118 H290 V165 H360" marker-end="url(#arrow)"/>
+  <path class="wire-thick" d="M210,234 H300 V200 H360" marker-end="url(#arrow)"/>
+  <path class="wire-thick" d="M210,350 H320 V250 H360" marker-end="url(#arrow)"/>
+  <text x="262" y="108" class="label-sm">input signals</text>
+
+  <!-- ============ WIRE: clock divider → FSM (tick) ============ -->
+  <rect class="box" x="360" y="392" width="160" height="56" rx="4"/>
+  <text x="440" y="414" class="label" font-weight="bold">Clock Divider</text>
+  <text x="440" y="432" class="label-sm">50 MHz → tick</text>
+  <path class="wire" d="M440,392 V300" marker-end="url(#arrow)"/>
+  <text x="452" y="352" class="label-sm">tick (FSM pace)</text>
+
+  <!-- ============ WIRE: FSM → draw logic (position/color) ============ -->
+  <line class="wire-thick" x1="620" y1="225" x2="700" y2="225" marker-end="url(#arrow)"/>
+  <text x="660" y="214" class="label-sm">object position/color</text>
+
+  <!-- ============ WIRE: draw logic → controller (color out) ============ -->
+  <line class="wire-thick" x1="810" y1="300" x2="810" y2="370" marker-end="url(#arrow)"/>
+  <text x="822" y="340" class="label-sm" text-anchor="start">VGA_R/G/B</text>
+
+  <!-- ============ WIRE: controller → monitor ============ -->
+  <line class="wire-thick" x1="920" y1="430" x2="1010" y2="430" marker-end="url(#arrow)"/>
+  <text x="965" y="420" class="label-sm">HS, VS, R/G/B</text>
+
+  <!-- ============ WIRE: x,y position → draw logic ============ -->
+  <path class="ctrl" d="M700,470 H660 V245 H700" marker-end="url(#arrow)"/>
+  <text x="648" y="452" class="label-sm" text-anchor="end">x, y</text>
+
+  <!-- ============ title ============ -->
+  <text x="600" y="40" class="title">Mini Project System Overview: FSM + VGA</text>
+  <text x="600" y="62" class="label-sm">dashed = pixel position data · solid = data/control signals</text>
+</svg>

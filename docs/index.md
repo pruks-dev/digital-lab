@@ -14,7 +14,8 @@ pruk.s@eng.kmutnb.ac.th
 ---
 
 ประกอบด้วยใบงานการทดลอง 8 ใบงาน ครอบคลุมเนื้อหาตั้งแต่วงจรลอจิกพื้นฐาน
-ไปจนถึงการออกแบบวงจรคูณด้วย FSM บน FPGA
+ไปจนถึงการออกแบบวงจรคูณด้วย FSM บน FPGA และปิดท้ายด้วย **Mini Project**
+(โปรเจกต์อิสระกลุ่ม — ระบบ FSM แสดงผลจอ VGA)
 
 ## ใบงานการทดลอง
 
@@ -26,6 +27,10 @@ pruk.s@eng.kmutnb.ac.th
 - [ใบงานการทดลองที่ 6: การออกแบบวงจร Counter และนาฬิกา](lab-6.md)
 - [ใบงานการทดลองที่ 7: วงจรคำนวณทางคณิตศาสตร์บน FPGA](lab-7.md)
 - [ใบงานการทดลองที่ 8: วงจรคูณเลขด้วย FSM (FSM Multiplier)](lab-8.md)
+
+## Mini Project
+
+- [Mini Project: โปรเจกต์อิสระ — ระบบ FSM แสดงผล VGA](mini-project.md)
 
 ## อุปกรณ์หลัก (Hardware)
 
@@ -39,6 +44,6 @@ pruk.s@eng.kmutnb.ac.th
   สำหรับการทดลองที่ 1–2 (74HC Series, Breadboard, LED, Push Button)
   ก่อนลงมือประกอบวงจรจริง
 - **Quartus Prime Lite Edition 20.1** — โปรแกรมหลักสำหรับพัฒนา VHDL
-  Compile, และโปรแกรมบอร์ด FPGA DE10-Lite ในการทดลองที่ 3–8
+  Compile, และโปรแกรมบอร์ด FPGA DE10-Lite ในการทดลองที่ 3–8 และ Mini Project
 - **ModelSim Intel FPGA Starter Edition** — ใช้จำลองสัญญาณ (simulation waveform)
   เพื่อตรวจสอบการทำงานของวงจร VHDL ก่อนโปรแกรมลง FPGA

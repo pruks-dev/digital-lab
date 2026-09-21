@@ -1,0 +1,177 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 720" font-family="sans-serif">
+  <style>
+    .cell { fill: #f0f4ff; stroke: #333; stroke-width: 2; }
+    .cell-empty { fill: white; stroke: #333; stroke-width: 1.5; stroke-dasharray: 4 3; }
+    .cell-hi { fill: #fff3d6; stroke: #333; stroke-width: 2; }
+    .wire { stroke: #333; stroke-width: 1.5; fill: none; }
+    .wire-thick { stroke: #333; stroke-width: 2.5; fill: none; }
+    .label { text-anchor: middle; font-size: 13px; fill: #333; }
+    .label-sm { text-anchor: middle; font-size: 11px; fill: #666; }
+    .cellnum { text-anchor: middle; font-size: 15px; font-weight: bold; fill: #333; }
+    .cellname { text-anchor: start; font-size: 11px; fill: #888; }
+    .step { text-anchor: middle; font-size: 13px; font-weight: bold; fill: #333; }
+    .arrow-v { text-anchor: middle; font-size: 22px; font-weight: bold; fill: #333; }
+    .note { text-anchor: start; font-size: 11px; fill: #666; }
+    .title { text-anchor: middle; font-size: 15px; font-weight: bold; fill: #333; }
+  </style>
+
+  <defs>
+    <marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L8,4.5 L0,9 Z" fill="#333"/>
+    </marker>
+  </defs>
+
+  <!-- ================================================================ -->
+  <!-- แถว 1: PUSH imm -->
+  <!-- ================================================================ -->
+  <text x="150" y="40" class="step">PUSH 12</text>
+
+  <!-- stack ก่อน push (2 cells) -->
+  <rect class="cell" x="90" y="60" width="80" height="34"/>
+  <text x="130" y="82" class="cellnum">25</text>
+  <text x="60" y="82" class="cellname">SP=1</text>
+
+  <rect class="cell-empty" x="90" y="94" width="80" height="34"/>
+  <text x="60" y="116" class="cellname">SP=2</text>
+
+  <!-- ลูกศรลง -->
+  <text x="130" y="155" class="arrow-v">↓</text>
+
+  <!-- stack หลัง push (3 cells) -->
+  <rect class="cell" x="90" y="170" width="80" height="34"/>
+  <text x="130" y="192" class="cellnum">25</text>
+  <text x="60" y="192" class="cellname">SP=1</text>
+
+  <rect class="cell" x="90" y="204" width="80" height="34"/>
+  <text x="130" y="226" class="cellnum">12</text>
+  <text x="60" y="226" class="cellname">SP=2</text>
+
+  <rect class="cell-empty" x="90" y="238" width="80" height="34"/>
+  <text x="60" y="260" class="cellname">SP=3</text>
+
+  <text x="130" y="300" class="label-sm">imm 12 เข้า cell ใหม่</text>
+  <text x="130" y="316" class="label-sm">SP: 1 → 2</text>
+
+  <!-- ================================================================ -->
+  <!-- แถว 1: ADD (pop b, pop a, push a+b) -->
+  <!-- ================================================================ -->
+  <text x="400" y="40" class="step">ADD</text>
+
+  <!-- stack ก่อน ADD -->
+  <rect class="cell" x="340" y="60" width="80" height="34"/>
+  <text x="380" y="82" class="cellnum">25</text>
+  <text x="310" y="82" class="cellname">SP=1</text>
+
+  <rect class="cell" x="340" y="94" width="80" height="34"/>
+  <text x="380" y="116" class="cellnum">12</text>
+  <text x="310" y="116" class="cellname">SP=2</text>
+
+  <!-- pop labels -->
+  <text x="455" y="82" class="note">← pop b (25)</text>
+  <text x="455" y="116" class="note">← pop a (12)</text>
+
+  <text x="380" y="155" class="arrow-v">↓</text>
+  <text x="475" y="145" class="note">ALU: a + b = 37</text>
+
+  <!-- stack หลัง ADD -->
+  <rect class="cell" x="340" y="170" width="80" height="34"/>
+  <text x="380" y="192" class="cellnum">37</text>
+  <text x="310" y="192" class="cellname">SP=1</text>
+
+  <rect class="cell-empty" x="340" y="204" width="80" height="34"/>
+  <text x="310" y="226" class="cellname">SP=2</text>
+
+  <text x="380" y="300" class="label-sm">pop 2 ค่า → push 1 ค่า</text>
+  <text x="380" y="316" class="label-sm">SP: 2 → 1</text>
+
+  <!-- ================================================================ -->
+  <!-- แถว 1: SUB ลบแล้วติดลบ → wrap + flag -->
+  <!-- ================================================================ -->
+  <text x="650" y="40" class="step">SUB (a &lt; b)</text>
+
+  <!-- stack ก่อน SUB -->
+  <rect class="cell" x="590" y="60" width="80" height="34"/>
+  <text x="630" y="82" class="cellnum">12</text>
+  <text x="560" y="82" class="cellname">SP=1</text>
+
+  <rect class="cell" x="590" y="94" width="80" height="34"/>
+  <text x="630" y="116" class="cellnum">25</text>
+  <text x="560" y="116" class="cellname">SP=2</text>
+
+  <text x="705" y="82" class="note">← pop b (25)</text>
+  <text x="705" y="116" class="note">← pop a (12)</text>
+
+  <text x="630" y="155" class="arrow-v">↓</text>
+  <text x="725" y="145" class="note">12 − 25 = −13</text>
+  <text x="725" y="160" class="note">→ 243 (wrap mod 256)</text>
+
+  <!-- stack หลัง SUB -->
+  <rect class="cell" x="590" y="170" width="80" height="34"/>
+  <text x="630" y="192" class="cellnum">243</text>
+  <text x="560" y="192" class="cellname">SP=1</text>
+
+  <rect class="cell-empty" x="590" y="204" width="80" height="34"/>
+  <text x="560" y="226" class="cellname">SP=2</text>
+
+  <text x="630" y="300" class="label-sm">ผลลบติดลบ → wrap 2's complement</text>
+  <text x="630" y="316" class="label-sm">flag borrow = 1 → LEDR9</text>
+
+  <!-- ================================================================ -->
+  <!-- แถว 2: MUL ผล 16 บิต HI:LO (ตัวอย่าง 12 × 25 = 300) -->
+  <!-- ================================================================ -->
+  <text x="150" y="370" class="step">MUL: 12 × 25 = 300</text>
+
+  <!-- stack ก่อน MUL -->
+  <rect class="cell" x="90" y="390" width="80" height="34"/>
+  <text x="130" y="412" class="cellnum">25</text>
+  <text x="60" y="412" class="cellname">SP=1</text>
+
+  <rect class="cell" x="90" y="424" width="80" height="34"/>
+  <text x="130" y="446" class="cellnum">12</text>
+  <text x="60" y="446" class="cellname">SP=2</text>
+
+  <text x="215" y="412" class="note">← pop b (25)</text>
+  <text x="215" y="446" class="note">← pop a (12)</text>
+
+  <text x="130" y="485" class="arrow-v">↓</text>
+  <text x="245" y="478" class="note">ผลคูณ 16 บิต:</text>
+  <text x="245" y="493" class="note">300 = 0000 0001 0010 1100</text>
+  <text x="245" y="508" class="note">HI = 1, LO = 44</text>
+
+  <!-- stack หลัง MUL: HI:LO -->
+  <rect class="cell-hi" x="90" y="520" width="80" height="34"/>
+  <text x="130" y="542" class="cellnum">1</text>
+  <text x="60" y="542" class="cellname">SP=1</text>
+  <text x="215" y="542" class="note">← HI (บิตสูง) push ก่อน</text>
+
+  <rect class="cell-hi" x="90" y="554" width="80" height="34"/>
+  <text x="130" y="576" class="cellnum">44</text>
+  <text x="60" y="576" class="cellname">SP=2</text>
+  <text x="215" y="576" class="note">← LO (บิตต่ำ) push หลัง (อยู่บนสุด)</text>
+
+  <rect class="cell-empty" x="90" y="588" width="80" height="34"/>
+  <text x="60" y="610" class="cellname">SP=3</text>
+
+  <text x="130" y="645" class="label-sm">pop 2 → push 2 (HI:LO)</text>
+  <text x="130" y="661" class="label-sm">SP: 2 → 3 — ผลคูณเกิน 255 ไม่หาย</text>
+
+  <!-- ================================================================ -->
+  <!-- แถว 2: กฎ push/pop (กล่องสรุป) -->
+  <!-- ================================================================ -->
+  <rect x="400" y="390" width="480" height="255" rx="6" fill="#fafafa" stroke="#333" stroke-width="1.5"/>
+  <text x="640" y="418" class="step">กฎการทำงานกับสแตก</text>
+
+  <text x="425" y="448" class="note">• PUSH imm — push ค่า 0–255, SP + 1</text>
+  <text x="425" y="470" class="note">• ADD / SUB — ต้อง push 2 ค่าก่อน (pop b, pop a → push ผลลัพธ์), SP − 1</text>
+  <text x="425" y="492" class="note">• MUL — ต้อง push 2 ค่าก่อน (pop b, pop a → push HI แล้ว push LO), SP คงเดิม</text>
+  <text x="425" y="514" class="note">• คำสั่ง 1 operand ของนักศึกษา (เช่น NEG, INC) — push 1 ค่าก่อน, SP คงเดิม</text>
+
+  <text x="425" y="546" class="note">• ลำดับ pop: ตัวบนสุด = b (TOS), ตัวถัดไป = a — SUB จึงคำนวณ a − b</text>
+  <text x="425" y="568" class="note">• SP = 0 แล้วสั่ง pop → stack underflow (ตรวจด้วยวงจร → LED)</text>
+  <text x="425" y="590" class="note">• SP = 7 แล้วสั่ง push → stack overflow (ตรวจด้วยวงจร → LED)</text>
+  <text x="425" y="612" class="note">• ค่าเก็บเป็น 8 บิต — บวกเกิน 255 wrap ด้วย mod 256 (แนวคิดเดียวกับ Lab 7.2)</text>
+  <text x="425" y="634" class="note">• MUL สูงสุด 255 × 255 = 65025 (16 บิต) — แสดงผล HI:LO บน HEX5–3 และ HEX2–0</text>
+
+  <!-- TITLE -->
+  <text x="490" y="700" class="title">การทำงานกับสแตก — PUSH / ADD / SUB / MUL (HI:LO)</text>
+</svg>
