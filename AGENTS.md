@@ -309,6 +309,9 @@ Existing diagrams:
   drawing = position comparison + color MUX, FSM updates object-position registers.
   Example idea list (Pong, ADC voltmeter/bar-graph, memory game, scoreboard, traffic light,
   slot machine, reaction game, etch-a-sketch, animation) — name + 1–2 sentence description, no how-to.
+  External demo-video links in the idea section (inspiration only, not how-to): VHDLwhiz Pong on
+  DE10-Lite clips `youtube.com/watch?v=w4JPbEQHHTA` and `youtube.com/watch?v=U-9T54B-v3Y`,
+  plus `youtu.be/k_7IV0U2JhQ` (VCL lab, video game on DE10-Lite).
   **Anti-AI-spoiler (stronger than Lab 8)**: principle-description document only — **no VHDL
   code blocks at all** (no skeletons, no entity templates); concepts via text, tables, SVG
   diagrams and blockquotes only. **Structure is a project brief, NOT a worksheet** — no

@@ -133,6 +133,11 @@ V_input = (ค่า 12-bit) / 4095 × 5.0  หน่วยโวลต์
 
 ## ตัวอย่างแนวคิดโปรเจกต์
 
+> **ดูตัวอย่างผลงานจริงก่อนเริ่ม:** คลิปสาธิตโปรเจกต์เกมบนบอร์ด **DE10-Lite** (บอร์ดเดียวกับที่ใช้ในคาบ) เขียนด้วย VHDL และแสดงผลออกจอ VGA — เพื่อแรงบันดาลใจในการเลือกหัวข้อ ไม่ใช่วิธีทำ
+> - [Pong game FPGA implementation — VHDLwhiz](https://www.youtube.com/watch?v=w4JPbEQHHTA)
+> - [Playing the classic Pong game on an FPGA — VHDLwhiz](https://www.youtube.com/watch?v=U-9T54B-v3Y)
+> - [A summer project video game on the DE10-Lite — VCL lab](https://youtu.be/k_7IV0U2JhQ)
+
 รายการต่อไปนี้เป็นเพียง **แนวคิด** ให้เห็นขอบเขตของโจทย์ — เลือกหนึ่งข้อ ดัดแปลง หรือคิดหัวข้อใหม่เองทั้งหมดก็ได้:
 
 - **Pong อย่างง่าย** — แร็กเกตขยับด้วยสวิตช์หรือ potentiometer ที่ต่อเข้าช่อง ADC ลูกบอลเด้งอัตโนมัติ FSM จัดการสถานะเกมและคะแนน
